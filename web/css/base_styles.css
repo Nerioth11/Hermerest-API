@@ -1,0 +1,76 @@
+body {
+    background-color: white;
+    margin: 0;
+}
+
+main {
+    padding-left: 208px;
+}
+
+/*header*/
+header {
+    padding: 20px;
+    background-color: #F5F5F5;
+    overflow: auto;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+header #headerLoginDiv {
+    float: right;
+}
+
+header #logout {
+    margin-left: 20px;
+    font-size: small;
+    text-decoration: none;
+    color: black;
+}
+
+header #logout:hover {
+    text-decoration: underline;
+}
+
+/*navbar*/
+
+.navbar_category {
+    color: #999999;
+    font-weight: bold;
+    font-size: large;
+}
+
+.navbar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    min-width: 160px;
+    background-color: #F5F5F5;
+    position: fixed;
+    height: 100%;
+    overflow: auto;
+    border-right: 1px solid #EEEEEE;
+}
+
+.navbar_category {
+    padding-left: 8px;
+    margin: 6px 0;
+}
+
+.navbar_separator {
+    border: 1px solid #EEEEEE;
+    margin-left: 17px;
+}
+
+.navbar li a {
+    display: block;
+    color: #0088CC;
+    text-decoration: none;
+    padding: 4px 16px;
+}
+
+.navbar li a.active {
+    background-color: #4CAF50;
+}
+
+.navbar li a:hover:not(.active) {
+    background-color: #EEEEEE;
+}

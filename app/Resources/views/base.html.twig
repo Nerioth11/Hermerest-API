@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8"/>
+    <title>{% block title %}Hermerest{% endblock %}</title>
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/base_styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+    {% endblock %}
+
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+</head>
+
+<body>
+<header>
+    <div id="headerLoginDiv">
+        <span>
+            Conectado como: D. Bonifacio Heredia<a id="logout" href={{ path('logout') }}>Cerrar sesión</a>
+        </span>
+    </div>
+
+</header>
+<nav class="navbar">
+    <ul>
+        <li><a href="{{ path('home') }}">Inicio</a></li>
+        <hr class="navbar_separator"/>
+        <li class="navbar_category">Centro</li>
+        <li><a href="{{ path('subjects') }}">Asignaturas</a></li>
+        <li><a href="{{ path('classes') }}">Cursos</a></li>
+        <li><a href="{{ path('students') }}">Alumnos</a></li>
+        <li><a href="{{ path('teachers') }}">Profesores</a></li>
+        <li class="navbar_category">Mensajería</li>
+        <li><a href="{{ path('authorizations') }}">Autorizaciones</a></li>
+        <li><a href="{{ path('circulars') }}">Circulares</a></li>
+        <hr class="navbar_separator"/>
+        <li><a href="{{ path('settings') }}">Ajustes</a></li>
+    </ul>
+</nav>
+
+<main>
+    {% block main %}{% endblock %}
+</main>
+
+{#<footer>Copyright &copy; Hermerest.com</footer>#}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('js/navbarscript.js') }}"></script>
+    <script src="{{ asset('js/ajaxscripts.js') }}"></script>
+    <script src="{{ asset('js/scripts.js') }}"></script>
+{% endblock %}
+</body>
+</html>
