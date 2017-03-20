@@ -1,4 +1,56 @@
+/*buttons*/
+.defaultButton {
+    background-color: white;
+    padding: 6px 15px;
+    border: solid #CDCDCD 1px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
 
+.primaryButton, .infoButton, .warningButton {
+    color: white;
+    border: none;
+    padding: 6px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.primaryButton {
+    background-color: #428BCA;
+}
+
+.infoButton {
+    background-color: #5BC0DE;
+}
+
+.warningButton {
+    background-color: #F0AD4E;
+}
+
+.primaryButton a, .infoButton a, .warningButton a {
+    text-decoration: none;
+    color: white;
+}
+
+/*tables*/
+.table {
+    vertical-align: middle;
+    border: none;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.table td:not(.tableButton), .table th {
+    border-bottom: solid #DDDDDD 1px;
+    text-align: center;
+    padding: 10px;
+}
+
+.table th {
+    font-size: large;
+}
 
 .icon {
     height: 24px;

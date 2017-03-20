@@ -21,15 +21,16 @@
     </div>
 
 </header>
+
 <nav class="navbar">
     <ul>
         <li><a href="{{ path('home') }}">Inicio</a></li>
         <hr class="navbar_separator"/>
         <li class="navbar_category">Centro</li>
-        <li><a href="{{ path('subjects') }}">Asignaturas</a></li>
+        {#<li><a href="{{ path('subjects') }}">Asignaturas</a></li>#}
         <li><a href="{{ path('classes') }}">Cursos</a></li>
         <li><a href="{{ path('students') }}">Alumnos</a></li>
-        <li><a href="{{ path('teachers') }}">Profesores</a></li>
+        {#<li><a href="{{ path('teachers') }}">Profesores</a></li>#}
         <li class="navbar_category">Mensajería</li>
         <li><a href="{{ path('authorizations') }}">Autorizaciones</a></li>
         <li><a href="{{ path('circulars') }}">Circulares</a></li>
@@ -38,8 +39,22 @@
     </ul>
 </nav>
 
+<div id="actionPanel">
+    {% block action_panel %}{% endblock %}
+</div>
+
 <main>
-    {% block main %}{% endblock %}
+    <div id="mainTitleDiv">
+    {% block main_title %}{% endblock %}
+    </div>
+
+    <div id="mainFiltersDiv">
+        {% block main_filters %}{% endblock %}
+    </div>
+
+    <div id="mainContentDiv">
+        {% block main_content %}{% endblock %}
+    </div>
 </main>
 
 {#<footer>Copyright &copy; Hermerest.com</footer>#}

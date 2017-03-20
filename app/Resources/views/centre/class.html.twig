@@ -1,35 +1,36 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Alumnos{% endblock %}
+{% block title %}Curso{% endblock %}
 
 {% block action_panel %}
-    <button class="defaultButton" type="button">Registrar alumno</button>
+    <button class="defaultButton" type="button">Editar</button>
+    <button class="defaultButton" type="button">Añadir alumno</button>
+    <button class="warningButton actionPanelRightButton" type="button">Eliminar curso</button>
     <button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>
 {% endblock %}
 
 {% block main_title %}
-    <h1>Alumnos</h1>
+    <h1>Curso: 4º A - 2016/2017</h1>
     <hr/>
 {% endblock %}
 
-{% block main_filters %}
-{% endblock %}
-
 {% block main_content %}
+
+    <b>Tutor: </b> Martín Martín
+    <br/><br/>
+    <b>Nº de alumnos: </b>6
+
     <table class="table">
         <tr>
             <th>Alumno</th>
-            <th>Curso</th>
         </tr>
         <tr>
             <td>Armando Aguiar</td>
-            <td>4º A</td>
             <td class="tableButton"><button class="infoButton"><a href="{{ path('student') }}?id=5">Ver</a></button></td>
             <td class="tableButton"><button class="warningButton">Eliminar</button></td>
         </tr>
         <tr>
             <td>Macarena Bermúdez</td>
-            <td>4º A</td>
             <td class="tableButton"><button class="infoButton"><a href="{{ path('student') }}?id=5">Ver</a></button></td>
             <td class="tableButton"><button class="warningButton">Eliminar</button></td>
         </tr>

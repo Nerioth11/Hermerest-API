@@ -2,7 +2,34 @@
 
 {% block title %}Cursos{% endblock %}
 
-{% block main %}
+{% block action_panel %}
+<button class="defaultButton" type="button">Nuevo curso</button>
+    <button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>
+{% endblock %}
+
+{% block main_title %}
     <h1>Cursos</h1>
     <hr/>
+{% endblock %}
+
+{% block main_content %}
+        <table class="table">
+        <tr>
+        <th>Nombre</th>
+        <th>Tutor</th>
+        <th>Nº de alumnos</th>
+        </tr>
+        <tr>
+            <td>1ºA</td>
+            <td>Domingo Domínguez</td>
+            <td>23</td>
+            <td class="tableButton"><button class="primaryButton"><a href="{{ path('class') }}?id=5">Ir</a></button></td>
+        </tr>
+        <tr>
+            <td>2ºB</td>
+            <td>Gonzalo González</td>
+            <td>25</td>
+            <td class="tableButton"><button class="primaryButton"><a href="{{ path('class') }}?id=5">Ir</a></button></td>
+        </tr>
+    </table>
 {% endblock %}

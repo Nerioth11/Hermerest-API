@@ -1,10 +1,11 @@
 body {
     background-color: white;
     margin: 0;
+    font-family: sans-serif;
 }
 
 main {
-    padding-left: 208px;
+    margin-left: 180px;
 }
 
 /*header*/
@@ -31,7 +32,6 @@ header #logout:hover {
 }
 
 /*navbar*/
-
 .navbar_category {
     color: #999999;
     font-weight: bold;
@@ -73,4 +73,22 @@ header #logout:hover {
 
 .navbar li a:hover:not(.active) {
     background-color: #EEEEEE;
+}
+
+/*main*/
+.mainContent {
+    margin-top: 10px
+}
+
+/*action panel*/
+#actionPanel {
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #EEEEEE;
+    padding: 10px;
+    margin-left: 160px;
+}
+
+.actionPanelRightButton {
+    float: right;
+    margin-right: 8px;
 }
