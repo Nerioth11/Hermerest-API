@@ -56,3 +56,40 @@
     height: 24px;
     width: 24px;
 }
+
+/*selects*/
+.dropdown {
+    border: solid #A9A9A9 1px;
+    cursor: pointer;
+    padding: 5px;
+    min-width: 200px;
+}
+
+.dropdown option {
+    margin-top: 20px;
+    margin-bottom: 20px
+}
+
+/*inputs*/
+.filterInput {
+    padding: 5px;
+    min-width: 210px;
+}
+
+/*modals*/
+
+
+/*OTHERS*/
+#studentNameFilter {
+    margin-left: 5px;
+}
+
+#studentInfo {
+    list-style-type: none;
+}
+
+#studentInfo li {
+    margin-left: -40px;
+    margin-bottom: 10px;
+}
+

@@ -1,18 +1,18 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Autorizaciones{% endblock %}
-
-{% block action_panel %}
-    <button class="defaultButton" type="button">Enviar autorización</button>
-{% endblock %}
+{% block title %}Encuestas{% endblock %}
 
 {% block main_title %}
-    <h1>Autorizaciones</h1>
+    <h1>Encuestas</h1>
     <hr/>
 {% endblock %}
 
+{% block action_panel %}
+    <button class="defaultButton" type="button">Enviar encuestas</button>
+{% endblock %}
+
 {% block main_filters %}
-    <input class="filterInput" id="authorizationTitleFilter" type="text" placeholder="Título de la autorización">
+    <input class="filterInput" id="pollTitleFilter" type="text" placeholder="Título de la encuesta">
 
     <select class="dropdown" id="monthDropdown">
         <option value="00">Cualquier mes</option>
@@ -47,9 +47,9 @@
         </tr>
         <tr>
             <td>12/12/2016</td>
-            <td>Excursión Museo Elder</td>
-            <td>Armando Balmaseda</td>
-            <td>18/12/2016</td>
+            <td>Fecha celebración Carnaval</td>
+            <td>Armando Balmaseta</td>
+            <td>15/01/2017</td>
             <td class="tableButton"><button class="infoButton">Ver</button></td>
         </tr>
     </table>

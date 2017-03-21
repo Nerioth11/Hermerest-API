@@ -4,8 +4,19 @@ body {
     font-family: sans-serif;
 }
 
+/*main*/
 main {
     margin-left: 180px;
+}
+
+#mainTitleDiv hr {
+    border: 1px solid #EEEEEE;
+    margin-top: -18px;
+}
+
+#mainFiltersDiv {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 /*header*/
@@ -64,7 +75,7 @@ header #logout:hover {
     display: block;
     color: #0088CC;
     text-decoration: none;
-    padding: 4px 16px;
+    padding: 5px 16px;
 }
 
 .navbar li a.active {

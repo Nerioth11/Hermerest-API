@@ -7,10 +7,43 @@
     <hr/>
 {% endblock %}
 
+{% block action_panel %}
+    <button class="defaultButton" type="button">Enviar circular</button>
+{% endblock %}
+
 {% block main_filters %}
+    <input class="filterInput" id="circularTitleFilter" type="text" placeholder="Título de la circular">
+
+    <select class="dropdown" id="monthDropdown">
+        <option value="00">Cualquier mes</option>
+        <option value="01">Enero</option>
+        <option value="02">Febrero</option>
+        <option value="03">Marzo</option>
+        <option value="04">Abril</option>
+        <option value="05">Mayo</option>
+        <option value="06">Junio</option>
+        <option value="07">Julio</option>
+        <option value="08">Agosto</option>
+        <option value="09">Septiempre</option>
+        <option value="10">Octubre</option>
+        <option value="11">Noviembre</option>
+        <option value="12">Diciembre</option>
+    </select>
 
 {% endblock %}
 
 {% block main_content %}
-
+    <table class="table">
+        <tr>
+            <th>Fecha</th>
+            <th>Título</th>
+            <th>Remitente</th>
+        </tr>
+        <tr>
+            <td>23/12/2016</td>
+            <td>Feliz Navidad</td>
+            <td>Enrique Morales</td>
+            <td class="tableButton"><button class="infoButton">Ver</button></td>
+        </tr>
+    </table>
 {% endblock %}

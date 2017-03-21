@@ -4,8 +4,7 @@
 
 {% block action_panel %}
     <button class="defaultButton" type="button">Editar alumno</button>
-    <button class="defaultButton" type="button">Añadir alumno</button>
-    <button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>
+    <button class="defaultButton" type="button">Añadir padre</button>
 {% endblock %}
 
 {% block main_title %}
@@ -19,20 +18,17 @@
 {% block main_content %}
     <div id="studentInfoDiv">
         <h2>Información del alumno</h2>
-        <b>Nombre: </b>Faustino
-        <br/><br/>
-        <b>Apelidos: </b>Rodríguez
-        <br/><br/>
-        <b>Curso (2016/2017): </b>1ºB
-        <br/><br/>
-        <b>Fecha de nacimiento: </b>10/02/2010
-        <br/><br/>
-        <b>Teléfono: </b>928 45 84 10
-        <br/><br/>
-        <b>Dirección: </b>C/ Desengaño, Nº21, 1ºA
-        <br/><br/>
-        <b>DNI: </b>
+        <ul id="studentInfo">
+            <li><b>Nombre: </b>Faustino</li>
+            <li><b>Apelidos: </b>Rodríguez</li>
+            <li><b>Curso (2016/2017): </b>1ºB</li>
+            <li><b>Fecha de nacimiento: </b>10/02/2010</li>
+            <li><b>Teléfono: </b>928 45 84 10</li>
+            <li><b>Dirección: </b>C/ Desengaño, Nº21, 1ºA</li>
+            <li><b>DNI: </b></li>
+        </ul>
     </div>
+
     <br/>
     <div id="parentsDiv">
         <h2>Padres</h2>
@@ -46,15 +42,23 @@
                 <td>Eusebio Rodríguez Feo</td>
                 <td>645 849 351</td>
                 <td>46584312V</td>
-                <td class="tableButton"><button class="primaryButton">Editar</button></td>
-                <td class="tableButton"><button class="warningButton">Eliminar</button></td>
+                <td class="tableButton">
+                    <button class="primaryButton">Editar</button>
+                </td>
+                <td class="tableButton">
+                    <button class="warningButton">Eliminar</button>
+                </td>
             </tr>
             <tr>
                 <td>Eulalia Sanz Martínez</td>
                 <td>615 498 476</td>
                 <td>42516978W</td>
-                <td class="tableButton"><button class="primaryButton">Editar</button></td>
-                <td class="tableButton"><button class="warningButton">Eliminar</button></td>
+                <td class="tableButton">
+                    <button class="primaryButton">Editar</button>
+                </td>
+                <td class="tableButton">
+                    <button class="warningButton">Eliminar</button>
+                </td>
             </tr>
         </table>
     </div>

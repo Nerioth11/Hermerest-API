@@ -13,6 +13,12 @@
 {% endblock %}
 
 {% block main_filters %}
+    <select class="dropdown" id="classDropdown">
+        <option value="">Cualquier curso</option>
+        <option value="4º A">4º A</option>
+        <option value="4º B">4º B</option>
+        <input class="filterInput" id="studentNameFilter" type="text" placeholder="Nombre del alumno">
+    </select>
 {% endblock %}
 
 {% block main_content %}
