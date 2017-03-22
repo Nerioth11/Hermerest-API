@@ -52,17 +52,12 @@
     font-size: large;
 }
 
-.icon {
-    height: 24px;
-    width: 24px;
-}
-
 /*selects*/
 .dropdown {
     border: solid #A9A9A9 1px;
     cursor: pointer;
     padding: 5px;
-    min-width: 200px;
+    min-width: 224px;
 }
 
 .dropdown option {
@@ -77,7 +72,10 @@
 }
 
 /*modals*/
-
+.modalInput {
+    padding: 5px;
+    min-width: 210px;
+}
 
 /*OTHERS*/
 #studentNameFilter {

@@ -97,6 +97,7 @@ header #logout:hover {
     border-bottom: 1px solid #EEEEEE;
     padding: 10px;
     margin-left: 160px;
+    overflow: auto;
 }
 
 .actionPanelRightButton {
