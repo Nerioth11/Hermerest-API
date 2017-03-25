@@ -1,11 +1,37 @@
-// CURSOS
-function openNewClassDialog() {
-    $("#myModal").show();
+function closeModal() {
+    $(".modal").hide();
 }
 
-// When the user clicks on <span> (x), close the modal
-function closeModal() {
-    $("#myModal").hide();
+// CLASSES
+function openNewClassDialog() {
+    $("#newClassModal").show();
+}
+
+// CLASS
+function openEditClassDialog() {
+    $("#editClassModal").show();
+}
+
+function openAddStudentDialog() {
+    $("#addStudentModal").show();
+}
+
+// STUDENTS
+function openRegisterStudentDialog() {
+    $("#registerStudentModal").show();
+}
+
+// STUDENT
+function openEditStudentDialog() {
+    $("#editStudentModal").show();
+}
+
+function openAddParentDialog() {
+    $("#addParentModal").show();
+}
+
+function openEditParentDialog() {
+    $("#editParentModal").show();
 }
 
 

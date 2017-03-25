@@ -1,0 +1,20 @@
+{% extends 'modals/modal.html.twig' %}
+
+ {% block modal_header %}
+     Añadir alumno
+ {% endblock %}
+
+{% block modal_body %}
+    <input class="modalInput" id="studentNameInput" type="text" placeholder="Nombre del alumno">
+    <br/><br/>
+    Alumno<br/>
+    <select class="dropdown" id="studentDropdown">
+        <option value="11">Armando Aguiar</option>
+        <option value="12">Fernanda Valido</option>
+    </select>
+{% endblock %}
+
+{% block modal_footer %}
+    <button class="primaryButton" type="button" onclick="closeModal()">Guardar</button>
+    <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
+{% endblock %}

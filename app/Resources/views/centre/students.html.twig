@@ -2,8 +2,12 @@
 
 {% block title %}Alumnos{% endblock %}
 
+{% block modals %}
+    {{ include('/modals/register_student_modal.html.twig') }}
+{% endblock %}
+
 {% block action_panel %}
-    <button class="defaultButton" type="button">Registrar alumno</button>
+    <button class="defaultButton" type="button" onclick="openRegisterStudentDialog()">Registrar alumno</button>
     <button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>
 {% endblock %}
 
@@ -40,4 +44,11 @@
             <td class="tableButton"><button class="warningButton">Eliminar</button></td>
         </tr>
     </table>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(".modal").eq(0).attr("id", "registerStudentModal");
+    </script>
 {% endblock %}

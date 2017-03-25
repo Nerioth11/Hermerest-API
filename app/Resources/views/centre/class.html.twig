@@ -2,20 +2,24 @@
 
 {% block title %}Curso{% endblock %}
 
+{% block modals %}
+    {{ include('/modals/add_student_modal.html.twig') }}
+    {{ include('/modals/edit_class_modal.html.twig') }}
+{% endblock %}
+
 {% block action_panel %}
-    <button class="defaultButton" type="button">Editar</button>
-    <button class="defaultButton" type="button">Añadir alumno</button>
+    <button class="defaultButton" type="button" onclick="openEditClassDialog()">Editar</button>
+    <button class="defaultButton" type="button" onclick="openAddStudentDialog()">Añadir alumno</button>
     <button class="warningButton actionPanelRightButton" type="button">Eliminar curso</button>
     <button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>
 {% endblock %}
 
 {% block main_title %}
-    <h1>Curso: 4º A - 2016/2017</h1>
+    <h1>Curso: 4º A</h1>
     <hr/>
 {% endblock %}
 
 {% block main_content %}
-
     <b>Tutor: </b> Martín Martín
     <br/><br/>
     <b>Nº de alumnos: </b>6
@@ -26,13 +30,29 @@
         </tr>
         <tr>
             <td>Armando Aguiar</td>
-            <td class="tableButton"><button class="infoButton"><a href="{{ path('student') }}?id=5">Ver</a></button></td>
-            <td class="tableButton"><button class="warningButton">Eliminar</button></td>
+            <td class="tableButton">
+                <button class="infoButton"><a href="{{ path('student') }}?id=5">Ver</a></button>
+            </td>
+            <td class="tableButton">
+                <button class="warningButton">Eliminar</button>
+            </td>
         </tr>
         <tr>
             <td>Macarena Bermúdez</td>
-            <td class="tableButton"><button class="infoButton"><a href="{{ path('student') }}?id=5">Ver</a></button></td>
-            <td class="tableButton"><button class="warningButton">Eliminar</button></td>
+            <td class="tableButton">
+                <button class="infoButton"><a href="{{ path('student') }}?id=5">Ver</a></button>
+            </td>
+            <td class="tableButton">
+                <button class="warningButton">Eliminar</button>
+            </td>
         </tr>
     </table>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(".modal").eq(0).attr("id", "addStudentModal");
+        $(".modal").eq(1).attr("id", "editClassModal");
+    </script>
 {% endblock %}

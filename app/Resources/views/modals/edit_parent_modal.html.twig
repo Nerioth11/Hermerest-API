@@ -1,0 +1,21 @@
+{% extends 'modals/modal.html.twig' %}
+
+ {% block modal_header %}
+     Editar padre
+ {% endblock %}
+
+{% block modal_body %}
+    Nombre y apellidos<br/>
+    <input class="modalInput" id="parentNameInput" type="text" value="Eusebio Rodríguez Feo">
+    <br/><br/>
+    Teléfono<br/>
+    <input class="modalInput" id="parentTelephoneInput" type="text" value="645 849 351">
+    <br/><br/>
+    DNI/NIF<br/>
+    <input class="modalInput" id="parentIdCardInput" type="text" value="46584312V">
+{% endblock %}
+
+{% block modal_footer %}
+    <button class="primaryButton" type="button" onclick="closeModal()">Guardar</button>
+    <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
+{% endblock %}

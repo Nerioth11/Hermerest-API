@@ -3,7 +3,7 @@
 {% block title %}Cursos{% endblock %}
 
 {% block modals %}
-    {{ include(':modals:new_class_modal.html.twig') }}
+    {{ include('/modals/new_class_modal.html.twig') }}
 {% endblock %}
 
 {% block action_panel %}
@@ -40,4 +40,11 @@
             </td>
         </tr>
     </table>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(".modal").eq(0).attr("id", "newClassModal");
+    </script>
 {% endblock %}

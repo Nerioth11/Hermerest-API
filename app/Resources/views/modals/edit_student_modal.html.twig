@@ -1,0 +1,33 @@
+{% extends 'modals/modal.html.twig' %}
+
+ {% block modal_header %}
+     Editar alumno
+ {% endblock %}
+
+{% block modal_body %}
+    Nombre<br/>
+    <input class="modalInput" id="studentNameInput" type="text" value="Faustino">
+    <br/><br/>
+    Apellidos<br/>
+    <input class="modalInput" id="studentSurnameInput" type="text" value="Rodríguez">
+    <br/><br/>
+    Curso<br/>
+    <select class="dropdown" id="classDropdown">
+        <option value="11">1º B</option>
+        <option value="12">2º A</option>
+    </select>
+    <br/><br/>
+    Fecha de nacimiento<br/>
+    <input class="modalInput" id="birthDateInput" type="text" value="10/02/2010">
+    <br/><br/>
+    Teléfono<br/>
+    <input class="modalInput" id="telephoneInput" type="text" value="928 45 84 10">
+    <br/><br/>
+    Dirección<br/>
+    <input class="modalInput" id="addressInput" type="text" value="C/ Desengaño, Nº21, 1ºA">
+{% endblock %}
+
+{% block modal_footer %}
+    <button class="primaryButton" type="button" onclick="closeModal()">Guardar</button>
+    <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
+{% endblock %}

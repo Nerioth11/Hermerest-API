@@ -2,9 +2,15 @@
 
 {% block title %}Alumno{% endblock %}
 
+{% block modals %}
+    {{ include('/modals/edit_student_modal.html.twig') }}
+    {{ include('/modals/add_parent_modal.html.twig') }}
+    {{ include('/modals/edit_parent_modal.html.twig') }}
+{% endblock %}
+
 {% block action_panel %}
-    <button class="defaultButton" type="button">Editar alumno</button>
-    <button class="defaultButton" type="button">Añadir padre</button>
+    <button class="defaultButton" type="button" onclick="openEditStudentDialog()">Editar alumno</button>
+    <button class="defaultButton" type="button" onclick="openAddParentDialog()">Añadir padre</button>
 {% endblock %}
 
 {% block main_title %}
@@ -43,7 +49,7 @@
                 <td>645 849 351</td>
                 <td>46584312V</td>
                 <td class="tableButton">
-                    <button class="primaryButton">Editar</button>
+                    <button class="primaryButton" onclick="openEditParentDialog()">Editar</button>
                 </td>
                 <td class="tableButton">
                     <button class="warningButton">Eliminar</button>
@@ -54,7 +60,7 @@
                 <td>615 498 476</td>
                 <td>42516978W</td>
                 <td class="tableButton">
-                    <button class="primaryButton">Editar</button>
+                    <button class="primaryButton" onclick="openEditParentDialog()">Editar</button>
                 </td>
                 <td class="tableButton">
                     <button class="warningButton">Eliminar</button>
@@ -62,4 +68,13 @@
             </tr>
         </table>
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(".modal").eq(0).attr("id", "editStudentModal");
+        $(".modal").eq(1).attr("id", "addParentModal");
+        $(".modal").eq(2).attr("id", "editParentModal");
+    </script>
 {% endblock %}
