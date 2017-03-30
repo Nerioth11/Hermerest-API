@@ -40,6 +40,10 @@
     border-bottom: solid #DDDDDD 1px;
 }
 
+.modal-header h3 {
+    margin-left: 10px;
+}
+
 .modal-body {
     padding: 10px 16px;
 }
@@ -58,3 +62,67 @@
 .modal-body_content {
     padding: 10px;
 }
+
+.modal-body_left_panel {
+    display: inline-block;
+    padding-right: 30px;
+    /*margin-right: -2px;*/
+    /*border-right: solid #A9A9A9 1px;*/
+}
+
+.modal-body_right_panel {
+    display: inline-block;
+    vertical-align: top;
+    padding-left: 30px;
+    /*margin-left: -3px;*/
+    border-left: solid #A9A9A9 1px;
+}
+
+/*register_student_modal*/
+#addParentButton, #addPollOptionButton {
+    margin: 0 auto;
+    display: block;
+}
+
+#addedParentsList, #addedPollOptionsList {
+    margin-top: 20px;
+    list-style-type: none;
+    font-size: small;
+    padding-left: 0;
+}
+
+#addedParentsList a, #addedPollOptionsList a {
+    font-size: x-large;
+    margin-left: 10px;
+    color: #888888;
+}
+
+/*messaging*/
+.messageTextArea {
+    resize: none;
+    font-size: large;
+}
+
+.attachFileDiv, .attachedFilesDiv {
+    margin-bottom: 8px;
+}
+
+.modalMessageInput {
+    width: 550px;
+    padding: 5px;
+}
+
+/*polls*/
+#pollOptionsDiv {
+    margin-bottom: 40px;
+}
+
+#pollResultList {
+    list-style: none;
+    padding-left: 0;
+}
+
+#pollResultList {
+    padding-bottom: 10px;
+}
+

@@ -1,0 +1,28 @@
+{% extends 'modals/modal.html.twig' %}
+
+ {% block modal_header %}
+     Enviar circular
+ {% endblock %}
+
+{% block modal_body %}
+    <div class="modal-body_left_panel">
+        Título<br/>
+        <input class="modalMessageInput" id="circularTitleInput" type="text">
+        <br/><br/>
+        <div class="attachFileDiv">
+            <img class="icon" src="{{ asset('images/attachment.png') }}" alt="Adjuntar archivo"/> Adjuntar archivo
+        </div>
+        <textarea class="messageTextArea" id="circularContentTextArea" type="text" rows="20" cols="60"></textarea>
+    </div>
+    <div class="modal-body_right_panel">
+        <b>Destinatarios</b>
+        <br/><br/>
+        AQUÍ VA EL TREEVIEW
+    </div>
+
+{% endblock %}
+
+{% block modal_footer %}
+    <button class="primaryButton" type="button" onclick="closeModal()">Enviar</button>
+    <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
+{% endblock %}

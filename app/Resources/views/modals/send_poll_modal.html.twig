@@ -1,0 +1,45 @@
+{% extends 'modals/modal.html.twig' %}
+
+ {% block modal_header %}
+     Enviar encuesta
+ {% endblock %}
+
+{% block modal_body %}
+    <div class="modal-body_left_panel">
+        Título<br/>
+        <input class="modalMessageInput" id="pollTitleInput" type="text">
+        <br/><br/>
+        Fecha límite<br/>
+        <input class="modalMessageInput" id="pollDateInput" type="date">
+        <br/><br/>
+        <div class="attachFileDiv">
+            <img class="icon" src="{{ asset('images/attachment.png') }}" alt="Adjuntar archivo"/> Adjuntar archivo
+        </div>
+        <textarea class="messageTextArea" id="pollContentTextArea" type="text" rows="20" cols="60"></textarea>
+    </div>
+    <div class="modal-body_right_panel">
+        <div id="pollOptionsDiv">
+            <b>Opciones</b>
+            <br/><br/>
+            Nueva opción<br/>
+            <input class="modalInput" id="newPollOptionInput" type="text">
+            <br/><br/>
+            <button class="primaryButton" id="addPollOptionButton" type="button">Añadir opción</button>
+            <ul id="addedPollOptionsList">
+                <li>Lunes<a>&times;</a></li>
+                <li>Viernes<a>&times;</a></li>
+            </ul>
+        </div>
+        <div id="recipientsDiv">
+            <b>Destinatarios</b>
+            <br/><br/>
+            AQUÍ VA EL TREEVIEW
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block modal_footer %}
+    <button class="primaryButton" type="button" onclick="closeModal()">Enviar</button>
+    <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
+{% endblock %}

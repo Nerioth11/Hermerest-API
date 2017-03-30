@@ -2,13 +2,18 @@
 
 {% block title %}Circulares{% endblock %}
 
+{% block modals %}
+    {{ include('/modals/send_circular_modal.html.twig') }}
+    {{ include('/modals/view_circular_modal.html.twig') }}
+{% endblock %}
+
 {% block main_title %}
     <h1>Circulares</h1>
     <hr/>
 {% endblock %}
 
 {% block action_panel %}
-    <button class="defaultButton" type="button">Enviar circular</button>
+    <button class="defaultButton" type="button" onclick="openSendCircularDialog()">Enviar circular</button>
 {% endblock %}
 
 {% block main_filters %}
@@ -43,7 +48,15 @@
             <td>23/12/2016</td>
             <td>Feliz Navidad</td>
             <td>Enrique Morales</td>
-            <td class="tableButton"><button class="infoButton">Ver</button></td>
+            <td class="tableButton"><button class="infoButton" onclick="openViewCircularDialog()">Ver</button></td>
         </tr>
     </table>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(".modal").eq(0).attr("id", "sendCircularModal");
+        $(".modal").eq(1).attr("id", "viewCircularModal");
+    </script>
 {% endblock %}

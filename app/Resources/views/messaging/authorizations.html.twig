@@ -2,8 +2,13 @@
 
 {% block title %}Autorizaciones{% endblock %}
 
+{% block modals %}
+    {{ include('/modals/send_authorization_modal.html.twig') }}
+    {{ include('/modals/view_authorization_modal.html.twig') }}
+{% endblock %}
+
 {% block action_panel %}
-    <button class="defaultButton" type="button">Enviar autorización</button>
+    <button class="defaultButton" type="button" onclick="openSendAuthorizationDialog()">Enviar autorización</button>
 {% endblock %}
 
 {% block main_title %}
@@ -50,7 +55,15 @@
             <td>Excursión Museo Elder</td>
             <td>Armando Balmaseda</td>
             <td>18/12/2016</td>
-            <td class="tableButton"><button class="infoButton">Ver</button></td>
+            <td class="tableButton"><button class="infoButton" onclick="openViewAuthorizationDialog()">Ver</button></td>
         </tr>
     </table>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(".modal").eq(0).attr("id", "sendAuthorizationModal");
+        $(".modal").eq(1).attr("id", "viewAuthorizationModal");
+    </script>
 {% endblock %}

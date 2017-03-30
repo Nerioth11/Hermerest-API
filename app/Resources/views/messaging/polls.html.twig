@@ -2,13 +2,18 @@
 
 {% block title %}Encuestas{% endblock %}
 
+{% block modals %}
+    {{ include('/modals/send_poll_modal.html.twig') }}
+    {{ include('/modals/view_poll_modal.html.twig') }}
+{% endblock %}
+
 {% block main_title %}
     <h1>Encuestas</h1>
     <hr/>
 {% endblock %}
 
 {% block action_panel %}
-    <button class="defaultButton" type="button">Enviar encuesta</button>
+    <button class="defaultButton" type="button" onclick="openSendPollDialog()">Enviar encuesta</button>
 {% endblock %}
 
 {% block main_filters %}
@@ -48,9 +53,17 @@
         <tr>
             <td>12/12/2016</td>
             <td>Fecha celebración Carnaval</td>
-            <td>Armando Balmaseta</td>
+            <td>Armando Balmaseda</td>
             <td>15/01/2017</td>
-            <td class="tableButton"><button class="infoButton">Ver</button></td>
+            <td class="tableButton"><button class="infoButton" onclick="openViewPollDialog()">Ver</button></td>
         </tr>
     </table>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(".modal").eq(0).attr("id", "sendPollModal");
+        $(".modal").eq(1).attr("id", "viewPollModal");
+    </script>
 {% endblock %}

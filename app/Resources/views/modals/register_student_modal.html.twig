@@ -5,7 +5,7 @@
  {% endblock %}
 
 {% block modal_body %}
-    <div id="div1">
+    <div class="modal-body_left_panel">
         Nombre<br/>
         <input class="modalInput" id="studentNameInput" type="text">
         <br/><br/>
@@ -17,17 +17,17 @@
             <option value="11">1º B</option>
             <option value="12">2º A</option>
         </select>
-        <br/><br/>
-        Fecha de nacimiento<br/>
-        <input class="modalInput" id="birthDateInput" type="text">
-        <br/><br/>
-        Teléfono<br/>
-        <input class="modalInput" id="telephoneInput" type="text">
-        <br/><br/>
-        Dirección<br/>
-        <input class="modalInput" id="addressInput" type="text">
+        {#<br/><br/>#}
+        {#Fecha de nacimiento<br/>#}
+        {#<input class="modalInput" id="birthDateInput" type="date">#}
+        {#<br/><br/>#}
+        {#Teléfono<br/>#}
+        {#<input class="modalInput" id="telephoneInput" type="text">#}
+        {#<br/><br/>#}
+        {#Dirección<br/>#}
+        {#<input class="modalInput" id="addressInput" type="text">#}
     </div>
-    <div id="div2">
+    <div class="modal-body_right_panel">
         <b>Padre / Madre / Tutor legal</b>
         <br/><br/>
         Nombre y apellidos<br/>
@@ -36,9 +36,9 @@
         Teléfono<br/>
         <input class="modalInput" id="parentTelephoneInput" type="text">
         <br/><br/>
-        DNI/NIF<br/>
-        <input class="modalInput" id="parentIdCardInput" type="text">
-        <br/><br/>
+        {#DNI/NIF<br/>#}
+        {#<input class="modalInput" id="parentIdCardInput" type="text">#}
+        {#<br/><br/>#}
         <button class="primaryButton" id="addParentButton" type="button">Añadir padre</button>
 
         <ul id="addedParentsList">
@@ -46,38 +46,6 @@
         </ul>
     </div>
 
-    <style>
-        #div1 {
-            display: inline-block;
-            padding-right: 30px;
-            border-right: solid #A9A9A9 1px;
-        }
-
-        #div2 {
-            display: inline-block;
-            vertical-align: top;
-            padding-left: 30px;
-        }
-
-        #addParentButton {
-            margin: 0 auto;
-            display: block;
-        }
-
-        #addedParentsList{
-            margin-top: 20px;
-            list-style-type: none;
-            font-size: small;
-            padding-left: 0;
-        }
-
-        #addedParentsList a{
-            font-size: x-large;
-            margin-left: 10px;
-            color: #888888;
-        }
-
-    </style>
 {% endblock %}
 
 {% block modal_footer %}

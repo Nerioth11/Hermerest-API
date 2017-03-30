@@ -11,6 +11,7 @@
 {% block action_panel %}
     <button class="defaultButton" type="button" onclick="openEditStudentDialog()">Editar alumno</button>
     <button class="defaultButton" type="button" onclick="openAddParentDialog()">Añadir padre</button>
+    <button class="warningButton actionPanelRightButton" type="button">Eliminar alumno</button>
 {% endblock %}
 
 {% block main_title %}
@@ -28,10 +29,9 @@
             <li><b>Nombre: </b>Faustino</li>
             <li><b>Apelidos: </b>Rodríguez</li>
             <li><b>Curso (2016/2017): </b>1ºB</li>
-            <li><b>Fecha de nacimiento: </b>10/02/2010</li>
-            <li><b>Teléfono: </b>928 45 84 10</li>
-            <li><b>Dirección: </b>C/ Desengaño, Nº21, 1ºA</li>
-            <li><b>DNI: </b></li>
+            {#<li><b>Fecha de nacimiento: </b>10/02/2010</li>#}
+            {#<li><b>Teléfono: </b>928 45 84 10</li>#}
+            {#<li><b>Dirección: </b>C/ Desengaño, Nº21, 1ºA</li>#}
         </ul>
     </div>
 
@@ -40,14 +40,14 @@
         <h2>Padres</h2>
         <table class="table">
             <tr>
-                <th>Alumno</th>
+                <th>Nombre</th>
                 <th>Teléfono</th>
-                <th>DNI</th>
+                {#<th>DNI</th>#}
             </tr>
             <tr>
                 <td>Eusebio Rodríguez Feo</td>
                 <td>645 849 351</td>
-                <td>46584312V</td>
+                {#<td>46584312V</td>#}
                 <td class="tableButton">
                     <button class="primaryButton" onclick="openEditParentDialog()">Editar</button>
                 </td>
@@ -58,7 +58,7 @@
             <tr>
                 <td>Eulalia Sanz Martínez</td>
                 <td>615 498 476</td>
-                <td>42516978W</td>
+                {#<td>42516978W</td>#}
                 <td class="tableButton">
                     <button class="primaryButton" onclick="openEditParentDialog()">Editar</button>
                 </td>

@@ -34,4 +34,29 @@ function openEditParentDialog() {
     $("#editParentModal").show();
 }
 
+// CIRCULARS
+function openSendCircularDialog() {
+    $("#sendCircularModal").show();
+}
 
+function openViewCircularDialog() {
+    $("#viewCircularModal").show();
+}
+
+// AUTHORIZATIONS
+function openSendAuthorizationDialog() {
+    $("#sendAuthorizationModal").show();
+}
+
+function openViewAuthorizationDialog() {
+    $("#viewAuthorizationModal").show();
+}
+
+// POLLS
+function openSendPollDialog() {
+    $("#sendPollModal").show();
+}
+
+function openViewPollDialog() {
+    $("#viewPollModal").show();
+}

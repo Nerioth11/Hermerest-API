@@ -1,0 +1,24 @@
+{% extends 'modals/modal.html.twig' %}
+
+ {% block modal_header %}
+     Excursión Museo Elder (12/12/2016) - Hasta 18/12/2016
+ {% endblock %}
+
+{% block modal_body %}
+    <div class="modal-body_left_panel">
+        <div class="attachedFilesDiv">
+            <img class="icon" src="{{ asset('images/attachment.png') }}" alt="Adjuntar archivo"/> Elder.pdf
+        </div>
+        <textarea class="messageTextArea" id="authorizationContentTextArea" type="text" rows="20" cols="60" readonly>Será muy divertido.</textarea>
+    </div>
+    <div class="modal-body_right_panel">
+        <b>Autorizaciones</b>
+        <br/><br/>
+        AQUÍ VA EL TREEVIEW
+    </div>
+
+{% endblock %}
+
+{% block modal_footer %}
+    <button class="defaultButton" type="button" onclick="closeModal()">Cerrar</button>
+{% endblock %}
