@@ -6,7 +6,7 @@
 
 {% block modal_body %}
     Nombre<br/>
-    <input class="modalInput" id="studentNameInput" type="text">
+    <input class="modalInput" id="classNameInput" type="text">
     {#<br/><br/>#}
     {#Tutor<br/>#}
     {#<select class="dropdown" id="tutorDropdown">#}
@@ -16,6 +16,6 @@
 {% endblock %}
 
 {% block modal_footer %}
-    <button class="primaryButton" type="button" onclick="closeModal()">Guardar</button>
+    <button class="primaryButton" type="button" onclick="addNewClass()">Guardar</button>
     <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
 {% endblock %}

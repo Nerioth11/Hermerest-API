@@ -10,40 +10,40 @@
 {% block action_panel %}
     <button class="defaultButton" type="button" onclick="openEditClassDialog()">Editar</button>
     <button class="defaultButton" type="button" onclick="openAddStudentDialog()">Añadir alumno</button>
-    <button class="warningButton actionPanelRightButton" type="button">Eliminar curso</button>
+    <button class="warningButton actionPanelRightButton" type="button" onclick="deleteClass()">Eliminar curso</button>
     <button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>
 {% endblock %}
 
 {% block main_title %}
-    <h1>Curso: 4º A</h1>
+    <h1>Curso: <span id="className">4º A</span></h1>
     <hr/>
 {% endblock %}
 
 {% block main_content %}
     {#<b>Tutor: </b> Martín Martín#}
     {#<br/><br/>#}
-    <b>Nº de alumnos: </b>6
+    <b>Nº de alumnos: </b><span id="numberOfStudents">2</span>
 
-    <table class="table">
+    <table class="table" id="studentsTable">
         <tr>
             <th>Alumno</th>
         </tr>
         <tr>
             <td>Armando Aguiar</td>
             <td class="tableButton">
-                <button class="infoButton"><a href="{{ path('student') }}?id=5">Ver</a></button>
+                <button class="infoButton"><a href="{{ path('student') }}">Ver</a></button>
             </td>
             <td class="tableButton">
-                <button class="warningButton">Eliminar</button>
+                <button class="warningButton" onclick="deleteStudentFromClass(this)">Eliminar</button>
             </td>
         </tr>
         <tr>
             <td>Macarena Bermúdez</td>
             <td class="tableButton">
-                <button class="infoButton"><a href="{{ path('student') }}?id=5">Ver</a></button>
+                <button class="infoButton"><a href="{{ path('student') }}">Ver</a></button>
             </td>
             <td class="tableButton">
-                <button class="warningButton">Eliminar</button>
+                <button class="warningButton" onclick="deleteStudentFromClass(this)">Eliminar</button>
             </td>
         </tr>
     </table>

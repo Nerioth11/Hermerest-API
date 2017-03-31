@@ -5,16 +5,16 @@
  {% endblock %}
 
 {% block modal_body %}
-    <input class="modalInput" id="studentNameInput" type="text" placeholder="Nombre del alumno">
+    <input class="modalInput" id="studentNameFilterInput" type="text" placeholder="Nombre del alumno" onkeyup="hideNotMatchingStudentsFromStudentsDropdown()">
     <br/><br/>
     Alumno<br/>
-    <select class="dropdown" id="studentDropdown">
+    <select class="dropdown" id="studentsDropdown">
         <option value="11">Armando Aguiar</option>
         <option value="12">Fernanda Valido</option>
     </select>
 {% endblock %}
 
 {% block modal_footer %}
-    <button class="primaryButton" type="button" onclick="closeModal()">Guardar</button>
+    <button class="primaryButton" type="button" onclick="addStudentToClass()">Guardar</button>
     <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
 {% endblock %}

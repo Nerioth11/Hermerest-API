@@ -17,30 +17,39 @@
 {% endblock %}
 
 {% block main_filters %}
-    <select class="dropdown" id="classDropdown">
+    <select class="dropdown" id="classFilterDropdown" onchange="filterStudents()">
         <option value="">Cualquier curso</option>
         <option value="4º A">4º A</option>
         <option value="4º B">4º B</option>
-        <input class="filterInput" id="studentNameFilter" type="text" placeholder="Nombre del alumno">
     </select>
+    <input class="filterInput" id="studentNameFilterInput" type="text" placeholder="Nombre del alumno"
+           onkeyup="filterStudents()">
 {% endblock %}
 
 {% block main_content %}
-    <table class="table">
+    <table class="table" id="studentsTable">
+        <thead>
         <tr>
             <th>Alumno</th>
             <th>Curso</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td>Armando Aguiar</td>
             <td>4º A</td>
-            <td class="tableButton"><button class="infoButton"><a href="{{ path('student') }}?id=5">Ver</a></button></td>
+            <td class="tableButton">
+                <button class="infoButton"><a href="{{ path('student') }}">Ver</a></button>
+            </td>
         </tr>
         <tr>
             <td>Macarena Bermúdez</td>
-            <td>4º A</td>
-            <td class="tableButton"><button class="infoButton"><a href="{{ path('student') }}?id=5">Ver</a></button></td>
+            <td>4º B</td>
+            <td class="tableButton">
+                <button class="infoButton"><a href="{{ path('student') }}">Ver</a></button>
+            </td>
         </tr>
+        </tbody>
     </table>
 {% endblock %}
 

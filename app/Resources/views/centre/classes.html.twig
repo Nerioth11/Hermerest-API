@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block main_content %}
-    <table class="table">
+    <table class="table" id="classesTable">
         <tr>
             <th>Nombre</th>
             {#<th>Tutor</th>#}
@@ -28,7 +28,7 @@
             {#<td>Domingo Domínguez</td>#}
             <td>23</td>
             <td class="tableButton">
-                <button class="infoButton"><a href="{{ path('class') }}?id=5">Ver</a></button>
+                <button class="infoButton"><a href="{{ path('class') }}">Ver</a></button>
             </td>
         </tr>
         <tr>
@@ -36,7 +36,7 @@
             {#<td>Gonzalo González</td>#}
             <td>25</td>
             <td class="tableButton">
-                <button class="infoButton"><a href="{{ path('class') }}?id=5">Ver</a></button>
+                <button class="infoButton"><a href="{{ path('class') }}">Ver</a></button>
             </td>
         </tr>
     </table>

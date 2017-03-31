@@ -11,11 +11,11 @@
 {% block action_panel %}
     <button class="defaultButton" type="button" onclick="openEditStudentDialog()">Editar alumno</button>
     <button class="defaultButton" type="button" onclick="openAddParentDialog()">Añadir padre</button>
-    <button class="warningButton actionPanelRightButton" type="button">Eliminar alumno</button>
+    <button class="warningButton actionPanelRightButton" type="button" onclick="deleteStudent()">Eliminar alumno</button>
 {% endblock %}
 
 {% block main_title %}
-    <h1>Alumno: Faustino Rodríguez</h1>
+    <h1>Alumno: <span id="studentFullName">Faustino Rodríguez</span></h1>
     <hr/>
 {% endblock %}
 
@@ -26,9 +26,9 @@
     <div id="studentInfoDiv">
         <h2>Información del alumno</h2>
         <ul id="studentInfo">
-            <li><b>Nombre: </b>Faustino</li>
-            <li><b>Apelidos: </b>Rodríguez</li>
-            <li><b>Curso (2016/2017): </b>1ºB</li>
+            <li><b>Nombre: </b><span id="studentName">Faustino</span></li>
+            <li><b>Apellidos: </b><span id="studentSurname">Rodríguez</span></li>
+            <li><b>Curso: </b><span id="studentClass">1ºB</span></li>
             {#<li><b>Fecha de nacimiento: </b>10/02/2010</li>#}
             {#<li><b>Teléfono: </b>928 45 84 10</li>#}
             {#<li><b>Dirección: </b>C/ Desengaño, Nº21, 1ºA</li>#}
@@ -38,7 +38,7 @@
     <br/>
     <div id="parentsDiv">
         <h2>Padres</h2>
-        <table class="table">
+        <table class="table" id="parentsTable">
             <tr>
                 <th>Nombre</th>
                 <th>Teléfono</th>
@@ -46,24 +46,24 @@
             </tr>
             <tr>
                 <td>Eusebio Rodríguez Feo</td>
-                <td>645 849 351</td>
+                <td>645849351</td>
                 {#<td>46584312V</td>#}
                 <td class="tableButton">
-                    <button class="primaryButton" onclick="openEditParentDialog()">Editar</button>
+                    <button class="primaryButton" onclick="openEditParentDialog(this)">Editar</button>
                 </td>
                 <td class="tableButton">
-                    <button class="warningButton">Eliminar</button>
+                    <button class="warningButton" onclick="deleteParent(this)">Eliminar</button>
                 </td>
             </tr>
             <tr>
                 <td>Eulalia Sanz Martínez</td>
-                <td>615 498 476</td>
+                <td>615498476</td>
                 {#<td>42516978W</td>#}
                 <td class="tableButton">
-                    <button class="primaryButton" onclick="openEditParentDialog()">Editar</button>
+                    <button class="primaryButton" onclick="openEditParentDialog(this)">Editar</button>
                 </td>
                 <td class="tableButton">
-                    <button class="warningButton">Eliminar</button>
+                    <button class="warningButton" onclick="deleteParent(this)">Eliminar</button>
                 </td>
             </tr>
         </table>

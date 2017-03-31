@@ -6,7 +6,7 @@
 
 {% block modal_body %}
     Nombre y apellidos<br/>
-    <input class="modalInput" id="parentNameInput" type="text">
+    <input class="modalInput" id="parentFullnameInput" type="text">
     <br/><br/>
     Teléfono<br/>
     <input class="modalInput" id="parentTelephoneInput" type="text">
@@ -16,6 +16,6 @@
 {% endblock %}
 
 {% block modal_footer %}
-    <button class="primaryButton" type="button" onclick="closeModal()">Guardar</button>
+    <button class="primaryButton" type="button" onclick="addParent()">Guardar</button>
     <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
 {% endblock %}
