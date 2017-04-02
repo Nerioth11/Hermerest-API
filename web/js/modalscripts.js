@@ -94,6 +94,19 @@ function filterStudents() {
     });
 }
 
+function addParentToParentstist() {
+    if ($("#parentFullnameInput").val().trim() === "" || $("#parentTelephoneInput").val().trim() === "")
+        alert("El nombre y el teléfono no deben estar vacíos");
+    else if(isNaN($("#parentTelephoneInput").val().trim())) alert("El número de teléfono no es válido");
+    else {
+        $("#addedParentsList").append("<li>" + $("#parentFullnameInput").val() + "<a class='deleteCross' onclick='deleteParentFromParentsList(this)'>&times;</a></li>");
+    }
+}
+
+function deleteParentFromParentsList(button) {
+    button.parentNode.remove();
+}
+
 function registerStudent() {
     studentName = $("#studentNameInput").val()
     studentSurname = $("#studentSurnameInput").val()
@@ -192,6 +205,8 @@ function deleteParent(button) {
 // --------------------MESSAGING--------------------
 // CIRCULARS
 function openSendCircularDialog() {
+    $("#circularTitleInput").val("");
+    $("#circularContentTextArea").val("");
     $("#sendCircularModal").show();
 }
 
@@ -199,8 +214,37 @@ function openViewCircularDialog() {
     $("#viewCircularModal").show();
 }
 
+function sendCircular() {
+    if ($("#circularTitleInput").val().trim() === "") alert("El título de la circular no debe estar vacío");
+    else {
+
+        $("#circularsTable tbody").prepend(
+            "<tr>" +
+            "<td>" + getTodaysDate() + "</td>" +
+            "<td>" + $("#circularTitleInput").val() + "</td>" +
+            "<td class='tableButton'><button class='infoButton' onclick='openViewCircularDialog()'>Ver</button></td>" +
+            "</tr>"
+        );
+        closeModal();
+    }
+}
+
+function filterCirculars() {
+    circularTitle = $("#circularTitleInputFilter").val().toLowerCase();
+    circularMonth = $("#circularMonthDropdown :selected").val();
+    $("#circularsTable > tbody > tr").each(function () {
+        rowCircularTitle = $(this).children().eq(1).text().toLowerCase();
+        rowCircularMonth = $(this).children().eq(0).text().substring(3, 5);
+        if (rowCircularTitle.includes(circularTitle) && (rowCircularMonth === circularMonth || circularMonth === "")) $(this).show();
+        else $(this).hide();
+    });
+}
+
 // AUTHORIZATIONS
 function openSendAuthorizationDialog() {
+    $("#authorizationTitleInput").val("");
+    $("#authorizationDateInput").val("");
+    $("#authorizationContentTextArea").val("");
     $("#sendAuthorizationModal").show();
 }
 
@@ -208,11 +252,89 @@ function openViewAuthorizationDialog() {
     $("#viewAuthorizationModal").show();
 }
 
+function sendAuthorization() {
+    if ($("#authorizationTitleInput").val().trim() === "" || $("#authorizationDateInput").val().trim() === "") alert("El título y la fecha límite de la circular no deben estar vacíos");
+    else if (dateComparator(dateInputToString($("#authorizationDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
+    else {
+
+        $("#authorizationsTable tbody").prepend(
+            "<tr>" +
+            "<td>" + getTodaysDate() + "</td>" +
+            "<td>" + $("#authorizationTitleInput").val() + "</td>" +
+            "<td>" + dateInputToString($("#authorizationDateInput").val()) + "</td>" +
+            "<td class='tableButton'><button class='infoButton' onclick='openViewAuthorizationDialog()'>Ver</button></td>" +
+            "</tr>"
+        );
+        closeModal();
+    }
+}
+
+function filterAuthorizations() {
+    authorizationTitle = $("#authorizationTitleInputFilter").val().toLowerCase();
+    authorizationMonth = $("#authorizationMonthDropdownFilter :selected").val();
+    authorizationState = parseInt($("#authorizationStateDropdownFilter :selected").val());
+    $("#authorizationsTable > tbody > tr").each(function () {
+        rowAuthorizationState = dateComparator($(this).children().eq(2).text(), getTodaysDate());
+        rowAuthorizationTitle = $(this).children().eq(1).text().toLowerCase();
+        rowAuthorizationMonth = $(this).children().eq(0).text().substring(3, 5);
+        if (rowAuthorizationTitle.includes(authorizationTitle) &&
+            (rowAuthorizationMonth === authorizationMonth || authorizationMonth === "") &&
+            (rowAuthorizationState === authorizationState || authorizationState === 0)) $(this).show();
+        else $(this).hide();
+    });
+}
+
 // POLLS
 function openSendPollDialog() {
+    $("#pollTitleInput").val("");
+    $("#pollDateInput").val("");
+    $("#pollContentTextArea").val("");
     $("#sendPollModal").show();
 }
 
 function openViewPollDialog() {
     $("#viewPollModal").show();
+}
+
+function addPollOption() {
+    if ($("#newPollOptionInput").val().trim() === "") alert("La opción no debe estar vacía");
+    else {
+        $("#addedPollOptionsList").append("<li>" + $("#newPollOptionInput").val() + "<a  class='deleteCross' onclick='deletePollOption(this)'>&times;</a></li>");
+    }
+}
+
+function deletePollOption(button) {
+    button.parentNode.remove();
+}
+
+function sendPoll() {
+    if ($("#pollTitleInput").val().trim() === "" || $("#pollDateInput").val().trim() === "") alert("El título y la fecha límite de la circular no deben estar vacíos");
+    else if (dateComparator(dateInputToString($("#pollDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
+    else {
+
+        $("#pollsTable tbody").prepend(
+            "<tr>" +
+            "<td>" + getTodaysDate() + "</td>" +
+            "<td>" + $("#pollTitleInput").val() + "</td>" +
+            "<td>" + dateInputToString($("#pollDateInput").val()) + "</td>" +
+            "<td class='tableButton'><button class='infoButton' onclick='openViewPollDialog()'>Ver</button></td>" +
+            "</tr>"
+        );
+        closeModal();
+    }
+}
+
+function filterPolls() {
+    pollTitle = $("#pollTitleInputFilter").val().toLowerCase();
+    pollMonth = $("#pollMonthDropdownFilter :selected").val();
+    pollState = parseInt($("#pollStateDropdownFilter :selected").val());
+    $("#pollsTable > tbody > tr").each(function () {
+        rowPollState = dateComparator($(this).children().eq(2).text(), getTodaysDate());
+        rowPollTitle = $(this).children().eq(1).text().toLowerCase();
+        rowPollMonth = $(this).children().eq(0).text().substring(3, 5);
+        if (rowPollTitle.includes(pollTitle) &&
+            (rowPollMonth === pollMonth || pollMonth === "") &&
+            (rowPollState === pollState || pollState === 0)) $(this).show();
+        else $(this).hide();
+    });
 }

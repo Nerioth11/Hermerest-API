@@ -31,7 +31,7 @@
         <b>Padre / Madre / Tutor legal</b>
         <br/><br/>
         Nombre y apellidos<br/>
-        <input class="modalInput" id="parentNameInput" type="text">
+        <input class="modalInput" id="parentFullnameInput" type="text">
         <br/><br/>
         Teléfono<br/>
         <input class="modalInput" id="parentTelephoneInput" type="text">
@@ -39,10 +39,10 @@
         {#DNI/NIF<br/>#}
         {#<input class="modalInput" id="parentIdCardInput" type="text">#}
         {#<br/><br/>#}
-        <button class="primaryButton" id="addParentButton" type="button">Añadir padre</button>
+        <button class="primaryButton" id="addParentButton" type="button" onclick="addParentToParentstist()">Añadir padre</button>
 
         <ul id="addedParentsList">
-            <li>Bernardo Rodríguez <a>&times;</a></li>
+            <li>Bernardo Rodríguez <a class="deleteCross" onclick="deleteParentFromParentsList(this)">&times;</a></li>
         </ul>
     </div>
 

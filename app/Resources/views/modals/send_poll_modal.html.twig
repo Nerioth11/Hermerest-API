@@ -24,10 +24,10 @@
             Nueva opción<br/>
             <input class="modalInput" id="newPollOptionInput" type="text">
             <br/><br/>
-            <button class="primaryButton" id="addPollOptionButton" type="button">Añadir opción</button>
+            <button class="primaryButton" id="addPollOptionButton" type="button" onclick="addPollOption()">Añadir opción</button>
             <ul id="addedPollOptionsList">
-                <li>Lunes<a>&times;</a></li>
-                <li>Viernes<a>&times;</a></li>
+                <li>Lunes<a class="deleteCross" onclick="deletePollOption(this)">&times;</a></li>
+                <li>Viernes<a class="deleteCross" onclick="deletePollOption(this)">&times;</a></li>
             </ul>
         </div>
         <div id="recipientsDiv">
@@ -40,6 +40,6 @@
 {% endblock %}
 
 {% block modal_footer %}
-    <button class="primaryButton" type="button" onclick="closeModal()">Enviar</button>
+    <button class="primaryButton" type="button" onclick="sendPoll()">Enviar</button>
     <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
 {% endblock %}

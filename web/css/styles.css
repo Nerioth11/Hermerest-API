@@ -40,12 +40,21 @@
     color: white;
 }
 
+.deleteCross {
+    cursor: pointer;
+}
+
 /*tables*/
 .table {
     vertical-align: middle;
     border: none;
     border-collapse: collapse;
     margin-top: 20px;
+}
+
+/* messaging states */
+.pastDate{
+    color: red;
 }
 
 .table td:not(.tableButton), .table th {

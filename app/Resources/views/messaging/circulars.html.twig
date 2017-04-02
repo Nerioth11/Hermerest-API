@@ -17,10 +17,10 @@
 {% endblock %}
 
 {% block main_filters %}
-    <input class="filterInput" id="circularTitleFilter" type="text" placeholder="Título de la circular">
+    <input class="filterInput" id="circularTitleInputFilter" type="text" placeholder="Título de la circular" onkeyup="filterCirculars()">
 
-    <select class="dropdown" id="monthDropdown">
-        <option value="00">Cualquier mes</option>
+    <select class="dropdown" id="circularMonthDropdown" onchange="filterCirculars()">
+        <option value="">Cualquier mes</option>
         <option value="01">Enero</option>
         <option value="02">Febrero</option>
         <option value="03">Marzo</option>
@@ -38,18 +38,24 @@
 {% endblock %}
 
 {% block main_content %}
-    <table class="table">
+    <table class="table" id="circularsTable">
+        <thead>
         <tr>
             <th>Fecha de envío</th>
             <th>Título</th>
             {#<th>Remitente</th>#}
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td>23/12/2016</td>
             <td>Feliz Navidad</td>
             {#<td>Enrique Morales</td>#}
-            <td class="tableButton"><button class="infoButton" onclick="openViewCircularDialog()">Ver</button></td>
+            <td class="tableButton">
+                <button class="infoButton" onclick="openViewCircularDialog()">Ver</button>
+            </td>
         </tr>
+        </tbody>
     </table>
 {% endblock %}
 

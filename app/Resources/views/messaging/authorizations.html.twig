@@ -7,20 +7,20 @@
     {{ include('/modals/view_authorization_modal.html.twig') }}
 {% endblock %}
 
-{% block action_panel %}
-    <button class="defaultButton" type="button" onclick="openSendAuthorizationDialog()">Enviar autorización</button>
-{% endblock %}
-
 {% block main_title %}
     <h1>Autorizaciones</h1>
     <hr/>
 {% endblock %}
 
-{% block main_filters %}
-    <input class="filterInput" id="authorizationTitleFilter" type="text" placeholder="Título de la autorización">
+{% block action_panel %}
+    <button class="defaultButton" type="button" onclick="openSendAuthorizationDialog()">Enviar autorización</button>
+{% endblock %}
 
-    <select class="dropdown" id="monthDropdown">
-        <option value="00">Cualquier mes</option>
+{% block main_filters %}
+    <input class="filterInput" id="authorizationTitleInputFilter" type="text" placeholder="Título de la autorización" onkeyup="filterAuthorizations()">
+
+    <select class="dropdown" id="authorizationMonthDropdownFilter" onchange="filterAuthorizations()">
+        <option value="">Cualquier mes</option>
         <option value="01">Enero</option>
         <option value="02">Febrero</option>
         <option value="03">Marzo</option>
@@ -35,28 +35,34 @@
         <option value="12">Diciembre</option>
     </select>
 
-    <select class="dropdown" id="authorizationStateDropdown">
-        <option value="">Cualquier estado</option>
-        <option value="En curso">En curso</option>
-        <option value="Finalizadas">Finalizadas</option>
+    <select class="dropdown" id="authorizationStateDropdownFilter" onchange="filterAuthorizations()">
+        <option value="0">Cualquier estado</option>
+        <option value="1">En curso</option>
+        <option value="-1">Finalizadas</option>
     </select>
 {% endblock %}
 
 {% block main_content %}
-    <table class="table">
+    <table class="table" id="authorizationsTable">
+        <thead>
         <tr>
             <th>Fecha de envío</th>
             <th>Título</th>
             {#<th>Remitente</th>#}
             <th>Fecha límite</th>
         </tr>
+        </thead>
+        <tbody>
         <tr>
             <td>12/12/2016</td>
             <td>Excursión Museo Elder</td>
             {#<td>Armando Balmaseda</td>#}
-            <td>18/12/2016</td>
-            <td class="tableButton"><button class="infoButton" onclick="openViewAuthorizationDialog()">Ver</button></td>
+            <td class="pastDate">18/12/2016</td>
+            <td class="tableButton">
+                <button class="infoButton" onclick="openViewAuthorizationDialog()">Ver</button>
+            </td>
         </tr>
+        </tbody>
     </table>
 {% endblock %}
 
