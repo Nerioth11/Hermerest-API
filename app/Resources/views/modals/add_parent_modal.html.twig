@@ -5,14 +5,16 @@
  {% endblock %}
 
 {% block modal_body %}
+    <p class="addParentClarification">*Rellene primero el DNI.</p>
+    <br/>
+    DNI/NIF<br/>
+    <input class="modalInput" id="parentIdCardInput" type="text" onkeyup="searchParentByIdCard('addParentModal')">
+    <br/><br/>
     Nombre y apellidos<br/>
     <input class="modalInput" id="parentFullnameInput" type="text">
     <br/><br/>
     Teléfono<br/>
     <input class="modalInput" id="parentTelephoneInput" type="text">
-    {#<br/><br/>#}
-    {#DNI/NIF<br/>#}
-    {#<input class="modalInput" id="parentIdCardInput" type="text">#}
 {% endblock %}
 
 {% block modal_footer %}

@@ -97,6 +97,13 @@
     color: #888888;
 }
 
+/*student*/
+.addParentClarification{
+    font-size: small;
+    margin: 0;
+    color: red;
+}
+
 /*messaging*/
 .messageTextArea {
     resize: none;
