@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block main_filters %}
-    <input class="filterInput" id="circularTitleInputFilter" type="text" placeholder="Título de la circular" onkeyup="filterCirculars()">
+    <input class="filterInput" id="circularSubjectInputFilter" type="text" placeholder="Asunto de la circular" onkeyup="filterCirculars()">
 
     <select class="dropdown" id="circularMonthDropdown" onchange="filterCirculars()">
         <option value="">Cualquier mes</option>
@@ -42,7 +42,7 @@
         <thead>
         <tr>
             <th>Fecha de envío</th>
-            <th>Título</th>
+            <th>Asunto</th>
             {#<th>Remitente</th>#}
         </tr>
         </thead>

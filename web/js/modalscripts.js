@@ -227,7 +227,7 @@ function deleteParent(button) {
 // --------------------MESSAGING--------------------
 // CIRCULARS
 function openSendCircularDialog() {
-    $("#circularTitleInput").val("");
+    $("#circularSubjectInput").val("");
     $("#circularContentTextArea").val("");
     $("#sendCircularModal").show();
 }
@@ -237,13 +237,13 @@ function openViewCircularDialog() {
 }
 
 function sendCircular() {
-    if ($("#circularTitleInput").val().trim() === "") alert("El título de la circular no debe estar vacío");
+    if ($("#circularSubjectInput").val().trim() === "") alert("El asunto de la circular no debe estar vacío");
     else {
 
         $("#circularsTable tbody").prepend(
             "<tr>" +
             "<td>" + getTodaysDate() + "</td>" +
-            "<td>" + $("#circularTitleInput").val() + "</td>" +
+            "<td>" + $("#circularSubjectInput").val() + "</td>" +
             "<td class='tableButton'><button class='infoButton' onclick='openViewCircularDialog()'>Ver</button></td>" +
             "</tr>"
         );
@@ -252,19 +252,19 @@ function sendCircular() {
 }
 
 function filterCirculars() {
-    circularTitle = $("#circularTitleInputFilter").val().toLowerCase();
+    circularSubject = $("#circularSubjectInputFilter").val().toLowerCase();
     circularMonth = $("#circularMonthDropdown :selected").val();
     $("#circularsTable > tbody > tr").each(function () {
-        rowCircularTitle = $(this).children().eq(1).text().toLowerCase();
+        rowCircularSubject = $(this).children().eq(1).text().toLowerCase();
         rowCircularMonth = $(this).children().eq(0).text().substring(3, 5);
-        if (rowCircularTitle.includes(circularTitle) && (rowCircularMonth === circularMonth || circularMonth === "")) $(this).show();
+        if (rowCircularSubject.includes(circularSubject) && (rowCircularMonth === circularMonth || circularMonth === "")) $(this).show();
         else $(this).hide();
     });
 }
 
 // AUTHORIZATIONS
 function openSendAuthorizationDialog() {
-    $("#authorizationTitleInput").val("");
+    $("#authorizationSubjectInput").val("");
     $("#authorizationDateInput").val("");
     $("#authorizationContentTextArea").val("");
     $("#sendAuthorizationModal").show();
@@ -275,14 +275,14 @@ function openViewAuthorizationDialog() {
 }
 
 function sendAuthorization() {
-    if ($("#authorizationTitleInput").val().trim() === "" || $("#authorizationDateInput").val().trim() === "") alert("El título y la fecha límite de la circular no deben estar vacíos");
+    if ($("#authorizationSubjectInput").val().trim() === "" || $("#authorizationDateInput").val().trim() === "") alert("El asunto y la fecha límite de la circular no deben estar vacíos");
     else if (dateComparator(dateInputToString($("#authorizationDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
     else {
 
         $("#authorizationsTable tbody").prepend(
             "<tr>" +
             "<td>" + getTodaysDate() + "</td>" +
-            "<td>" + $("#authorizationTitleInput").val() + "</td>" +
+            "<td>" + $("#authorizationSubjectInput").val() + "</td>" +
             "<td>" + dateInputToString($("#authorizationDateInput").val()) + "</td>" +
             "<td class='tableButton'><button class='infoButton' onclick='openViewAuthorizationDialog()'>Ver</button></td>" +
             "</tr>"
@@ -292,14 +292,14 @@ function sendAuthorization() {
 }
 
 function filterAuthorizations() {
-    authorizationTitle = $("#authorizationTitleInputFilter").val().toLowerCase();
+    authorizationSubject = $("#authorizationSubjectInputFilter").val().toLowerCase();
     authorizationMonth = $("#authorizationMonthDropdownFilter :selected").val();
     authorizationState = parseInt($("#authorizationStateDropdownFilter :selected").val());
     $("#authorizationsTable > tbody > tr").each(function () {
         rowAuthorizationState = dateComparator($(this).children().eq(2).text(), getTodaysDate());
-        rowAuthorizationTitle = $(this).children().eq(1).text().toLowerCase();
+        rowAuthorizationSubject = $(this).children().eq(1).text().toLowerCase();
         rowAuthorizationMonth = $(this).children().eq(0).text().substring(3, 5);
-        if (rowAuthorizationTitle.includes(authorizationTitle) &&
+        if (rowAuthorizationSubject.includes(authorizationSubject) &&
             (rowAuthorizationMonth === authorizationMonth || authorizationMonth === "") &&
             (rowAuthorizationState === authorizationState || authorizationState === 0)) $(this).show();
         else $(this).hide();
@@ -308,7 +308,7 @@ function filterAuthorizations() {
 
 // POLLS
 function openSendPollDialog() {
-    $("#pollTitleInput").val("");
+    $("#pollSubjectInput").val("");
     $("#pollDateInput").val("");
     $("#pollContentTextArea").val("");
     $("#sendPollModal").show();
@@ -330,14 +330,14 @@ function deletePollOption(button) {
 }
 
 function sendPoll() {
-    if ($("#pollTitleInput").val().trim() === "" || $("#pollDateInput").val().trim() === "") alert("El título y la fecha límite de la circular no deben estar vacíos");
+    if ($("#pollSubjectInput").val().trim() === "" || $("#pollDateInput").val().trim() === "") alert("El asunto y la fecha límite de la circular no deben estar vacíos");
     else if (dateComparator(dateInputToString($("#pollDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
     else {
 
         $("#pollsTable tbody").prepend(
             "<tr>" +
             "<td>" + getTodaysDate() + "</td>" +
-            "<td>" + $("#pollTitleInput").val() + "</td>" +
+            "<td>" + $("#pollSubjectInput").val() + "</td>" +
             "<td>" + dateInputToString($("#pollDateInput").val()) + "</td>" +
             "<td class='tableButton'><button class='infoButton' onclick='openViewPollDialog()'>Ver</button></td>" +
             "</tr>"
@@ -347,14 +347,14 @@ function sendPoll() {
 }
 
 function filterPolls() {
-    pollTitle = $("#pollTitleInputFilter").val().toLowerCase();
+    pollSubject = $("#pollSubjectInputFilter").val().toLowerCase();
     pollMonth = $("#pollMonthDropdownFilter :selected").val();
     pollState = parseInt($("#pollStateDropdownFilter :selected").val());
     $("#pollsTable > tbody > tr").each(function () {
         rowPollState = dateComparator($(this).children().eq(2).text(), getTodaysDate());
-        rowPollTitle = $(this).children().eq(1).text().toLowerCase();
+        rowPollSubject = $(this).children().eq(1).text().toLowerCase();
         rowPollMonth = $(this).children().eq(0).text().substring(3, 5);
-        if (rowPollTitle.includes(pollTitle) &&
+        if (rowPollSubject.includes(pollSubject) &&
             (rowPollMonth === pollMonth || pollMonth === "") &&
             (rowPollState === pollState || pollState === 0)) $(this).show();
         else $(this).hide();

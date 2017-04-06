@@ -3,10 +3,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e6e06172-8bc6-487a-88c6-fe9d6006e63d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/centre/student.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/centre/student.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/add_parent_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/add_parent_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/edit_parent_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/edit_parent_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/register_student_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/register_student_modal.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/modals_styles.css" afterPath="$PROJECT_DIR$/web/css/modals_styles.css" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/modalscripts.js" afterPath="$PROJECT_DIR$/web/js/modalscripts.js" />
     </list>
@@ -22,59 +24,31 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5581542">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="register_student_modal.html.twig" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/register_student_modal.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="833">
-                  <caret line="55" column="14" lean-forward="true" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="add_parent_modal.html.twig" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/add_parent_modal.html.twig">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="modalscripts.js" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/web/js/modalscripts.js">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="437">
-                  <caret line="203" column="30" lean-forward="false" selection-start-line="203" selection-start-column="30" selection-end-line="203" selection-end-column="30" />
-                  <folding>
-                    <marker date="1491421887571" expanded="true" signature="3458:3465" ph="×" />
-                    <marker date="1491421887571" expanded="true" signature="12177:12184" ph="×" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="modals_styles.css" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/web/css/modals_styles.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="306">
-                  <caret line="96" column="19" lean-forward="true" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
-                  <folding />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="modalscripts.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/web/js/modalscripts.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="288">
+              <caret line="277" column="129" lean-forward="false" selection-start-line="277" selection-start-column="129" selection-end-line="277" selection-end-column="129" />
+              <folding>
+                <marker date="1491511865799" expanded="true" signature="3458:3465" ph="×" />
+                <marker date="1491511865799" expanded="true" signature="12211:12218" ph="×" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="view_poll_modal.html.twig" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="68">
+              <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -86,9 +60,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>addedparent</find>
-      <find>icon</find>
-      <find>add</find>
       <find>filt</find>
       <find>id</find>
       <find>i</find>
@@ -116,6 +87,9 @@
       <find>deletepol</find>
       <find>addparent</find>
       <find>vacío</find>
+      <find>onkeyup=&quot;filterAuthorizations()&quot;</find>
+      <find>Title</find>
+      <find>Título</find>
     </findStrings>
     <replaceStrings>
       <replace>base.html.twig</replace>
@@ -124,6 +98,8 @@
       <replace>Authorization</replace>
       <replace>Poll</replace>
       <replace>poll</replace>
+      <replace>Subject</replace>
+      <replace>asunto</replace>
     </replaceStrings>
     <dirStrings>
       <dir>C:\xampp\htdocs\Hermerest</dir>
@@ -172,21 +148,21 @@
         <option value="$PROJECT_DIR$/app/Resources/views/centre/students.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/edit_student_modal.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/login.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig" />
         <option value="$PROJECT_DIR$/web/js/scripts.js" />
-        <option value="$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig" />
         <option value="$PROJECT_DIR$/web/css/styles.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/centre/student.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/edit_parent_modal.html.twig" />
-        <option value="$PROJECT_DIR$/web/js/modalscripts.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/register_student_modal.html.twig" />
-        <option value="$PROJECT_DIR$/web/css/modals_styles.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/add_parent_modal.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/modals_styles.css" />
+        <option value="$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig" />
+        <option value="$PROJECT_DIR$/web/js/modalscripts.js" />
       </list>
     </option>
   </component>
@@ -226,6 +202,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -422,8 +400,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -587,12 +563,13 @@
       <workItem from="1490981517909" duration="100000" />
       <workItem from="1490981728036" duration="23000" />
       <workItem from="1491129957272" duration="12361000" />
-      <workItem from="1491411735421" duration="7274000" />
+      <workItem from="1491411735421" duration="8127000" />
+      <workItem from="1491480880811" duration="1715000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="108913000" />
+    <option name="totallyTimeSpent" value="111481000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -792,13 +769,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/view_circular_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="31" lean-forward="false" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/centre/ClassController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -852,30 +822,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="703">
           <caret line="69" column="40" lean-forward="false" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="69" lean-forward="false" selection-start-line="25" selection-start-column="69" selection-end-line="25" selection-end-column="69" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/view_authorization_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="14" lean-forward="false" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="0" lean-forward="true" selection-start-line="17" selection-start-column="0" selection-end-line="17" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -895,56 +841,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="14" lean-forward="false" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="28" column="76" lean-forward="false" selection-start-line="28" selection-start-column="76" selection-end-line="28" selection-end-column="76" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="19" column="150" lean-forward="false" selection-start-line="19" selection-start-column="117" selection-end-line="19" selection-end-column="150" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="629">
-          <caret line="37" column="4" lean-forward="false" selection-start-line="37" selection-start-column="4" selection-end-line="37" selection-end-column="4" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="22" lean-forward="true" selection-start-line="25" selection-start-column="22" selection-end-line="25" selection-end-column="22" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/login.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="589">
           <caret line="45" column="25" lean-forward="false" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/scripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -962,7 +862,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="232">
           <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -970,7 +869,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="521">
           <caret line="71" column="25" lean-forward="false" selection-start-line="71" selection-start-column="19" selection-end-line="71" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -982,17 +880,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/modalscripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="203" column="30" lean-forward="false" selection-start-line="203" selection-start-column="30" selection-end-line="203" selection-end-column="30" />
-          <folding>
-            <marker date="1491421887571" expanded="true" signature="3458:3465" ph="×" />
-            <marker date="1491421887571" expanded="true" signature="12177:12184" ph="×" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/students.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="377">
@@ -1001,27 +888,118 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/modals_styles.css">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/register_student_modal.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="96" column="19" lean-forward="true" selection-start-line="96" selection-start-column="19" selection-end-line="96" selection-end-column="19" />
+        <state relative-caret-position="935">
+          <caret line="55" column="14" lean-forward="false" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/register_student_modal.html.twig">
+    <entry file="file://$PROJECT_DIR$/web/js/scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="55" column="14" lean-forward="true" selection-start-line="55" selection-start-column="14" selection-end-line="55" selection-end-column="14" />
+        <state relative-caret-position="306">
+          <caret line="18" column="24" lean-forward="false" selection-start-line="18" selection-start-column="24" selection-end-line="18" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/add_parent_modal.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="25" lean-forward="true" selection-start-line="12" selection-start-column="25" selection-end-line="12" selection-end-column="25" />
+        <state relative-caret-position="374">
+          <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/modals_styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="0" lean-forward="true" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="49" column="16" lean-forward="true" selection-start-line="49" selection-start-column="16" selection-end-line="49" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="44" column="22" lean-forward="false" selection-start-line="44" selection-start-column="22" selection-end-line="44" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="8" column="14" lean-forward="false" selection-start-line="8" selection-start-column="14" selection-end-line="8" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/view_authorization_modal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="14" lean-forward="false" selection-start-line="13" selection-start-column="14" selection-end-line="13" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/view_circular_modal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="31" lean-forward="false" selection-start-line="3" selection-start-column="31" selection-end-line="3" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="9" lean-forward="true" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/modalscripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="288">
+          <caret line="277" column="129" lean-forward="false" selection-start-line="277" selection-start-column="129" selection-end-line="277" selection-end-column="129" />
+          <folding>
+            <marker date="1491511865799" expanded="true" signature="3458:3465" ph="×" />
+            <marker date="1491511865799" expanded="true" signature="12211:12218" ph="×" />
+          </folding>
         </state>
       </provider>
     </entry>

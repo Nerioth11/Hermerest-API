@@ -17,7 +17,7 @@
 {% endblock %}
 
 {% block main_filters %}
-    <input class="filterInput" id="pollTitleInputFilter" type="text" placeholder="Título de la encuesta" onkeyup="filterPolls()">
+    <input class="filterInput" id="pollSubjectInputFilter" type="text" placeholder="Asunto de la encuesta" onkeyup="filterPolls()">
 
     <select class="dropdown" id="pollMonthDropdownFilter" onchange="filterPolls()">
         <option value="">Cualquier mes</option>
@@ -47,7 +47,7 @@
         <thead>
         <tr>
             <th>Fecha de envío</th>
-            <th>Título</th>
+            <th>Asunto</th>
             {#<th>Remitente</th>#}
             <th>Fecha límite</th>
         </tr>
