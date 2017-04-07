@@ -54,4 +54,144 @@ class Student
         $this->parents = new ArrayCollection();
     }
 
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set name
+     *
+     * @param string $name
+     *
+     * @return Student
+     */
+    public function setName($name)
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * Get name
+     *
+     * @return string
+     */
+    public function getName()
+    {
+        return $this->name;
+    }
+
+    /**
+     * Set surname
+     *
+     * @param string $surname
+     *
+     * @return Student
+     */
+    public function setSurname($surname)
+    {
+        $this->surname = $surname;
+
+        return $this;
+    }
+
+    /**
+     * Get surname
+     *
+     * @return string
+     */
+    public function getSurname()
+    {
+        return $this->surname;
+    }
+
+    /**
+     * Set class
+     *
+     * @param \AppBundle\Entity\Course $class
+     *
+     * @return Student
+     */
+    public function setClass(\AppBundle\Entity\Course $class = null)
+    {
+        $this->class = $class;
+
+        return $this;
+    }
+
+    /**
+     * Get class
+     *
+     * @return \AppBundle\Entity\Course
+     */
+    public function getClass()
+    {
+        return $this->class;
+    }
+
+    /**
+     * Set centre
+     *
+     * @param \AppBundle\Entity\Centre $centre
+     *
+     * @return Student
+     */
+    public function setCentre(\AppBundle\Entity\Centre $centre)
+    {
+        $this->centre = $centre;
+
+        return $this;
+    }
+
+    /**
+     * Get centre
+     *
+     * @return \AppBundle\Entity\Centre
+     */
+    public function getCentre()
+    {
+        return $this->centre;
+    }
+
+    /**
+     * Add parent
+     *
+     * @param \AppBundle\Entity\Progenitor $parent
+     *
+     * @return Student
+     */
+    public function addParent(\AppBundle\Entity\Progenitor $parent)
+    {
+        $this->parents[] = $parent;
+
+        return $this;
+    }
+
+    /**
+     * Remove parent
+     *
+     * @param \AppBundle\Entity\Progenitor $parent
+     */
+    public function removeParent(\AppBundle\Entity\Progenitor $parent)
+    {
+        $this->parents->removeElement($parent);
+    }
+
+    /**
+     * Get parents
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getParents()
+    {
+        return $this->parents;
+    }
 }

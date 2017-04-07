@@ -21,7 +21,7 @@
 <header>
     <div id="headerLoginDiv">
         <span>
-            Conectado como: D. Bonifacio Heredia<a id="logout" href={{ path('logout') }}>Cerrar sesión</a>
+            Conectado como: {{ app.user.name }}<a id="logout" href={{ path('logout') }}>Cerrar sesión</a>
         </span>
     </div>
 
