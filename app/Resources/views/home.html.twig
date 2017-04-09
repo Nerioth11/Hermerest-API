@@ -3,6 +3,6 @@
 {% block title %}Inicio{% endblock %}
 
 {% block main_title %}
-    <h1>¡Bienvenido a Hermerest!</h1>
+    <h1>Centro: {{ app.user.getCentre().getName() }}</h1>
     <hr/>
 {% endblock %}

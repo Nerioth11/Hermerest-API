@@ -14,8 +14,9 @@
         <br/><br/>
         Curso<br/>
         <select class="dropdown" id="classDropdown">
-            <option value="11">1º B</option>
-            <option value="12">2º A</option>
+            {% for class in app.user.centre.getClasses() %}
+                <option value="{{ class.getId() }}">{{ class.getName() }}</option>
+            {% endfor %}
         </select>
         {#<br/><br/>#}
         {#Fecha de nacimiento<br/>#}

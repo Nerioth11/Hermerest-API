@@ -15,7 +15,7 @@
 {% endblock %}
 
 {% block main_title %}
-    <h1>Alumno: <span id="studentFullName">Faustino Rodríguez</span></h1>
+    <h1>Alumno: <span id="studentFullName">{{ student.getName() }} {{ student.getSurname() }}</span></h1>
     <hr/>
 {% endblock %}
 
@@ -26,9 +26,9 @@
     <div id="studentInfoDiv">
         <h2>Información del alumno</h2>
         <ul id="studentInfo">
-            <li><b>Nombre: </b><span id="studentName">Faustino</span></li>
-            <li><b>Apellidos: </b><span id="studentSurname">Rodríguez</span></li>
-            <li><b>Curso: </b><span id="studentClass">1ºB</span></li>
+            <li><b>Nombre: </b><span id="studentName">{{ student.getName() }}</span></li>
+            <li><b>Apellidos: </b><span id="studentSurname">{{ student.getSurname() }}</span></li>
+            <li><b>Curso: </b><span id="studentClass">{{ student.getClass().getName() }}</span></li>
             {#<li><b>Fecha de nacimiento: </b>10/02/2010</li>#}
             {#<li><b>Teléfono: </b>928 45 84 10</li>#}
             {#<li><b>Dirección: </b>C/ Desengaño, Nº21, 1ºA</li>#}
@@ -44,10 +44,11 @@
                 <th>Nombre</th>
                 <th>Teléfono</th>
             </tr>
+            {% for parent in student.getParents() %}
             <tr>
-                <td>46584312V</td>
-                <td>Eusebio Rodríguez Feo</td>
-                <td>645849351</td>
+                <td>{{ parent.getNif() }}</td>
+                <td>{{ parent.getName() }}</td>
+                <td>{{ parent.getTelephone() }}</td>
                 <td class="tableButton">
                     <button class="primaryButton" onclick="openEditParentDialog(this)">Editar</button>
                 </td>
@@ -55,17 +56,7 @@
                     <button class="warningButton" onclick="deleteParent(this)">Eliminar</button>
                 </td>
             </tr>
-            <tr>
-                <td>42516978W</td>
-                <td>Eulalia Sanz Martínez</td>
-                <td>615498476</td>
-                <td class="tableButton">
-                    <button class="primaryButton" onclick="openEditParentDialog(this)">Editar</button>
-                </td>
-                <td class="tableButton">
-                    <button class="warningButton" onclick="deleteParent(this)">Eliminar</button>
-                </td>
-            </tr>
+            {% endfor %}
         </table>
     </div>
 {% endblock %}

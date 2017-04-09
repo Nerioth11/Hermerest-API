@@ -15,44 +15,37 @@
 {% endblock %}
 
 {% block main_title %}
-    <h1>Curso: <span id="className">4º A</span></h1>
+    <h1>Curso: <span id="className">{{ class.getName() }}</span></h1>
     <hr/>
 {% endblock %}
 
 {% block main_content %}
     {#<b>Tutor: </b> Martín Martín#}
     {#<br/><br/>#}
-    <b>Nº de alumnos: </b><span id="numberOfStudents">2</span>
+    <b>Nº de alumnos: </b><span id="numberOfStudents">{{ class.getStudents|length }}</span>
 
     <table class="table" id="studentsTable">
         <tr>
             <th>Alumno</th>
         </tr>
-        <tr>
-            <td>Armando Aguiar</td>
-            <td class="tableButton">
-                <button class="infoButton"><a href="{{ path('student') }}">Ver</a></button>
-            </td>
-            <td class="tableButton">
-                <button class="warningButton" onclick="deleteStudentFromClass(this)">Eliminar</button>
-            </td>
-        </tr>
-        <tr>
-            <td>Macarena Bermúdez</td>
-            <td class="tableButton">
-                <button class="infoButton"><a href="{{ path('student') }}">Ver</a></button>
-            </td>
-            <td class="tableButton">
-                <button class="warningButton" onclick="deleteStudentFromClass(this)">Eliminar</button>
-            </td>
-        </tr>
+        {% for student in class.getStudents() %}
+            <tr>
+                <td>{{ student.getSurname() }}, {{ student.getName() }}</td>
+                <td class="tableButton">
+                    <button class="infoButton"><a href="{{ path('student') }}?id={{ student.getId() }}">Ver</a></button>
+                </td>
+                <td class="tableButton">
+                    <button class="warningButton" onclick="deleteStudentFromClass(this)">Eliminar</button>
+                </td>
+            </tr>
+        {% endfor %}
     </table>
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        $(".modal").eq(0).attr("id", "addStudentModal");
-        $(".modal").eq(1).attr("id", "editClassModal");
-    </script>
-{% endblock %}
+    {% block javascripts %}
+        {{ parent() }}
+        <script>
+            $(".modal").eq(0).attr("id", "addStudentModal");
+            $(".modal").eq(1).attr("id", "editClassModal");
+        </script>
+    {% endblock %}

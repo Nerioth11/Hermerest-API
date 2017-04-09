@@ -9,8 +9,9 @@
     <br/><br/>
     Alumno<br/>
     <select class="dropdown" id="studentsDropdown">
-        <option value="11">Armando Aguiar</option>
-        <option value="12">Fernanda Valido</option>
+        {% for student in app.user.centre.getStudents() %}
+            <option value="{{ student.getId() }}">{{ student.getSurname() }}, {{ student.getName() }}</option>
+        {% endfor %}
     </select>
 {% endblock %}
 

@@ -4,6 +4,7 @@ namespace AppBundle\Controller\centre;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class ClassesController extends Controller
 {
@@ -12,6 +13,9 @@ class ClassesController extends Controller
      */
     public function classesAction()
     {
-        return $this->render('/centre/classes.html.twig');
+        return $this->render('/centre/classes.html.twig',
+            [
+                'classes' => $this->getUser()->getCentre()->getClasses()
+            ]);
     }
 }

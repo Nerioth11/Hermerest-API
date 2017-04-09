@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Course;
+use AppBundle\Entity\Student;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -76,11 +78,11 @@ class Centre
     /**
      * Add class
      *
-     * @param \AppBundle\Entity\Course $class
+     * @param Course $class
      *
      * @return Centre
      */
-    public function addClass(\AppBundle\Entity\Course $class)
+    public function addClass(Course $class)
     {
         $this->classes[] = $class;
 
@@ -90,9 +92,9 @@ class Centre
     /**
      * Remove class
      *
-     * @param \AppBundle\Entity\Course $class
+     * @param Course $class
      */
-    public function removeClass(\AppBundle\Entity\Course $class)
+    public function removeClass(Course $class)
     {
         $this->classes->removeElement($class);
     }
@@ -110,11 +112,11 @@ class Centre
     /**
      * Add student
      *
-     * @param \AppBundle\Entity\Student $student
+     * @param Student $student
      *
      * @return Centre
      */
-    public function addStudent(\AppBundle\Entity\Student $student)
+    public function addStudent(Student $student)
     {
         $this->students[] = $student;
 
@@ -124,9 +126,9 @@ class Centre
     /**
      * Remove student
      *
-     * @param \AppBundle\Entity\Student $student
+     * @param Student $student
      */
-    public function removeStudent(\AppBundle\Entity\Student $student)
+    public function removeStudent(Student $student)
     {
         $this->students->removeElement($student);
     }
