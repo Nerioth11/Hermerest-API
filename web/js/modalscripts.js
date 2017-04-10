@@ -166,7 +166,7 @@ function openRegisterStudentDialog() {
     $("#studentNameInput").val("");
     $("#studentSurnameInput").val("");
     $("#parentTelephoneInput").val("");
-    $("#parentNameInput").val("");
+    $("#parentFullnameInput").val("");
 }
 
 function filterStudents() {

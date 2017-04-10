@@ -2,11 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6e06172-8bc6-487a-88c6-fe9d6006e63d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/centre/student.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/centre/student.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/add_parent_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/add_parent_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/edit_parent_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/edit_parent_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/register_student_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/register_student_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Progenitor.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Progenitor.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/modalscripts.js" afterPath="$PROJECT_DIR$/web/js/modalscripts.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -34,17 +29,17 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="register_student_modal.html.twig" pinned="false" current-in-tab="false">
+          <file leaf-file-name="register_student_modal.html.twig" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/register_student_modal.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="561">
+                <state relative-caret-position="510">
                   <caret line="39" column="127" lean-forward="false" selection-start-line="39" selection-start-column="127" selection-end-line="39" selection-end-column="127" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="add_parent_modal.html.twig" pinned="false" current-in-tab="true">
+          <file leaf-file-name="add_parent_modal.html.twig" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/add_parent_modal.html.twig">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="221">
@@ -61,11 +56,11 @@
           <file leaf-file-name="modalscripts.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/web/js/modalscripts.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="297">
-                  <caret line="51" column="54" lean-forward="false" selection-start-line="51" selection-start-column="54" selection-end-line="51" selection-end-column="54" />
+                <state relative-caret-position="289">
+                  <caret line="179" column="12" lean-forward="false" selection-start-line="179" selection-start-column="12" selection-end-line="179" selection-end-column="12" />
                   <folding>
-                    <marker date="1491853196161" expanded="true" signature="5787:5794" ph="×" />
-                    <marker date="1491853196161" expanded="true" signature="13911:13918" ph="×" />
+                    <marker date="1491853859870" expanded="true" signature="5791:5798" ph="×" />
+                    <marker date="1491853859870" expanded="true" signature="13915:13922" ph="×" />
                   </folding>
                 </state>
               </provider>
@@ -85,8 +80,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>=</find>
-      <find>=5</find>
       <find>edit</find>
       <find>delete</find>
       <find>confirm</find>
@@ -115,6 +108,8 @@
       <find>getpar</find>
       <find>idcard</find>
       <find>telephone</find>
+      <find>rellene p</find>
+      <find>id</find>
     </findStrings>
     <replaceStrings>
       <replace>base.html.twig</replace>
@@ -694,12 +689,12 @@
       <workItem from="1491737339161" duration="4321000" />
       <workItem from="1491752834657" duration="6328000" />
       <workItem from="1491826759123" duration="199000" />
-      <workItem from="1491827054095" duration="18278000" />
+      <workItem from="1491827054095" duration="20754000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="158313000" />
+    <option name="totallyTimeSpent" value="160789000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1077,26 +1072,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Student.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="887">
-          <caret line="173" column="30" lean-forward="false" selection-start-line="173" selection-start-column="30" selection-end-line="173" selection-end-column="30" />
-          <folding>
-            <element signature="e#36#64#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Progenitor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="46" column="10" lean-forward="false" selection-start-line="46" selection-start-column="9" selection-end-line="46" selection-end-column="10" />
-          <folding>
-            <element signature="e#36#65#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/edit_parent_modal.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
@@ -1123,14 +1098,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/register_student_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="39" column="127" lean-forward="false" selection-start-line="39" selection-start-column="127" selection-end-line="39" selection-end-column="127" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/add_parent_modal.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1147,13 +1114,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Student.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="887">
+          <caret line="173" column="30" lean-forward="false" selection-start-line="173" selection-start-column="30" selection-end-line="173" selection-end-column="30" />
+          <folding>
+            <element signature="e#36#64#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Progenitor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-680">
+          <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="23" />
+          <folding>
+            <element signature="e#36#65#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/register_student_modal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="39" column="127" lean-forward="false" selection-start-line="39" selection-start-column="127" selection-end-line="39" selection-end-column="127" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/web/js/modalscripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="51" column="54" lean-forward="false" selection-start-line="51" selection-start-column="54" selection-end-line="51" selection-end-column="54" />
+        <state relative-caret-position="289">
+          <caret line="179" column="12" lean-forward="false" selection-start-line="179" selection-start-column="12" selection-end-line="179" selection-end-column="12" />
           <folding>
-            <marker date="1491853196161" expanded="true" signature="5787:5794" ph="×" />
-            <marker date="1491853196161" expanded="true" signature="13911:13918" ph="×" />
+            <marker date="1491853859870" expanded="true" signature="5791:5798" ph="×" />
+            <marker date="1491853859870" expanded="true" signature="13915:13922" ph="×" />
           </folding>
         </state>
       </provider>
