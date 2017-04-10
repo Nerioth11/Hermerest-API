@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Student;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -128,11 +129,11 @@ class Progenitor
     /**
      * Add child
      *
-     * @param \AppBundle\Entity\Student $child
+     * @param Student $child
      *
      * @return Progenitor
      */
-    public function addChild(\AppBundle\Entity\Student $child)
+    public function addChild(Student $child)
     {
         $this->children[] = $child;
 
@@ -142,9 +143,9 @@ class Progenitor
     /**
      * Remove child
      *
-     * @param \AppBundle\Entity\Student $child
+     * @param Student $child
      */
-    public function removeChild(\AppBundle\Entity\Student $child)
+    public function removeChild(Student $child)
     {
         $this->children->removeElement($child);
     }

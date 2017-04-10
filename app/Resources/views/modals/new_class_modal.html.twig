@@ -16,6 +16,6 @@
 {% endblock %}
 
 {% block modal_footer %}
-    <button class="primaryButton" type="button" onclick="addNewClass()">Guardar</button>
+    <button class="primaryButton" type="button" onclick="addNewClass({{ app.user.centre.id }})">Guardar</button>
     <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
 {% endblock %}

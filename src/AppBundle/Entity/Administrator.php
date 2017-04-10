@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Centre;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
@@ -114,11 +115,11 @@ class Administrator implements UserInterface, \Serializable
     /**
      * Set centre
      *
-     * @param \AppBundle\Entity\Centre $centre
+     * @param Centre $centre
      *
      * @return Administrator
      */
-    public function setCentre(\AppBundle\Entity\Centre $centre)
+    public function setCentre(Centre $centre)
     {
         $this->centre = $centre;
 
@@ -128,7 +129,7 @@ class Administrator implements UserInterface, \Serializable
     /**
      * Get centre
      *
-     * @return \AppBundle\Entity\Centre
+     * @return Centre
      */
     public function getCentre()
     {

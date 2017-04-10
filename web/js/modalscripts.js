@@ -9,20 +9,32 @@ function openNewClassDialog() {
     $("#newClassModal").show();
 }
 
-function addNewClass() {
+function addNewClass(centreId) {
     className = $("#classNameInput").val();
     if (className.trim().length === 0) alert("Rellene todos los campos");
     else {
-        $("#classesTable").append(
-            "<tr>" +
-            "<td>" + className + "</td>" +
-            "<td>0</td>" +
-            "<td class='tableButton'><button class='infoButton'><a href='class'>Ver</a></button></td>" +
-            "</tr>"
-        );
-        closeModal();
+        postCall("/centre/classes/add",
+            {"className": className, "centreId": centreId},
+            addNewClassCallback
+        )
     }
 }
+
+function addNewClassCallback(response) {
+    if (!response.added) {
+        alert(response.error);
+        return;
+    }
+    $("#classesTable").append(
+        "<tr>" +
+        "<td>" + response.addedClassName + "</td>" +
+        "<td>0</td>" +
+        "<td class='tableButton'><button class='infoButton'><a href='class?id=" + response.addedClassId + "'>Ver</a></button></td>" +
+        "</tr>"
+    );
+    closeModal();
+}
+
 
 // CLASS
 function openEditClassDialog() {
@@ -35,44 +47,118 @@ function openAddStudentDialog() {
     $("#addStudentModal").show();
 }
 
-function editClass() {
+function editClass(classId) {
     className = $("#classNameInput").val();
     if (className.trim().length === 0) alert("Rellene todos los campos");
     else {
-        $("#className").text(className);
-        closeModal();
+        postCall("/centre/class/edit",
+            {"className": className, "classId": classId},
+            editClassCallback
+        )
     }
 }
 
-function deleteStudentFromClass(button) {
-    button.parentNode.parentNode.remove();
-    $("#numberOfStudents").text($("#numberOfStudents").text() - 1);
-}
-
-function addStudentToClass() {
-    studentName = $("#studentsDropdown :selected").text();
-    $("#studentsTable").append(
-        "<tr>" +
-        "<td>" + studentName + "</td>" +
-        "<td class='tableButton'><button class='infoButton'><a href='student'>Ver</a></button></td>" +
-        "<td class='tableButton'><button class='warningButton' onclick='deleteStudentFromClass(this)'>Eliminar</button></td>" +
-        "</tr>"
-    );
-    $("#numberOfStudents").text(parseInt($("#numberOfStudents").text()) + 1);
+function editClassCallback(response) {
+    if (!response.edited) {
+        alert(response.error);
+        return;
+    }
+    $("#className").text(response.className);
     closeModal();
 }
 
-function hideNotMatchingStudentsFromStudentsDropdown() {
-    $("#studentsDropdown > option").each(function () {
-        if ($(this).text().toLowerCase().includes($("#studentNameFilterInput").val().toLowerCase())) $(this).show();
-        else $(this).hide();
-    });
+function deleteStudentFromClass(studentId) {
+    postCall("/centre/class/deleteStudent",
+        {"studentId": studentId},
+        deleteStudentFromClassCallback
+    )
 }
 
-function deleteClass() {
-    if (confirm("¿Está seguro de que desea eliminar el curso?"))
-        window.location.replace("classes");
+function deleteStudentFromClassCallback(response) {
+    if (!response.deleted) {
+        alert("No se pudo borrar al alumno");
+        return;
+    }
+
+    $("#studentsTable #" + response.deletedStudentId).remove();
+    $("#studentsDropdown").append(
+        "<option value='" + response.deletedStudentId + "'>" +
+        response.deletedStudentSurname + ", " + response.deletedStudentName +
+        "</option>");
+    $("#numberOfStudents").text($("#numberOfStudents").text() - 1);
 }
+
+function addStudentToClass(classId) {
+    studentId = $("#studentsDropdown :selected").val();
+    if (studentId === '-1') {
+        alert("Seleccione un alumno");
+        return;
+    }
+    postCall("/centre/class/addStudent",
+        {"studentId": studentId, "classId": classId},
+        addStudentToClassCallback
+    )
+
+}
+
+function addStudentToClassCallback(response) {
+    if (!response.added) {
+        alert("No se pudo añadir al alumno");
+        return;
+    }
+
+    $("#studentsTable").append(
+        "<tr id='" + response.addedStudentId + "'>" +
+        "<td>" + response.addedStudentSurname + ", " + response.addedStudentName + "</td>" +
+        "<td class='tableButton'><button class='infoButton'><a href='student?id=" + response.addedStudentId + "'>Ver</a></button></td>" +
+        "<td class='tableButton'><button class='warningButton' onclick='deleteStudentFromClass(" + response.addedStudentId + ")'>Eliminar</button></td>" +
+        "</tr>"
+    );
+
+    $("#studentsDropdown [value='" + response.addedStudentId + "']").remove();
+    $("#numberOfStudents").text(parseInt($("#numberOfStudents").text()) + 1);
+    closeModal();
+
+}
+
+function hideNotMatchingStudentsFromStudentsDropdown() {
+    if ($("#studentNameFilterInput").val().trim() === "") {
+        $("#studentsDropdown").val('-1');
+        $("#studentsDropdown > option").show();
+        return;
+    }
+
+    numberOfVisibleOptions = 0;
+    $("#studentsDropdown > option").each(function () {
+        if ($(this).text().toLowerCase().includes($("#studentNameFilterInput").val().toLowerCase())) {
+            $(this).show();
+            $(this).prop('selected', true);
+            numberOfVisibleOptions++;
+        } else $(this).hide();
+    });
+
+    if (numberOfVisibleOptions === 0)
+        $("#studentsDropdown").val('-1');
+}
+
+function deleteClass(classId) {
+    if (!confirm("¿Está seguro de que desea eliminar el curso?")) return;
+
+    postCall("/centre/class/delete",
+        {"classId": classId},
+        deleteClassCallback
+    )
+}
+
+function deleteClassCallback(response) {
+    if (!response.deleted) {
+        alert("Error al eliminar la clase");
+        return;
+    }
+
+    window.location.replace("classes");
+}
+
 
 // STUDENTS
 function openRegisterStudentDialog() {
@@ -89,7 +175,9 @@ function filterStudents() {
     $("#studentsTable > tbody > tr").each(function () {
         rowClassName = $(this).children().eq(1).text();
         rowStudentName = $(this).children().eq(0).text().toLowerCase();
-        if ((rowClassName === className || className === "") && rowStudentName.includes(studentName)) $(this).show();
+        if ((rowClassName === className || className === " " || (className === "" && rowClassName === "-"))
+            && rowStudentName.includes(studentName))
+            $(this).show();
         else $(this).hide();
     });
 }
@@ -199,7 +287,7 @@ function searchParentByIdCard(modalName) {
         $("#" + modalName + " #parentTelephoneInput").val("666666666");
         $("#" + modalName + " #parentFullnameInput").prop("disabled", true);
         $("#" + modalName + " #parentTelephoneInput").prop("disabled", true);
-    }else {
+    } else {
         $("#" + modalName + " #parentFullnameInput").prop("disabled", false);
         $("#" + modalName + " #parentTelephoneInput").prop("disabled", false);
     }

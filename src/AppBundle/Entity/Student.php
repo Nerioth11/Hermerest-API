@@ -2,6 +2,9 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Centre;
+use AppBundle\Entity\Course;
+use AppBundle\Entity\Progenitor;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -116,11 +119,11 @@ class Student
     /**
      * Set class
      *
-     * @param \AppBundle\Entity\Course $class
+     * @param Course $class
      *
      * @return Student
      */
-    public function setClass(\AppBundle\Entity\Course $class = null)
+    public function setClass(Course $class = null)
     {
         $this->class = $class;
 
@@ -130,7 +133,7 @@ class Student
     /**
      * Get class
      *
-     * @return \AppBundle\Entity\Course
+     * @return Course
      */
     public function getClass()
     {
@@ -140,11 +143,11 @@ class Student
     /**
      * Set centre
      *
-     * @param \AppBundle\Entity\Centre $centre
+     * @param Centre $centre
      *
      * @return Student
      */
-    public function setCentre(\AppBundle\Entity\Centre $centre)
+    public function setCentre(Centre $centre)
     {
         $this->centre = $centre;
 
@@ -154,7 +157,7 @@ class Student
     /**
      * Get centre
      *
-     * @return \AppBundle\Entity\Centre
+     * @return Centre
      */
     public function getCentre()
     {
@@ -164,11 +167,11 @@ class Student
     /**
      * Add parent
      *
-     * @param \AppBundle\Entity\Progenitor $parent
+     * @param Progenitor $parent
      *
      * @return Student
      */
-    public function addParent(\AppBundle\Entity\Progenitor $parent)
+    public function addParent(Progenitor $parent)
     {
         $this->parents[] = $parent;
 
@@ -178,9 +181,9 @@ class Student
     /**
      * Remove parent
      *
-     * @param \AppBundle\Entity\Progenitor $parent
+     * @param Progenitor $parent
      */
-    public function removeParent(\AppBundle\Entity\Progenitor $parent)
+    public function removeParent(Progenitor $parent)
     {
         $this->parents->removeElement($parent);
     }

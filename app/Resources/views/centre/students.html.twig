@@ -18,7 +18,8 @@
 
 {% block main_filters %}
     <select class="dropdown" id="classFilterDropdown" onchange="filterStudents()">
-        <option value="">Cualquier curso</option>
+        <option value=" ">Cualquier curso</option>
+        <option value="">Sin curso</option>
         {% for class in app.user.centre.getClasses() %}
         <option value="{{ class.getName() }}">{{ class.getName() }}</option>
         {% endfor %}
@@ -39,7 +40,7 @@
         {% for student in app.user.getCentre().getStudents() %}
         <tr>
             <td>{{ student.getSurname() }}, {{ student.getName() }}</td>
-            <td>{{ student.getClass().getName() }}</td>
+            <td>{{ student.getClass() is null ? '-' : student.getClass().getName() }}</td>
             <td class="tableButton">
                 <button class="infoButton"><a href="{{ path('student') }}?id={{ student.getId() }}">Ver</a></button>
             </td>

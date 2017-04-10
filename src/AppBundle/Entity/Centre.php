@@ -142,4 +142,11 @@ class Centre
     {
         return $this->students;
     }
+
+    public function containsClassNamedBy($name)
+    {
+        foreach ($this->getClasses() as $class)
+            if ($class->getName() == $name) return true;
+        return false;
+    }
 }
