@@ -28,7 +28,7 @@
         <ul id="studentInfo">
             <li><b>Nombre: </b><span id="studentName">{{ student.getName() }}</span></li>
             <li><b>Apellidos: </b><span id="studentSurname">{{ student.getSurname() }}</span></li>
-            <li><b>Curso: </b><span id="studentClass">{{ student.getClass().getName() }}</span></li>
+            <li><b>Curso: </b><span id="studentClass">{{ student.getClass() is null ? '-' : student.getClass().getName() }}</span></li>
             {#<li><b>Fecha de nacimiento: </b>10/02/2010</li>#}
             {#<li><b>Teléfono: </b>928 45 84 10</li>#}
             {#<li><b>Dirección: </b>C/ Desengaño, Nº21, 1ºA</li>#}

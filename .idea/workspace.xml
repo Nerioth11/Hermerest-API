@@ -2,23 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6e06172-8bc6-487a-88c6-fe9d6006e63d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/web/js/navbarscript.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/centre/class.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/centre/class.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/centre/students.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/centre/students.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/add_student_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/add_student_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/edit_class_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/edit_class_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/new_class_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/new_class_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/centre/ClassController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/centre/ClassController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/centre/ClassesController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/centre/ClassesController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Administrator.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Administrator.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Centre.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Centre.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Course.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Course.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Progenitor.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Progenitor.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Student.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Student.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/ajaxscripts.js" afterPath="$PROJECT_DIR$/web/js/ajaxscripts.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/modalscripts.js" afterPath="$PROJECT_DIR$/web/js/modalscripts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/centre/student.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/centre/student.html.twig" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -32,14 +16,24 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.67635906">
       <split-first>
         <leaf>
-          <file leaf-file-name="students.html.twig" pinned="false" current-in-tab="true">
+          <file leaf-file-name="students.html.twig" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/students.html.twig">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="714">
                   <caret line="42" column="50" lean-forward="true" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="student.html.twig" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/student.html.twig">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="510">
+                  <caret line="30" column="90" lean-forward="false" selection-start-line="30" selection-start-column="90" selection-end-line="30" selection-end-column="90" />
                   <folding />
                 </state>
               </provider>
@@ -152,7 +146,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/login.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/centre/classes.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Facade/EntityFacade.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/centre/student.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/home.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/centre/StudentController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Facade/StudentFacade.php" />
@@ -179,6 +172,7 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/centre/ClassController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/centre/students.html.twig" />
         <option value="$PROJECT_DIR$/web/js/modalscripts.js" />
+        <option value="$PROJECT_DIR$/app/Resources/views/centre/student.html.twig" />
       </list>
     </option>
   </component>
@@ -685,12 +679,12 @@
       <workItem from="1491737339161" duration="4321000" />
       <workItem from="1491752834657" duration="6328000" />
       <workItem from="1491826759123" duration="199000" />
-      <workItem from="1491827054095" duration="15331000" />
+      <workItem from="1491827054095" duration="15592000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="155366000" />
+    <option name="totallyTimeSpent" value="155627000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -877,13 +871,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="22" column="14" lean-forward="true" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/student.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="46" column="18" lean-forward="false" selection-start-line="46" selection-start-column="18" selection-end-line="46" selection-end-column="18" />
         </state>
       </provider>
     </entry>
@@ -1138,6 +1125,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="42" column="50" lean-forward="true" selection-start-line="42" selection-start-column="50" selection-end-line="42" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/student.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="90" lean-forward="false" selection-start-line="30" selection-start-column="90" selection-end-line="30" selection-end-column="90" />
           <folding />
         </state>
       </provider>
