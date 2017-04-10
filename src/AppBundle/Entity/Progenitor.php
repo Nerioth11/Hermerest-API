@@ -20,11 +20,6 @@ class Progenitor
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=50, name="nif", nullable=false, unique=true)
-     */
-    private $nif;
-
-    /**
      * @ORM\Column(type="string", length=50, name="name", nullable=false)
      */
     private $name;
@@ -52,30 +47,6 @@ class Progenitor
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set nif
-     *
-     * @param string $nif
-     *
-     * @return Progenitor
-     */
-    public function setNif($nif)
-    {
-        $this->nif = $nif;
-
-        return $this;
-    }
-
-    /**
-     * Get nif
-     *
-     * @return string
-     */
-    public function getNif()
-    {
-        return $this->nif;
     }
 
     /**

@@ -165,8 +165,8 @@ function openRegisterStudentDialog() {
     $("#registerStudentModal").show();
     $("#studentNameInput").val("");
     $("#studentSurnameInput").val("");
-    $("#parentNameInput").val("");
     $("#parentTelephoneInput").val("");
+    $("#parentNameInput").val("");
 }
 
 function filterStudents() {
@@ -182,8 +182,8 @@ function filterStudents() {
     });
 }
 
-function addParentToParentstist() {
-    if ($("#parentFullnameInput").val().trim() === "" || $("#parentTelephoneInput").val().trim() === "" || $("#parentIdCardInput").val().trim() === "")
+function addParentToParentsList() {
+    if ($("#parentFullnameInput").val().trim() === "" || $("#parentTelephoneInput").val().trim() === "")
         alert("Rellene todos los campos");
     else if (isNaN($("#parentTelephoneInput").val().trim())) alert("El número de teléfono no es válido");
     else {
@@ -219,21 +219,17 @@ function openEditStudentDialog() {
 }
 
 function openAddParentDialog() {
-    $("#parentIdCardInput").val("");
-    $("#parentFullnameInput").val("");
     $("#parentTelephoneInput").val("");
+    $("#parentFullnameInput").val("");
     $("#addParentModal #parentFullnameInput").prop("disabled", false);
-    $("#addParentModal #parentTelephoneInput").prop("disabled", false);
     $("#addParentModal").show();
 }
 
 function openEditParentDialog(button) {
-    parentIdCard = $(button).parent().parent().children().eq(0).text();
+    parentTelephone = $(button).parent().parent().children().eq(0).text();
     parentFullname = $(button).parent().parent().children().eq(1).text();
-    parentTelephone = $(button).parent().parent().children().eq(2).text();
-    $("#editParentModal #parentFullnameInput").val(parentFullname);
     $("#editParentModal #parentTelephoneInput").val(parentTelephone);
-    $("#editParentModal #parentIdCardInput").val(parentIdCard);
+    $("#editParentModal #parentFullnameInput").val(parentFullname);
     $("#editParentModal").show();
 }
 
@@ -259,18 +255,16 @@ function deleteStudent() {
 
 
 function addParent() {
-    parentFullname = $("#addParentModal #parentFullnameInput").val();
     parentTelephone = $("#addParentModal  #parentTelephoneInput").val();
-    parentIdCard = $("#addParentModal  #parentIdCardInput").val();
+    parentFullname = $("#addParentModal #parentFullnameInput").val();
 
-    if (parentFullname.trim() === "" || parentTelephone.trim() === "" || parentIdCard.trim() === "") alert("Rellene todos los campos");
+    if (parentFullname.trim() === "" || parentTelephone.trim() === "") alert("Rellene todos los campos");
     else if (isNaN(parentTelephone)) alert("El número de teléfono tiene un formato incorrecto");
     else {
         $("#parentsTable").append(
             "<tr>" +
-            "<td>" + parentFullname + "</td>" +
             "<td>" + parentTelephone + "</td>" +
-            "<td>" + parentIdCard + "</td>" +
+            "<td>" + parentFullname + "</td>" +
             "<td class='tableButton'><button class='primaryButton' onclick='openEditParentDialog(this)'>Editar</button></td>" +
             "<td class='tableButton'><button class='warningButton' onclick='deleteParent(this)'>Eliminar</button></td>" +
             "</tr>"
@@ -279,26 +273,23 @@ function addParent() {
     }
 }
 
-function searchParentByIdCard(modalName) {
-    idCard = $("#" + modalName + " #parentIdCardInput").val();
+function searchParentByTelephone(modalName) {
+    telephone = $("#" + modalName + " #parentTelephoneInput").val();
 
-    if (idCard === "12345678") {
-        $("#" + modalName + " #parentFullnameInput").val("Hernando Hernández");
+    if (telephone === "666666666") {
         $("#" + modalName + " #parentTelephoneInput").val("666666666");
+        $("#" + modalName + " #parentFullnameInput").val("Hernando Hernández");
         $("#" + modalName + " #parentFullnameInput").prop("disabled", true);
-        $("#" + modalName + " #parentTelephoneInput").prop("disabled", true);
     } else {
         $("#" + modalName + " #parentFullnameInput").prop("disabled", false);
-        $("#" + modalName + " #parentTelephoneInput").prop("disabled", false);
     }
 }
 
 function editParent(id) {
-    parentFullname = $("#editParentModal #parentFullnameInput").val();
     parentTelephone = $("#editParentModal  #parentTelephoneInput").val();
-    parentIdCard = $("#editParentModal  #parentIdCardInput").val();
+    parentFullname = $("#editParentModal #parentFullnameInput").val();
 
-    if (parentFullname.trim() === "" || parentTelephone.trim() === "" || parentIdCard.trim() === "") alert("Rellene todos los campos");
+    if (parentFullname.trim() === "" || parentTelephone.trim() === "") alert("Rellene todos los campos");
     else if (isNaN(parentTelephone)) alert("El número de teléfono tiene un formato incorrecto");
     else {
         //TODO: editar la fila de la tabla

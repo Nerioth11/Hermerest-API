@@ -40,15 +40,15 @@
         <h2>Padres</h2>
         <table class="table" id="parentsTable">
             <tr>
-                <th>DNI</th>
-                <th>Nombre</th>
+                {#<th>DNI</th>#}
                 <th>Teléfono</th>
+                <th>Nombre</th>
             </tr>
             {% for parent in student.getParents() %}
             <tr>
-                <td>{{ parent.getNif() }}</td>
-                <td>{{ parent.getName() }}</td>
+                {#<td>{{ parent.getNif() }}</td>#}
                 <td>{{ parent.getTelephone() }}</td>
+                <td>{{ parent.getName() }}</td>
                 <td class="tableButton">
                     <button class="primaryButton" onclick="openEditParentDialog(this)">Editar</button>
                 </td>
