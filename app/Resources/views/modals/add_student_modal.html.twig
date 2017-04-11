@@ -1,7 +1,7 @@
 {% extends 'modals/modal.html.twig' %}
 
  {% block modal_header %}
-     Añadir alumno
+     Añadir alumnos
  {% endblock %}
 
 {% block modal_body %}
@@ -17,9 +17,13 @@
             {% endif %}
         {% endfor %}
     </select>
+    <br/><br/>
+    <button class="primaryButton" id="addStudentButton" type="button" onclick="addStudentToStudentsList()">Añadir alumno</button>
+
+    <ul id="addedStudentsList"></ul>
 {% endblock %}
 
 {% block modal_footer %}
-    <button class="primaryButton" type="button" onclick="addStudentToClass({{ class.getId() }})">Guardar</button>
+    <button class="primaryButton" type="button" onclick="addStudentToClass({{ class.getId() }})">Guardar cambios</button>
     <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
 {% endblock %}

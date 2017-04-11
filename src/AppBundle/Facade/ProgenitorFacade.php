@@ -15,6 +15,13 @@ class ProgenitorFacade extends AbstractFacade
 {
     public function __construct(EntityManager $entityManager)
     {
-      parent::__construct($entityManager, 'AppBundle:Progenitor');
+        parent::__construct($entityManager, 'AppBundle:Progenitor');
+    }
+
+    public function findByTelephone($telephone)
+    {
+        return $this->entityManager->getRepository($this->entityName)->findOneBy(
+            array('telephone' => '' . $telephone)
+        );
     }
 }

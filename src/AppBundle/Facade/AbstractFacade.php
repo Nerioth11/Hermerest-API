@@ -13,8 +13,8 @@ use Doctrine\ORM\EntityManager;
 
 abstract class AbstractFacade
 {
-    private $entityManager;
-    private $entityName;
+    protected $entityManager;
+    protected $entityName;
 
     public function __construct(EntityManager $entityManager, $entityName)
     {

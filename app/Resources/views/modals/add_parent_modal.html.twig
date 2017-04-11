@@ -5,19 +5,23 @@
  {% endblock %}
 
 {% block modal_body %}
-    <p class="addParentClarification">*Rellene primero el teléfono.</p>
-    <br/>
+    {#<p class="addParentClarification">*Rellene primero el teléfono.</p>#}
+    {#<br/>#}
     {#DNI/NIF<br/>#}
     {#<input class="modalInput" id="parentIdCardInput" type="text" onkeyup="searchParentByIdCard('addParentModal')">#}
     {#<br/><br/>#}
     Teléfono<br/>
-    <input class="modalInput" id="parentTelephoneInput" type="text" onkeyup="searchParentByTelephone('addParentModal')">
+    <input class="modalInput" id="parentTelephoneInput" type="text">
     <br/><br/>
     Nombre y apellidos<br/>
-    <input class="modalInput" id="parentFullnameInput" type="text">
+    <input class="modalInput" id="parentFullnameInput" type="text" readonly>
+    <br/><br/>
+    <button class="primaryButton" id="addParentButton" type="button" onclick="addParentToParentsList()">Añadir padre</button>
+
+    <ul id="addedParentsList"></ul>
 {% endblock %}
 
 {% block modal_footer %}
-    <button class="primaryButton" type="button" onclick="addParent()">Guardar</button>
+    <button class="primaryButton" type="button" onclick="addParent()">Guardar cambios</button>
     <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
 {% endblock %}

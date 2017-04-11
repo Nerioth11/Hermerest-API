@@ -11,7 +11,7 @@
 {% block action_panel %}
     <button class="defaultButton" type="button" onclick="openEditStudentDialog()">Editar alumno</button>
     <button class="defaultButton" type="button" onclick="openAddParentDialog()">Añadir padre</button>
-    <button class="warningButton actionPanelRightButton" type="button" onclick="deleteStudent()">Eliminar alumno</button>
+    <button class="warningButton actionPanelRightButton" type="button" onclick="deleteStudent({{ student.getId() }})">Eliminar alumno</button>
 {% endblock %}
 
 {% block main_title %}
@@ -45,15 +45,15 @@
                 <th>Nombre</th>
             </tr>
             {% for parent in student.getParents() %}
-            <tr>
+            <tr id="{{ parent.getId() }}">
                 {#<td>{{ parent.getNif() }}</td>#}
                 <td>{{ parent.getTelephone() }}</td>
                 <td>{{ parent.getName() }}</td>
+                {#<td class="tableButton">#}
+                    {#<button class="primaryButton" onclick="openEditParentDialog(this)">Editar</button>#}
+                {#</td>#}
                 <td class="tableButton">
-                    <button class="primaryButton" onclick="openEditParentDialog(this)">Editar</button>
-                </td>
-                <td class="tableButton">
-                    <button class="warningButton" onclick="deleteParent(this)">Eliminar</button>
+                    <button class="warningButton" onclick="deleteParent({{ student.getId() }},{{ parent.getId() }})">Eliminar</button>
                 </td>
             </tr>
             {% endfor %}

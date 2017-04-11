@@ -9,9 +9,9 @@
 
 {% block action_panel %}
     <button class="defaultButton" type="button" onclick="openEditClassDialog()">Editar</button>
-    <button class="defaultButton" type="button" onclick="openAddStudentDialog()">Añadir alumno</button>
+    <button class="defaultButton" type="button" onclick="openAddStudentDialog()">Añadir alumnos</button>
     <button class="warningButton actionPanelRightButton" type="button" onclick="deleteClass({{ class.getId() }})">Eliminar curso</button>
-    <button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>
+    {#<button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>#}
 {% endblock %}
 
 {% block main_title %}

@@ -31,27 +31,25 @@
     <div class="modal-body_right_panel">
         <b>Padre / Madre / Tutor legal</b>
         <br/><br/>
-        <p class="addParentClarification">*Rellene primero el teléfono.</p>
-        <br/>
+        {#<p class="addParentClarification">*Rellene primero el teléfono.</p>#}
+        {#<br/>#}
         {#DNI/NIF<br/>#}
         {#<input class="modalInput" id="parentIdCardInput" type="text" onkeyup="searchParentByIdCard('registerStudentModal')">#}
         {#<br/><br/>#}
         Teléfono<br/>
-        <input class="modalInput" id="parentTelephoneInput" type="text" onkeyup="searchParentByTelephone('registerStudentModal')">
+        <input class="modalInput" id="parentTelephoneInput" type="text">
         <br/><br/>
         Nombre y apellidos<br/>
-        <input class="modalInput" id="parentFullnameInput" type="text">
+        <input class="modalInput" id="parentFullnameInput" type="text" readonly>
         <br/><br/>
         <button class="primaryButton" id="addParentButton" type="button" onclick="addParentToParentsList()">Añadir padre</button>
 
-        <ul id="addedParentsList">
-            <li>Bernardo Rodríguez <a class="deleteCross" onclick="deleteParentFromParentsList(this)">&times;</a></li>
-        </ul>
+        <ul id="addedParentsList"></ul>
     </div>
 
 {% endblock %}
 
 {% block modal_footer %}
-    <button class="primaryButton" type="button" onclick="registerStudent()">Guardar</button>
+    <button class="primaryButton" type="button" onclick="registerStudent()">Guardar cambios</button>
     <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
 {% endblock %}

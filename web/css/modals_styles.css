@@ -79,19 +79,19 @@
 }
 
 /*register_student_modal*/
-#addParentButton, #addPollOptionButton {
+#addParentButton, #addStudentButton, #addPollOptionButton {
     margin: 0 auto;
     display: block;
 }
 
-#addedParentsList, #addedPollOptionsList {
+#addedParentsList, #addedStudentsList, #addedPollOptionsList {
     margin-top: 20px;
     list-style-type: none;
     font-size: small;
     padding-left: 0;
 }
 
-#addedParentsList a, #addedPollOptionsList a {
+#addedParentsList a, #addedStudentsList a, #addedPollOptionsList a {
     font-size: x-large;
     margin-left: 10px;
     color: #888888;

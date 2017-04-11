@@ -44,6 +44,7 @@ function openEditClassDialog() {
 function openAddStudentDialog() {
     $("#studentNameFilterInput").val("");
     hideNotMatchingStudentsFromStudentsDropdown();
+    $("#addedStudentsList").empty();
     $("#addStudentModal").show();
 }
 
@@ -88,17 +89,42 @@ function deleteStudentFromClassCallback(response) {
     $("#numberOfStudents").text($("#numberOfStudents").text() - 1);
 }
 
-function addStudentToClass(classId) {
+function addStudentToStudentsList() {
     studentId = $("#studentsDropdown :selected").val();
+    studentFullname = $("#studentsDropdown :selected").text();
     if (studentId === '-1') {
         alert("Seleccione un alumno");
         return;
     }
-    postCall("/centre/class/addStudent",
-        {"studentId": studentId, "classId": classId},
-        addStudentToClassCallback
-    )
 
+    $("#addedStudentsList").append("<li id='" + studentId + "'>" + studentFullname + "<a class='deleteCross' onclick='deleteStudentFromStudentsList(this)'>&times;</a></li>");
+    $("#studentsDropdown [value='" + studentId + "']").remove();
+}
+
+function deleteStudentFromStudentsList(button) {
+    button.parentNode.remove();
+    $("#studentsDropdown").append("<option value='" + $(button).parent().attr('id') + "'>" + $(button).parent().text().slice(0, -1) + "</option>");
+    hideNotMatchingStudentsFromStudentsDropdown();
+}
+
+function addStudentToClass(classId) {
+    var studentsIds = [];
+    $("#addedStudentsList li").each(function () {
+        studentsIds.push($(this).attr('id'));
+    });
+
+
+    if (studentsIds.length === 0) {
+        alert("Seleccione algún alumno");
+        return;
+    }
+
+    for (i = 0; i < studentsIds.length; i++) {
+        postCall("/centre/class/addStudent",
+            {"studentId": studentsIds[i], "classId": classId},
+            addStudentToClassCallback
+        )
+    }
 }
 
 function addStudentToClassCallback(response) {
@@ -118,7 +144,6 @@ function addStudentToClassCallback(response) {
     $("#studentsDropdown [value='" + response.addedStudentId + "']").remove();
     $("#numberOfStudents").text(parseInt($("#numberOfStudents").text()) + 1);
     closeModal();
-
 }
 
 function hideNotMatchingStudentsFromStudentsDropdown() {
@@ -167,6 +192,7 @@ function openRegisterStudentDialog() {
     $("#studentSurnameInput").val("");
     $("#parentTelephoneInput").val("");
     $("#parentFullnameInput").val("");
+    $("#registerStudentModal #parentFullnameInput").prop("disabled", true);
 }
 
 function filterStudents() {
@@ -183,12 +209,17 @@ function filterStudents() {
 }
 
 function addParentToParentsList() {
-    if ($("#parentFullnameInput").val().trim() === "" || $("#parentTelephoneInput").val().trim() === "")
-        alert("Rellene todos los campos");
-    else if (isNaN($("#parentTelephoneInput").val().trim())) alert("El número de teléfono no es válido");
-    else {
-        $("#addedParentsList").append("<li>" + $("#parentFullnameInput").val() + "<a class='deleteCross' onclick='deleteParentFromParentsList(this)'>&times;</a></li>");
+    if ($("#parentFullnameInput").is(':disabled')) {
+        alert("No se ha encontrado un padre con ese número de teléfono");
+        return;
     }
+
+    if ($("#addedParentsList #" + $("#parentTelephoneInput").val()).length > 0) {
+        alert("El padre ya ha sido añadido");
+        return;
+    }
+
+    $("#addedParentsList").append("<li id='" + $("#parentTelephoneInput").val() + "'>" + $("#parentFullnameInput").val() + "<a class='deleteCross' onclick='deleteParentFromParentsList(this)'>&times;</a></li>");
 }
 
 function deleteParentFromParentsList(button) {
@@ -198,18 +229,72 @@ function deleteParentFromParentsList(button) {
 function registerStudent() {
     studentName = $("#studentNameInput").val()
     studentSurname = $("#studentSurnameInput").val()
-    studentClass = $("#classDropdown :selected").text();
+    studentClass = $("#classDropdown :selected").val();
 
-    if (studentName.trim() === "" || studentSurname.trim() === "") alert("Rellene todos los campos");
-    else {
-        $("#studentsTable").append(
-            "<tr>" +
-            "<td>" + studentName + " " + studentSurname + "</td>" +
-            "<td>" + studentClass + "</td>" +
-            "<td class='tableButton'><button class='infoButton'><a href='student'>Ver</a></button></td>" +
-            "</tr>"
-        );
-        closeModal();
+    if (studentName.trim() === "" || studentSurname.trim() === "") {
+        alert("Rellene todos los campos");
+        return;
+    }
+
+    postCall("/centre/students/register",
+        {"studentName": studentName, "studentSurname": studentSurname, "studentClass": studentClass},
+        registerStudentCallback
+    )
+
+}
+
+function registerStudentCallback(response) {
+    if (!response.registered) {
+        alert("Error al registrar al estudiante");
+        return;
+    }
+
+    $("#studentsTable").append(
+        "<tr>" +
+        "<td>" + response.studentSurname + ", " + response.studentName + "</td>" +
+        "<td>" + response.studentClass + "</td>" +
+        "<td class='tableButton'><button class='infoButton'><a href='student?id=" + response.studentId + "'>Ver</a></button></td>" +
+        "</tr>"
+    );
+    closeModal();
+}
+
+$(".modal-body_content #parentTelephoneInput").on('input', function () {
+    parentTelephone = $(this).val();
+
+    if (isNaN(parentTelephone) || parentTelephone.length !== 9) {
+        $("#parentFullnameInput").prop("disabled", true);
+        $("#parentFullnameInput").val("");
+        return;
+    }
+
+    getCall("/centre/students/findParent?parentTelephone=" + parentTelephone,
+        searchParentByTelephoneCallback
+    )
+});
+
+// function searchParentByTelephone() {
+//     parentTelephone = $("#parentTelephoneInput").val();
+//
+//     if (isNaN(parentTelephone) || parentTelephone.length !== 9) {
+//         $("#parentFullnameInput").prop("disabled", true);
+//         $("#parentFullnameInput").val("");
+//         return;
+//     }
+//
+//     getCall("/centre/students/findParent?parentTelephone=" + parentTelephone,
+//         searchParentByTelephoneCallback
+//     )
+// }
+
+function searchParentByTelephoneCallback(response) {
+    if (response.found) {
+        $("#parentTelephoneInput").val(response.parentTelephone);
+        $("#parentFullnameInput").val(response.parentFullname);
+        $("#parentFullnameInput").prop("disabled", false);
+    } else {
+        $("#parentFullnameInput").prop("disabled", true);
+        $("#parentFullnameInput").val("");
     }
 }
 
@@ -221,38 +306,70 @@ function openEditStudentDialog() {
 function openAddParentDialog() {
     $("#parentTelephoneInput").val("");
     $("#parentFullnameInput").val("");
-    $("#addParentModal #parentFullnameInput").prop("disabled", false);
+    $("#addParentModal #parentFullnameInput").prop("disabled", true);
     $("#addParentModal").show();
 }
 
-function openEditParentDialog(button) {
-    parentTelephone = $(button).parent().parent().children().eq(0).text();
-    parentFullname = $(button).parent().parent().children().eq(1).text();
-    $("#editParentModal #parentTelephoneInput").val(parentTelephone);
-    $("#editParentModal #parentFullnameInput").val(parentFullname);
-    $("#editParentModal").show();
-}
+// function openEditParentDialog(button) {
+//     parentTelephone = $(button).parent().parent().children().eq(0).text();
+//     parentFullname = $(button).parent().parent().children().eq(1).text();
+//     $("#editParentModal #parentTelephoneInput").val(parentTelephone);
+//     $("#editParentModal #parentFullnameInput").val(parentFullname);
+//     $("#editParentModal").show();
+// }
 
-function editStudent() {
+function editStudent(studentId) {
     studentName = $("#studentNameInput").val()
     studentSurname = $("#studentSurnameInput").val()
-    studentClass = $("#classDropdown :selected").text();
+    studentClass = $("#classDropdown :selected").val();
 
-    if (studentName.trim() === "" || studentSurname.trim() === "") alert("Rellene todos los campos");
-    else {
-        $("#studentFullName").text(studentName + " " + studentSurname);
-        $("#studentName").text(studentName);
-        $("#studentSurname").text(studentSurname);
-        $("#studentClass").text(studentClass);
-        closeModal();
+    if (studentName.trim() === "" || studentSurname.trim() === "") {
+        alert("Rellene todos los campos");
+        return;
     }
+
+    postCall("/centre/student/edit",
+        {
+            "studentId": studentId,
+            "studentName": studentName,
+            "studentSurname": studentSurname,
+            "studentClass": studentClass
+        },
+        editStudentCallback
+    )
+
 }
 
-function deleteStudent() {
-    if (confirm("¿Está seguro de que desea eliminar al alumno?"))
-        window.location.replace("students");
+function editStudentCallback(response) {
+    if (!response.edited) {
+        alert("Error al editar el alumno");
+        return;
+    }
+
+    $("#studentFullName").text(response.studentName + " " + response.studentSurname);
+    $("#studentName").text(response.studentName);
+    $("#studentSurname").text(response.studentSurname);
+    $("#studentClass").text(response.studentClass);
+    closeModal();
 }
 
+function deleteStudent(studentId) {
+    if (!confirm("¿Está seguro de que desea eliminar al alumno?")) return;
+
+    postCall("/centre/student/delete",
+        {"studentId": studentId},
+        deleteStudentCallback
+    )
+}
+
+function deleteStudentCallback(response) {
+    if (!response.deleted) {
+        alert("Error al eliminar al alumno");
+        return;
+    }
+
+    window.location.replace("students");
+}
 
 function addParent() {
     parentTelephone = $("#addParentModal  #parentTelephoneInput").val();
@@ -265,7 +382,7 @@ function addParent() {
             "<tr>" +
             "<td>" + parentTelephone + "</td>" +
             "<td>" + parentFullname + "</td>" +
-            "<td class='tableButton'><button class='primaryButton' onclick='openEditParentDialog(this)'>Editar</button></td>" +
+            // "<td class='tableButton'><button class='primaryButton' onclick='openEditParentDialog(this)'>Editar</button></td>" +
             "<td class='tableButton'><button class='warningButton' onclick='deleteParent(this)'>Eliminar</button></td>" +
             "</tr>"
         );
@@ -273,34 +390,35 @@ function addParent() {
     }
 }
 
-function searchParentByTelephone(modalName) {
-    telephone = $("#" + modalName + " #parentTelephoneInput").val();
+// function editParent(id) {
+//     parentTelephone = $("#editParentModal  #parentTelephoneInput").val();
+//     parentFullname = $("#editParentModal #parentFullnameInput").val();
+//
+//     if (parentFullname.trim() === "" || parentTelephone.trim() === "") alert("Rellene todos los campos");
+//     else if (isNaN(parentTelephone)) alert("El número de teléfono tiene un formato incorrecto");
+//     else {
+//         //TODO: editar la fila de la tabla
+//         //para saber el id te la fila, establecerlo en el parámetro del onclick al abrir el diálogo
+//         closeModal();
+//     }
+// }
 
-    if (telephone === "666666666") {
-        $("#" + modalName + " #parentTelephoneInput").val("666666666");
-        $("#" + modalName + " #parentFullnameInput").val("Hernando Hernández");
-        $("#" + modalName + " #parentFullnameInput").prop("disabled", true);
-    } else {
-        $("#" + modalName + " #parentFullnameInput").prop("disabled", false);
-    }
+function deleteParent(studentId, parentId) {
+    if (!confirm("¿Está seguro de que desea eliminar al padre?")) return;
+
+    postCall("/centre/student/deleteParent",
+        {"studentId": studentId, "parentId": parentId},
+        deleteParentCallback
+    )
 }
 
-function editParent(id) {
-    parentTelephone = $("#editParentModal  #parentTelephoneInput").val();
-    parentFullname = $("#editParentModal #parentFullnameInput").val();
-
-    if (parentFullname.trim() === "" || parentTelephone.trim() === "") alert("Rellene todos los campos");
-    else if (isNaN(parentTelephone)) alert("El número de teléfono tiene un formato incorrecto");
-    else {
-        //TODO: editar la fila de la tabla
-        //para saber el id te la fila, establecerlo en el parámetro del onclick al abrir el diálogo
-        closeModal();
+function deleteParentCallback(response) {
+    if (!response.deleted) {
+        alert("Error al eliminar el padre");
+        return;
     }
-}
 
-function deleteParent(button) {
-    if (confirm("¿Está seguro de que desea eliminar al padre?"))
-        button.parentNode.parentNode.remove();
+    $("#parentsTable #" + response.deletedParentId).remove();
 }
 
 // --------------------MESSAGING--------------------
