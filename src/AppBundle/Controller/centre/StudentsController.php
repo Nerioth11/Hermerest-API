@@ -57,7 +57,7 @@ class StudentsController extends Controller
 
         $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
         $courseFacade = new CourseFacade($this->getDoctrine()->getManager());
-        $class= $courseFacade->find($studentClass);
+        $class = $courseFacade->find($studentClass);
 
         $student = new Student();
         $student->setCentre($class->getCentre());
@@ -73,6 +73,33 @@ class StudentsController extends Controller
             'studentClass' => $student->getClass()->getName(),
             'studentName' => $student->getName(),
             'studentSurname' => $student->getSurname(),
+        ]);
+    }
+
+    /**
+     * @Route("/centre/students/addParent", name="add_parent")
+     * @Method("POST")
+     */
+    public function addParentAction(Request $request)
+    {
+        $studentId = $request->request->get('studentId');
+        $parentTelephone = $request->request->get('parentTelephone');
+
+        $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
+        $progenitorFacade = new ProgenitorFacade($this->getDoctrine()->getManager());
+
+        $student = $studentFacade->find($studentId);
+        $parent = $progenitorFacade->findByTelephone($parentTelephone);
+
+        $student->addParent($parent);
+        $studentFacade->edit();
+
+        return new JsonResponse([
+            'added' => true,
+            'addedParentId' => $parent->getId(),
+            'addedParentTelephone' => $parent->getTelephone(),
+            'addedParentFullname' => $parent->getName(),
+            'studentId' => $student->getId(),
         ]);
     }
 }

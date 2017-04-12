@@ -22,6 +22,6 @@
 {% endblock %}
 
 {% block modal_footer %}
-    <button class="primaryButton" type="button" onclick="addParent()">Guardar cambios</button>
+    <button class="primaryButton" type="button" onclick="addParents({{ student.getId() }})">Guardar cambios</button>
     <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
 {% endblock %}

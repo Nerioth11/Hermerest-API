@@ -10,13 +10,13 @@ function openNewClassDialog() {
 }
 
 function addNewClass(centreId) {
-    className = $("#classNameInput").val();
+    var className = $("#classNameInput").val();
     if (className.trim().length === 0) alert("Rellene todos los campos");
     else {
         postCall("/centre/classes/add",
             {"className": className, "centreId": centreId},
             addNewClassCallback
-        )
+        );
     }
 }
 
@@ -49,13 +49,13 @@ function openAddStudentDialog() {
 }
 
 function editClass(classId) {
-    className = $("#classNameInput").val();
+    var className = $("#classNameInput").val();
     if (className.trim().length === 0) alert("Rellene todos los campos");
     else {
         postCall("/centre/class/edit",
             {"className": className, "classId": classId},
             editClassCallback
-        )
+        );
     }
 }
 
@@ -72,7 +72,7 @@ function deleteStudentFromClass(studentId) {
     postCall("/centre/class/deleteStudent",
         {"studentId": studentId},
         deleteStudentFromClassCallback
-    )
+    );
 }
 
 function deleteStudentFromClassCallback(response) {
@@ -90,8 +90,8 @@ function deleteStudentFromClassCallback(response) {
 }
 
 function addStudentToStudentsList() {
-    studentId = $("#studentsDropdown :selected").val();
-    studentFullname = $("#studentsDropdown :selected").text();
+    var studentId = $("#studentsDropdown :selected").val();
+    var studentFullname = $("#studentsDropdown :selected").text();
     if (studentId === '-1') {
         alert("Seleccione un alumno");
         return;
@@ -119,11 +119,11 @@ function addStudentToClass(classId) {
         return;
     }
 
-    for (i = 0; i < studentsIds.length; i++) {
+    for (var i = 0; i < studentsIds.length; i++) {
         postCall("/centre/class/addStudent",
             {"studentId": studentsIds[i], "classId": classId},
             addStudentToClassCallback
-        )
+        );
     }
 }
 
@@ -153,7 +153,7 @@ function hideNotMatchingStudentsFromStudentsDropdown() {
         return;
     }
 
-    numberOfVisibleOptions = 0;
+    var numberOfVisibleOptions = 0;
     $("#studentsDropdown > option").each(function () {
         if ($(this).text().toLowerCase().includes($("#studentNameFilterInput").val().toLowerCase())) {
             $(this).show();
@@ -172,7 +172,7 @@ function deleteClass(classId) {
     postCall("/centre/class/delete",
         {"classId": classId},
         deleteClassCallback
-    )
+    );
 }
 
 function deleteClassCallback(response) {
@@ -187,20 +187,21 @@ function deleteClassCallback(response) {
 
 // STUDENTS
 function openRegisterStudentDialog() {
-    $("#registerStudentModal").show();
     $("#studentNameInput").val("");
     $("#studentSurnameInput").val("");
     $("#parentTelephoneInput").val("");
     $("#parentFullnameInput").val("");
     $("#registerStudentModal #parentFullnameInput").prop("disabled", true);
+    $("#addedParentsList").empty();
+    $("#registerStudentModal").show();
 }
 
 function filterStudents() {
-    className = $("#classFilterDropdown :selected").val();
-    studentName = $("#studentNameFilterInput").val().toLowerCase();
+    var className = $("#classFilterDropdown :selected").val();
+    var studentName = $("#studentNameFilterInput").val().toLowerCase();
     $("#studentsTable > tbody > tr").each(function () {
-        rowClassName = $(this).children().eq(1).text();
-        rowStudentName = $(this).children().eq(0).text().toLowerCase();
+        var rowClassName = $(this).children().eq(1).text();
+        var rowStudentName = $(this).children().eq(0).text().toLowerCase();
         if ((rowClassName === className || className === " " || (className === "" && rowClassName === "-"))
             && rowStudentName.includes(studentName))
             $(this).show();
@@ -214,7 +215,8 @@ function addParentToParentsList() {
         return;
     }
 
-    if ($("#addedParentsList #" + $("#parentTelephoneInput").val()).length > 0) {
+    if ($("#addedParentsList #" + $("#parentTelephoneInput").val()).length > 0 ||
+        $("#parentsTable td:first-child:contains('" + $("#parentTelephoneInput").val() + "')").length > 0) {
         alert("El padre ya ha sido añadido");
         return;
     }
@@ -227,9 +229,9 @@ function deleteParentFromParentsList(button) {
 }
 
 function registerStudent() {
-    studentName = $("#studentNameInput").val()
-    studentSurname = $("#studentSurnameInput").val()
-    studentClass = $("#classDropdown :selected").val();
+    var studentName = $("#studentNameInput").val()
+    var studentSurname = $("#studentSurnameInput").val()
+    var studentClass = $("#classDropdown :selected").val();
 
     if (studentName.trim() === "" || studentSurname.trim() === "") {
         alert("Rellene todos los campos");
@@ -239,7 +241,7 @@ function registerStudent() {
     postCall("/centre/students/register",
         {"studentName": studentName, "studentSurname": studentSurname, "studentClass": studentClass},
         registerStudentCallback
-    )
+    );
 
 }
 
@@ -256,11 +258,13 @@ function registerStudentCallback(response) {
         "<td class='tableButton'><button class='infoButton'><a href='student?id=" + response.studentId + "'>Ver</a></button></td>" +
         "</tr>"
     );
+
+    addParents(response.studentId);
     closeModal();
 }
 
 $(".modal-body_content #parentTelephoneInput").on('input', function () {
-    parentTelephone = $(this).val();
+    var parentTelephone = $(this).val();
 
     if (isNaN(parentTelephone) || parentTelephone.length !== 9) {
         $("#parentFullnameInput").prop("disabled", true);
@@ -270,7 +274,7 @@ $(".modal-body_content #parentTelephoneInput").on('input', function () {
 
     getCall("/centre/students/findParent?parentTelephone=" + parentTelephone,
         searchParentByTelephoneCallback
-    )
+    );
 });
 
 // function searchParentByTelephone() {
@@ -319,9 +323,9 @@ function openAddParentDialog() {
 // }
 
 function editStudent(studentId) {
-    studentName = $("#studentNameInput").val()
-    studentSurname = $("#studentSurnameInput").val()
-    studentClass = $("#classDropdown :selected").val();
+    var studentName = $("#studentNameInput").val()
+    var studentSurname = $("#studentSurnameInput").val()
+    var studentClass = $("#classDropdown :selected").val();
 
     if (studentName.trim() === "" || studentSurname.trim() === "") {
         alert("Rellene todos los campos");
@@ -336,7 +340,7 @@ function editStudent(studentId) {
             "studentClass": studentClass
         },
         editStudentCallback
-    )
+    );
 
 }
 
@@ -359,7 +363,7 @@ function deleteStudent(studentId) {
     postCall("/centre/student/delete",
         {"studentId": studentId},
         deleteStudentCallback
-    )
+    );
 }
 
 function deleteStudentCallback(response) {
@@ -371,23 +375,37 @@ function deleteStudentCallback(response) {
     window.location.replace("students");
 }
 
-function addParent() {
-    parentTelephone = $("#addParentModal  #parentTelephoneInput").val();
-    parentFullname = $("#addParentModal #parentFullnameInput").val();
+function addParents(studentId) {
+    var parentsTelephones = [];
 
-    if (parentFullname.trim() === "" || parentTelephone.trim() === "") alert("Rellene todos los campos");
-    else if (isNaN(parentTelephone)) alert("El número de teléfono tiene un formato incorrecto");
-    else {
-        $("#parentsTable").append(
-            "<tr>" +
-            "<td>" + parentTelephone + "</td>" +
-            "<td>" + parentFullname + "</td>" +
-            // "<td class='tableButton'><button class='primaryButton' onclick='openEditParentDialog(this)'>Editar</button></td>" +
-            "<td class='tableButton'><button class='warningButton' onclick='deleteParent(this)'>Eliminar</button></td>" +
-            "</tr>"
+    $("#addedParentsList li").each(function () {
+        parentsTelephones.push($(this).attr('id'));
+    });
+
+    for (var i = 0; i < parentsTelephones.length; i++) {
+        postCall("/centre/students/addParent",
+            {"studentId": studentId, "parentTelephone": parentsTelephones[i]},
+            addParentsCallback
         );
-        closeModal();
     }
+}
+
+function addParentsCallback(response) {
+    if (!response.added) {
+        alert("Error al añadir al padre");
+        return;
+    }
+
+    $("#parentsTable").append(
+        "<tr id='" + response.addedParentId + "'>" +
+        "<td>" + response.addedParentTelephone + "</td>" +
+        "<td>" + response.addedParentFullname + "</td>" +
+        // "<td class='tableButton'><button class='primaryButton' onclick='openEditParentDialog(this)'>Editar</button></td>" +
+        "<td class='tableButton'><button class='warningButton' onclick='deleteParent(" + response.studentId + "," + response.addedParentId + ")'>Eliminar</button></td>" +
+        "</tr>"
+    );
+
+    closeModal();
 }
 
 // function editParent(id) {
@@ -397,7 +415,6 @@ function addParent() {
 //     if (parentFullname.trim() === "" || parentTelephone.trim() === "") alert("Rellene todos los campos");
 //     else if (isNaN(parentTelephone)) alert("El número de teléfono tiene un formato incorrecto");
 //     else {
-//         //TODO: editar la fila de la tabla
 //         //para saber el id te la fila, establecerlo en el parámetro del onclick al abrir el diálogo
 //         closeModal();
 //     }
@@ -409,7 +426,7 @@ function deleteParent(studentId, parentId) {
     postCall("/centre/student/deleteParent",
         {"studentId": studentId, "parentId": parentId},
         deleteParentCallback
-    )
+    );
 }
 
 function deleteParentCallback(response) {
@@ -449,11 +466,11 @@ function sendCircular() {
 }
 
 function filterCirculars() {
-    circularSubject = $("#circularSubjectInputFilter").val().toLowerCase();
-    circularMonth = $("#circularMonthDropdown :selected").val();
+    var circularSubject = $("#circularSubjectInputFilter").val().toLowerCase();
+    var circularMonth = $("#circularMonthDropdown :selected").val();
     $("#circularsTable > tbody > tr").each(function () {
-        rowCircularSubject = $(this).children().eq(1).text().toLowerCase();
-        rowCircularMonth = $(this).children().eq(0).text().substring(3, 5);
+        var rowCircularSubject = $(this).children().eq(1).text().toLowerCase();
+        var rowCircularMonth = $(this).children().eq(0).text().substring(3, 5);
         if (rowCircularSubject.includes(circularSubject) && (rowCircularMonth === circularMonth || circularMonth === "")) $(this).show();
         else $(this).hide();
     });
@@ -489,13 +506,13 @@ function sendAuthorization() {
 }
 
 function filterAuthorizations() {
-    authorizationSubject = $("#authorizationSubjectInputFilter").val().toLowerCase();
-    authorizationMonth = $("#authorizationMonthDropdownFilter :selected").val();
-    authorizationState = parseInt($("#authorizationStateDropdownFilter :selected").val());
+    var authorizationSubject = $("#authorizationSubjectInputFilter").val().toLowerCase();
+    var authorizationMonth = $("#authorizationMonthDropdownFilter :selected").val();
+    var authorizationState = parseInt($("#authorizationStateDropdownFilter :selected").val());
     $("#authorizationsTable > tbody > tr").each(function () {
-        rowAuthorizationState = dateComparator($(this).children().eq(2).text(), getTodaysDate());
-        rowAuthorizationSubject = $(this).children().eq(1).text().toLowerCase();
-        rowAuthorizationMonth = $(this).children().eq(0).text().substring(3, 5);
+        var rowAuthorizationState = dateComparator($(this).children().eq(2).text(), getTodaysDate());
+        var rowAuthorizationSubject = $(this).children().eq(1).text().toLowerCase();
+        var rowAuthorizationMonth = $(this).children().eq(0).text().substring(3, 5);
         if (rowAuthorizationSubject.includes(authorizationSubject) &&
             (rowAuthorizationMonth === authorizationMonth || authorizationMonth === "") &&
             (rowAuthorizationState === authorizationState || authorizationState === 0)) $(this).show();
@@ -544,13 +561,13 @@ function sendPoll() {
 }
 
 function filterPolls() {
-    pollSubject = $("#pollSubjectInputFilter").val().toLowerCase();
-    pollMonth = $("#pollMonthDropdownFilter :selected").val();
-    pollState = parseInt($("#pollStateDropdownFilter :selected").val());
+    var pollSubject = $("#pollSubjectInputFilter").val().toLowerCase();
+    var pollMonth = $("#pollMonthDropdownFilter :selected").val();
+    var pollState = parseInt($("#pollStateDropdownFilter :selected").val());
     $("#pollsTable > tbody > tr").each(function () {
-        rowPollState = dateComparator($(this).children().eq(2).text(), getTodaysDate());
-        rowPollSubject = $(this).children().eq(1).text().toLowerCase();
-        rowPollMonth = $(this).children().eq(0).text().substring(3, 5);
+        var rowPollState = dateComparator($(this).children().eq(2).text(), getTodaysDate());
+        var rowPollSubject = $(this).children().eq(1).text().toLowerCase();
+        var rowPollMonth = $(this).children().eq(0).text().substring(3, 5);
         if (rowPollSubject.includes(pollSubject) &&
             (rowPollMonth === pollMonth || pollMonth === "") &&
             (rowPollState === pollState || pollState === 0)) $(this).show();
