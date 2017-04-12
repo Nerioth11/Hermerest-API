@@ -304,6 +304,14 @@ function searchParentByTelephoneCallback(response) {
 
 // STUDENT
 function openEditStudentDialog() {
+    $("#studentNameInput").val($("#studentName").text());
+    $("#studentSurnameInput").val($("#studentSurname").text());
+
+    $("#classDropdown option").each(function () {
+        if ($(this).text() === $("#studentClass").text()) $(this).prop('selected', true);
+        // else $(this).prop('selected', false);
+    });
+
     $("#editStudentModal").show();
 }
 
