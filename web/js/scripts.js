@@ -38,6 +38,7 @@ function addNewClassCallback(response) {
 
 // CLASS
 function openEditClassDialog() {
+    $("#classNameInput").val($("#className").text());
     $("#editClassModal").show();
 }
 
@@ -319,6 +320,7 @@ function openAddParentDialog() {
     $("#parentTelephoneInput").val("");
     $("#parentFullnameInput").val("");
     $("#addParentModal #parentFullnameInput").prop("disabled", true);
+    $("#addedParentsList").empty();
     $("#addParentModal").show();
 }
 
