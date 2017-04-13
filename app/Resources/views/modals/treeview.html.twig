@@ -1,0 +1,29 @@
+<div class="treeviewDiv">
+    <ul class="treeview">
+        <li class="last treeviewFirstLi">
+            <img alt="expand" class="expand" src="{{ asset('images/Minus.png') }}"/>
+            <img alt="collapse" class="collapse" src="{{ asset('images/Plus.png') }}"/>
+            <input type="checkbox"/>
+            <label class="custom-unchecked">Todos</label>
+
+            <ul class="treeviewSecondLevel">
+                {% for class in app.user.centre.getClasses() %}
+                    <li {{ loop.last? "class='last'" : "" }}>
+                        <img alt="expand" class="expand" src="{{ asset('images/Minus.png') }}"/>
+                        <img alt="collapse" class="collapse" src="{{ asset('images/Plus.png') }}"/>
+                        <input type="checkbox"/>
+                        <label class="custom-unchecked">{{ class.getName() }}</label>
+                        <ul>
+                            {% for student in class.getStudents() %}
+                                <li class="recipientStudentLi{{ loop.last? " last" : "" }}" id="{{ student.getId() }}">
+                                    <input type="checkbox">
+                                    <label class="custom-unchecked">{{ student.getSurname() }}, {{ student.getName() }}</label>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    </ul>
+</div>

@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="{{ asset('css/base_styles.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
         <link rel="stylesheet" href="{{ asset('css/modals_styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/treeview_styles.css') }}">
     {% endblock %}
 
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
@@ -51,7 +52,7 @@
 
 <main>
     <div id="mainTitleDiv">
-    {% block main_title %}{% endblock %}
+        {% block main_title %}{% endblock %}
     </div>
 
     <div id="mainFiltersDiv">
@@ -70,6 +71,7 @@
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/ajaxscripts.js') }}"></script>
     <script src="{{ asset('js/utilscripts.js') }}"></script>
+    <script src="{{ asset('js/treeviewscripts.js') }}"></script>
 {% endblock %}
 </body>
 </html>

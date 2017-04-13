@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6e06172-8bc6-487a-88c6-fe9d6006e63d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/scripts.js" afterPath="$PROJECT_DIR$/web/js/scripts.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/base.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/css/modals_styles.css" afterPath="$PROJECT_DIR$/web/css/modals_styles.css" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -16,24 +21,44 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5">
+    <splitter split-orientation="horizontal" split-proportion="0.53729457">
       <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="student.html.twig" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/student.html.twig">
+        <leaf>
+          <file leaf-file-name="treeview.html.twig" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/treeview.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="459">
-                  <caret line="27" column="29" lean-forward="true" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
+                <state relative-caret-position="221">
+                  <caret line="13" column="48" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="48" />
                   <folding />
                 </state>
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="edit_student_modal.html.twig" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/edit_student_modal.html.twig">
+          <file leaf-file-name="Student.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Student.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="527">
-                  <caret line="31" column="108" lean-forward="false" selection-start-line="31" selection-start-column="108" selection-end-line="31" selection-end-column="108" />
+                <state relative-caret-position="490">
+                  <caret line="49" column="92" lean-forward="false" selection-start-line="49" selection-start-column="92" selection-end-line="49" selection-end-column="92" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="send_poll_modal.html.twig" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="408">
+                  <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="Progenitor.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Progenitor.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="17">
+                  <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="23" />
                   <folding />
                 </state>
               </provider>
@@ -42,17 +67,13 @@
         </leaf>
       </split-first>
       <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="scripts.js" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/web/js/scripts.js">
+        <leaf>
+          <file leaf-file-name="treeview_styles.css" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/web/css/treeview_styles.css">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="314">
-                  <caret line="40" column="49" lean-forward="false" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
-                  <folding>
-                    <marker date="1492033968933" expanded="true" signature="2852:2859" ph="×" />
-                    <marker date="1492033968933" expanded="true" signature="7159:7166" ph="×" />
-                    <marker date="1492033968933" expanded="true" signature="18186:18193" ph="×" />
-                  </folding>
+                <state relative-caret-position="-136">
+                  <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -64,21 +85,13 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="CSS File" />
         <option value="JavaScript File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>admin1</find>
-      <find>getpar</find>
-      <find>idcard</find>
-      <find>telephone</find>
-      <find>rellene p</find>
-      <find>id</find>
-      <find>search</find>
-      <find>disabled</find>
       <find>Progenitor</find>
       <find>eliminar al</find>
       <find>openadd</find>
@@ -101,6 +114,14 @@
       <find>addParent</find>
       <find>addparenttoparentslist</find>
       <find>añadir</find>
+      <find>label</find>
+      <find>li</find>
+      <find>&lt;li</find>
+      <find>last</find>
+      <find>expand</find>
+      <find>cust</find>
+      <find>border-</find>
+      <find>collapse</find>
     </findStrings>
     <replaceStrings>
       <replace>base.html.twig</replace>
@@ -123,16 +144,10 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/app/Resources/views/modals/view_circular_modal.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/modals/view_authorization_modal.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig" />
         <option value="$PROJECT_DIR$/web/css/styles.css" />
         <option value="$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig" />
         <option value="$PROJECT_DIR$/app/config/parameters.yml" />
         <option value="$PROJECT_DIR$/app/config/config.yml" />
         <option value="$PROJECT_DIR$/app/config/routing.yml" />
@@ -160,7 +175,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/centre/class.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/centre/student.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/centre/StudentController.php" />
-        <option value="$PROJECT_DIR$/web/css/modals_styles.css" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/centre/ClassController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/add_student_modal.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/edit_class_modal.html.twig" />
@@ -172,8 +186,15 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/centre/StudentsController.php" />
         <option value="$PROJECT_DIR$/web/js/modalscripts.js" />
         <option value="$PROJECT_DIR$/web/js/utilscripts.js" />
-        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/web/js/scripts.js" />
+        <option value="$PROJECT_DIR$/web/js/treeviewscripts.js" />
+        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/modals/treeview.html.twig" />
+        <option value="$PROJECT_DIR$/web/css/modals_styles.css" />
+        <option value="$PROJECT_DIR$/web/css/treeview_styles.css" />
+        <option value="$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig" />
       </list>
     </option>
   </component>
@@ -213,7 +234,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -402,32 +423,6 @@
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AppBundle" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="centre" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hermerest" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Hermerest" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
               <option name="myItemId" value="app" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
@@ -508,11 +503,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../hearthstone_tracker" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../untitled" />
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Font" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js.eslint.eslintPackage" value="" />
@@ -682,12 +677,13 @@
       <workItem from="1491826759123" duration="199000" />
       <workItem from="1491827054095" duration="21354000" />
       <workItem from="1491916185094" duration="15810000" />
-      <workItem from="1492018624495" duration="8552000" />
+      <workItem from="1492018624495" duration="9231000" />
+      <workItem from="1492103405549" duration="11847000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="185751000" />
+    <option name="totallyTimeSpent" value="198277000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -697,6 +693,7 @@
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3541226" sideWeight="0.50208336" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32977587" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -708,7 +705,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769555" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -743,41 +739,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/AppBundle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/HomeController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Facade/StudentFacade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="18" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Facade/AdministratorFacade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Facade/CourseFacade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="17" column="61" lean-forward="false" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/home.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -850,24 +811,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Administrator.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2057">
-          <caret line="121" column="30" lean-forward="true" selection-start-line="121" selection-start-column="30" selection-end-line="121" selection-end-column="30" />
-          <folding>
-            <element signature="e#36#64#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Centre.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="144" column="0" lean-forward="true" selection-start-line="144" selection-start-column="0" selection-end-line="144" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Course.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-542">
@@ -884,16 +827,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/navbarscript.js" />
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Progenitor.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-680">
-          <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="23" />
-          <folding>
-            <element signature="e#36#65#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Facade/ProgenitorFacade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -931,33 +864,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/ajaxscripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="17" lean-forward="true" selection-start-line="0" selection-start-column="17" selection-end-line="0" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/class.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/css/base_styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="372">
           <caret line="102" column="23" lean-forward="false" selection-start-line="102" selection-start-column="17" selection-end-line="102" selection-end-column="23" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/css/modals_styles.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="93" column="42" lean-forward="false" selection-start-line="93" selection-start-column="42" selection-end-line="93" selection-end-column="42" />
           <folding />
         </state>
       </provider>
@@ -1007,16 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#34#0#Twig" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../phpMyAdmin/sql.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
@@ -1028,14 +928,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="385">
           <caret line="80" column="0" lean-forward="false" selection-start-line="80" selection-start-column="0" selection-end-line="102" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Student.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1805">
-          <caret line="49" column="92" lean-forward="false" selection-start-line="49" selection-start-column="92" selection-end-line="49" selection-end-column="92" />
           <folding />
         </state>
       </provider>
@@ -1056,48 +948,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/students.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="23" column="43" lean-forward="false" selection-start-line="23" selection-start-column="43" selection-end-line="23" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/modalscripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/modalscripts.js" />
     <entry file="file://$PROJECT_DIR$/web/images/attachment.png">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/add_parent_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="473">
-          <caret line="57" column="46" lean-forward="true" selection-start-line="57" selection-start-column="46" selection-end-line="57" selection-end-column="46" />
-          <folding />
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/utilscripts.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
           <caret line="25" column="1" lean-forward="false" selection-start-line="25" selection-start-column="1" selection-end-line="25" selection-end-column="1" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1105,6 +965,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="742">
           <caret line="101" column="45" lean-forward="false" selection-start-line="101" selection-start-column="45" selection-end-line="101" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/student.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="27" column="29" lean-forward="false" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -1117,23 +985,149 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/student.html.twig">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/add_parent_modal.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="27" column="29" lean-forward="true" selection-start-line="27" selection-start-column="29" selection-end-line="27" selection-end-column="29" />
+        <state relative-caret-position="272">
+          <caret line="16" column="28" lean-forward="false" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/students.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="3" lean-forward="true" selection-start-line="5" selection-start-column="3" selection-end-line="5" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/ajaxscripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="39" column="39" lean-forward="false" selection-start-line="39" selection-start-column="12" selection-end-line="39" selection-end-column="39" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="40" column="49" lean-forward="false" selection-start-line="40" selection-start-column="49" selection-end-line="40" selection-end-column="49" />
+        <state relative-caret-position="484">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
           <folding>
             <marker date="1492033968933" expanded="true" signature="2852:2859" ph="×" />
             <marker date="1492033968933" expanded="true" signature="7159:7166" ph="×" />
             <marker date="1492033968933" expanded="true" signature="18186:18193" ph="×" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_authorization_modal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="50" lean-forward="false" selection-start-line="22" selection-start-column="50" selection-end-line="22" selection-end-column="50" />
+          <folding>
+            <element signature="e#12#34#0#Twig" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/treeviewscripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="51" column="19" lean-forward="false" selection-start-line="51" selection-start-column="19" selection-end-line="51" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="11" lean-forward="false" selection-start-line="11" selection-start-column="11" selection-end-line="11" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="19" column="8" lean-forward="false" selection-start-line="19" selection-start-column="8" selection-end-line="19" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/centre/class.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/treeview_styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136">
+          <caret line="19" column="48" lean-forward="false" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/css/modals_styles.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="70" column="1" lean-forward="false" selection-start-line="70" selection-start-column="1" selection-end-line="70" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Administrator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" column="0" lean-forward="false" selection-start-line="36" selection-start-column="0" selection-end-line="39" selection-end-column="7" />
+          <folding>
+            <element signature="e#36#64#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Centre.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="25" selection-end-column="18" />
+          <folding>
+            <element signature="e#36#64#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/treeview.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="48" lean-forward="false" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Student.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="490">
+          <caret line="49" column="92" lean-forward="false" selection-start-line="49" selection-start-column="92" selection-end-line="49" selection-end-column="92" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Progenitor.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="48" column="23" lean-forward="false" selection-start-line="48" selection-start-column="22" selection-end-line="48" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="24" column="27" lean-forward="false" selection-start-line="24" selection-start-column="27" selection-end-line="24" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>

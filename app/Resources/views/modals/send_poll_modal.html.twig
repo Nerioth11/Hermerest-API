@@ -21,6 +21,8 @@
         <div id="pollOptionsDiv">
             <b>Opciones</b>
             <br/><br/>
+            Permitir respuesta múltiple: <input id="multipleChoiceCheckbox" type="checkbox"/>
+            <br/><br/><br/>
             Nueva opción<br/>
             <input class="modalInput" id="newPollOptionInput" type="text">
             <br/><br/>
@@ -33,7 +35,7 @@
         <div id="recipientsDiv">
             <b>Destinatarios</b>
             <br/><br/>
-            AQUÍ VA EL TREEVIEW
+            {{ include('modals/treeview.html.twig') }}
         </div>
     </div>
 
