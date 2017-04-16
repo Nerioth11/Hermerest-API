@@ -2,7 +2,9 @@ security:
 ## En el caso que los usuarios tengan la contraseña cifrada configuramos los encoders para la entidad en la que estén los usuarios
     encoders:
         AppBundle\Entity\Administrator:
-            algorithm: plaintext
+            algorithm: md5
+            encode_as_base64: false
+            iterations: 0
             ignore_case: false
 # En providers le indicamos que los usuarios van a salir de la base de datos y el username será email
     providers:

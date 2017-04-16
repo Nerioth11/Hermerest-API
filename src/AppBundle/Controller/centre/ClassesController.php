@@ -3,8 +3,12 @@
 namespace AppBundle\Controller\centre;
 
 use AppBundle\Entity\Course;
+use AppBundle\Entity\Progenitor;
+use AppBundle\Entity\Student;
 use AppBundle\Facade\CentreFacade;
 use AppBundle\Facade\CourseFacade;
+use AppBundle\Facade\ProgenitorFacade;
+use AppBundle\Facade\StudentFacade;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,7 +41,7 @@ class ClassesController extends Controller
         $centreId = $request->request->get('centreId');
         $centre = $centreFacade->find($centreId);
 
-        if($centre->containsClassNamedBy($className))
+        if ($centre->containsClassNamedBy($className))
             return new JsonResponse([
                 'added' => false,
                 'error' => "Ya existe una clase con con este nombre."
@@ -52,6 +56,62 @@ class ClassesController extends Controller
             'added' => true,
             'addedClassId' => $newClass->getId(),
             'addedClassName' => $newClass->getName()
+        ]);
+    }
+
+    /**
+     * @Route("/centre/classes/autoimportClass", name="autoimport_class")
+     * @Method("POST")
+     */
+    public function autoimportClassAction(Request $request)
+    {
+        $courseFacade = new CourseFacade($this->getDoctrine()->getManager());
+        $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
+        $parentFacade = new ProgenitorFacade($this->getDoctrine()->getManager());
+        $className = $request->request->get('className');
+        $centre = $this->get('security.token_storage')->getToken()->getUser()->getCentre();
+        $students = $request->request->get('students');
+        array_pop($students);
+
+        if ($centre->containsClassNamedBy($className))
+            return new JsonResponse([
+                'added' => false,
+                'error' => "Ya existe una clase con nombre: " . $className
+            ]);
+
+        $class = new Course();
+        $class->setCentre($centre);
+        $class->setName($className);
+//        $courseFacade->create($class);
+
+        foreach ($students as $student) {
+            $studentFields = explode('.', $student);
+            $studentName = $studentFields[0];
+            $studentSurname = $studentFields[1];
+
+            $student = new Student();
+            $student->setClass($class);
+            $student->setCentre($centre);
+            $student->setName($studentName);
+            $student->setSurname($studentSurname);
+//            $studentFacade->create($student);
+            $class->addStudent($student);
+//            $courseFacade->edit();
+            array_shift($studentFields);
+            array_shift($studentFields);
+            foreach ($studentFields as $parentTelephone) {
+                $parent = $parentFacade->findByTelephone($parentTelephone);
+                if ($parent == null) continue;
+                $student->addParent($parent);
+//                $studentFacade->edit();
+            }
+        }
+
+        return new JsonResponse([
+            'imported' => true,
+            'addedClassId' => $class->getId(),
+            'addedClassName' => $class->getName(),
+            'addedClassStudents' => count($class->getStudents()),
         ]);
     }
 

@@ -8,7 +8,11 @@
 
 {% block action_panel %}
     <button class="defaultButton" type="button" onclick="openNewClassDialog()">Nuevo curso</button>
-    <button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>
+    {#<button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>#}
+    <div class="defaultButton actionPanelRightButton autoimportButton">
+        <label for="files" class="btn">Autoimportar desde .csv</label>
+        <input id="files" style="visibility:hidden;" type="file" accept=".csv" onchange="handleAutoimportFile(this.files)">
+    </div>
 {% endblock %}
 
 {% block main_title %}

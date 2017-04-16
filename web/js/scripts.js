@@ -4,6 +4,66 @@ function closeModal() {
 
 // --------------------CENTRE--------------------
 // CLASSES
+
+function handleAutoimportFile(files) {
+    if (files[0] === undefined) return;
+    if (!confirm("¿Está seguro que desea autoimportar los datos desde el fichero \"" + files[0].name + "\"?")) return;
+
+    var selectedFile = files[0];
+    var reader = new FileReader();
+    reader.onload = function (event) {
+        var data = event.target.result;
+        autoimportClasses(data);
+    };
+    reader.readAsText(selectedFile);
+}
+
+function autoimportClasses(data) {
+    var lines = data.split("\r\n");
+    var currentClass = "";
+    var currentStudents = "";
+
+    lines.forEach(
+        function (line) {
+            if (!line.includes(",")) {
+                autoimportClass(currentClass, currentStudents);
+                currentClass = line;
+                currentStudents = "";
+            } else currentStudents += line + "\n";
+
+        });
+
+    autoimportClass(currentClass, currentStudents)
+}
+
+function autoimportClass(className, students) {
+    if (className.trim().length === 0) return;
+
+    console.log("autoimportando la clase: " + className + "\n");
+    console.log(students + "\n");
+
+    postCall("/centre/classes/autoimportClass",
+        {"className": className, "students": students.split("\n")},
+        autoimportClassCallback
+    );
+}
+
+function autoimportClassCallback(response) {
+    if (!response.imported) {
+        alert(response.error);
+        return;
+    }
+
+    $("#classesTable").append(
+        "<tr>" +
+        "<td>" + response.addedClassName + "</td>" +
+        "<td>" + response.addedClassStudents + "</td>" +
+        "<td class='tableButton'><button class='infoButton'><a href='class?id=" + response.addedClassId + "'>Ver</a></button></td>" +
+        "</tr>"
+    );
+}
+
+
 function openNewClassDialog() {
     $("#classNameInput").val("");
     $("#newClassModal").show();
