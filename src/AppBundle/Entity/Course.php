@@ -40,9 +40,11 @@ class Course
     private $students;
 
 
-    public function __construct()
+    public function __construct($name = null, Centre $centre = null)
     {
         $this->students = new ArrayCollection();
+        $this->name = $name;
+        $this->centre = $centre;
     }
 
     /**

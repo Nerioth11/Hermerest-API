@@ -16,6 +16,7 @@ function handleAutoimportFile(files) {
         autoimportClasses(data);
     };
     reader.readAsText(selectedFile);
+    $("#files").val("");
 }
 
 function autoimportClasses(data) {

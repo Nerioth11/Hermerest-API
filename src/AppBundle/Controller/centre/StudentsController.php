@@ -59,12 +59,7 @@ class StudentsController extends Controller
         $courseFacade = new CourseFacade($this->getDoctrine()->getManager());
         $class = $courseFacade->find($studentClass);
 
-        $student = new Student();
-        $student->setCentre($class->getCentre());
-        $student->setClass($class);
-        $student->setName($studentName);
-        $student->setSurname($studentSurname);
-
+        $student = new Student($studentName, $studentSurname, $class, $class->getCentre());
         $studentFacade->create($student);
 
         return new JsonResponse([

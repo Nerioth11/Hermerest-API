@@ -53,9 +53,13 @@ class Student
      */
     private $parents;
 
-    public function __construct()
+    public function __construct($name = null, $surname = null, Course $class = null, Centre $centre = null)
     {
         $this->parents = new ArrayCollection();
+        $this->name = $name;
+        $this->surname = $surname;
+        $this->class = $class;
+        $this->centre = $centre;
     }
 
 

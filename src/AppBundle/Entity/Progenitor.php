@@ -34,9 +34,11 @@ class Progenitor
      */
     private $children;
 
-    public function __construct()
+    public function __construct($name = null, $telephone = null)
     {
         $this->children = new ArrayCollection();
+        $this->name = $name;
+        $this->telephone = $telephone;
     }
 
     /**

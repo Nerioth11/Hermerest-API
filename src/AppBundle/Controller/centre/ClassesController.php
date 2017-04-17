@@ -47,9 +47,7 @@ class ClassesController extends Controller
                 'error' => "Ya existe una clase con con este nombre."
             ]);
 
-        $newClass = new Course();
-        $newClass->setCentre($centre);
-        $newClass->setName($className);
+        $newClass = new Course($className, $centre);
         $courseFacade->create($newClass);
 
         return new JsonResponse([
@@ -79,33 +77,10 @@ class ClassesController extends Controller
                 'error' => "Ya existe una clase con nombre: " . $className
             ]);
 
-        $class = new Course();
-        $class->setCentre($centre);
-        $class->setName($className);
-//        $courseFacade->create($class);
+        $class = new Course($className, $centre);
+        $courseFacade->create($class);
 
-        foreach ($students as $student) {
-            $studentFields = explode('.', $student);
-            $studentName = $studentFields[0];
-            $studentSurname = $studentFields[1];
-
-            $student = new Student();
-            $student->setClass($class);
-            $student->setCentre($centre);
-            $student->setName($studentName);
-            $student->setSurname($studentSurname);
-//            $studentFacade->create($student);
-            $class->addStudent($student);
-//            $courseFacade->edit();
-            array_shift($studentFields);
-            array_shift($studentFields);
-            foreach ($studentFields as $parentTelephone) {
-                $parent = $parentFacade->findByTelephone($parentTelephone);
-                if ($parent == null) continue;
-                $student->addParent($parent);
-//                $studentFacade->edit();
-            }
-        }
+        $this->autoimportStudentsToClass($students, $class, $centre, $studentFacade, $courseFacade, $parentFacade);
 
         return new JsonResponse([
             'imported' => true,
@@ -113,6 +88,34 @@ class ClassesController extends Controller
             'addedClassName' => $class->getName(),
             'addedClassStudents' => count($class->getStudents()),
         ]);
+    }
+
+    private function autoimportStudentsToClass($students, $class, $centre, $studentFacade, $courseFacade, $parentFacade)
+    {
+        foreach ($students as $student) {
+            $studentFields = explode(',', $student);
+            $studentName = $studentFields[0];
+            $studentSurname = $studentFields[1];
+
+            $student = new Student($studentName, $studentSurname, $class, $centre);
+            $studentFacade->create($student);
+            $class->addStudent($student);
+            $courseFacade->edit();
+
+            array_shift($studentFields);
+            array_shift($studentFields);
+            $this->autoimportParentsToStudent($studentFacade, $parentFacade, $studentFields, $student);
+        }
+    }
+
+    private function autoimportParentsToStudent($studentFacade, $parentFacade, $studentFields, $student)
+    {
+        foreach ($studentFields as $parentTelephone) {
+            $parent = $parentFacade->findByTelephone($parentTelephone);
+            if ($parent == null) continue;
+            $student->addParent($parent);
+            $studentFacade->edit();
+        }
     }
 
 }
