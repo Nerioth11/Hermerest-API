@@ -551,6 +551,7 @@ function filterCirculars() {
 
 function sendCircular(centreId) {
     if ($("#circularSubjectInput").val().trim() === "") alert("El asunto de la circular no debe estar vacío");
+    else if ($("#sendCircularModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else
         postCall("/messaging/circulars/sendCircular",
             {
@@ -593,6 +594,7 @@ function openViewAuthorizationDialog() {
 function sendAuthorization() {
     if ($("#authorizationSubjectInput").val().trim() === "" || $("#authorizationDateInput").val().trim() === "") alert("El asunto y la fecha límite de la circular no deben estar vacíos");
     else if (dateComparator(dateToString($("#authorizationDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
+    else if ($("#sendAuthorizationModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else {
 
         $("#authorizationsTable tbody").prepend(
@@ -627,6 +629,9 @@ function openSendPollDialog() {
     $("#pollSubjectInput").val("");
     $("#pollDateInput").val("");
     $("#pollContentTextArea").val("");
+    $("#newPollOptionInput").val("");
+    $("#multipleChoiceCheckbox").prop('checked', false);
+    $("#addedPollOptionsList").empty();
     resetTreeview("#sendPollModal");
     $("#sendPollModal").show();
 }
@@ -637,6 +642,7 @@ function openViewPollDialog() {
 
 function addPollOption() {
     if ($("#newPollOptionInput").val().trim() === "") alert("La opción no debe estar vacía");
+    else if($("#addedPollOptionsList li:contains('" + $("#newPollOptionInput").val() + "')").length > 0) alert("La opción ya ha sido añadida")
     else {
         $("#addedPollOptionsList").append("<li>" + $("#newPollOptionInput").val() + "<a  class='deleteCross' onclick='deletePollOption(this)'>&times;</a></li>");
     }
@@ -649,6 +655,8 @@ function deletePollOption(button) {
 function sendPoll() {
     if ($("#pollSubjectInput").val().trim() === "" || $("#pollDateInput").val().trim() === "") alert("El asunto y la fecha límite de la circular no deben estar vacíos");
     else if (dateComparator(dateToString($("#pollDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
+    else if ($("#sendPollModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
+    else if ($("#addedPollOptionsList").children().length < 2) alert("Indique, al menos, 2 opciones para la encuesta");
     else {
 
         $("#pollsTable tbody").prepend(
