@@ -1,14 +1,13 @@
 {% extends 'modals/modal.html.twig' %}
 
  {% block modal_header %}
-     Feliz Navidad (23/12/2016)
  {% endblock %}
 
 {% block modal_body %}
     <div class="attachedFilesDiv">
-        <img class="icon" src="{{ asset('images/attachment.png') }}" alt="Archivos adjuntos"/> tarjeta.pdf
+        <img class="icon" src="{{ asset('images/attachment.png') }}" alt="Archivos adjuntos"/>No hay archivos adjuntos
     </div>
-    <textarea class="messageTextArea" id="circularContentTextArea" type="text" rows="20" cols="60" readonly>Feliz Navidad a todos!</textarea>
+    <textarea class="messageTextArea" id="circularContentTextArea" type="text" rows="20" cols="60" readonly></textarea>
 {% endblock %}
 
 {% block modal_footer %}

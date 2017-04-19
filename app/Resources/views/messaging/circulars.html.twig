@@ -17,7 +17,8 @@
 {% endblock %}
 
 {% block main_filters %}
-    <input class="filterInput" id="circularSubjectInputFilter" type="text" placeholder="Asunto de la circular" onkeyup="filterCirculars()">
+    <input class="filterInput" id="circularSubjectInputFilter" type="text" placeholder="Asunto de la circular"
+           onkeyup="filterCirculars()">
 
     <select class="dropdown" id="circularMonthDropdown" onchange="filterCirculars()">
         <option value="">Cualquier mes</option>
@@ -47,22 +48,24 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>23/12/2016</td>
-            <td>Feliz Navidad</td>
-            {#<td>Enrique Morales</td>#}
-            <td class="tableButton">
-                <button class="infoButton" onclick="openViewCircularDialog()">Ver</button>
-            </td>
-        </tr>
+        {% for circular in app.user.getCentre().getMessagesOfType('Circular') %}
+            <tr>
+                <td>{{ circular.getSendingDate()|date('d/m/Y') }}</td>
+                <td>{{ circular.getSubject }}</td>
+                {#<td>Enrique Morales</td>#}
+                <td class="tableButton">
+                    <button class="infoButton" onclick="openViewCircularDialog({{ circular.getId() }})">Ver</button>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}
 
-{% block javascripts %}
-    {{ parent() }}
-    <script>
-        $(".modal").eq(0).attr("id", "sendCircularModal");
-        $(".modal").eq(1).attr("id", "viewCircularModal");
-    </script>
-{% endblock %}
+    {% block javascripts %}
+        {{ parent() }}
+        <script>
+            $(".modal").eq(0).attr("id", "sendCircularModal");
+            $(".modal").eq(1).attr("id", "viewCircularModal");
+        </script>
+    {% endblock %}

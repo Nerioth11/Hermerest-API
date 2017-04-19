@@ -39,13 +39,3 @@ function getCall(url, callback) {
 function generateUrl(url) {
     return "/Hermerest/web/app_dev.php" + url;
 }
-
-// function generateUrl(url) {
-//     return url.substring(0, getPosition(url) + 1) +
-//             "Hermerest/web/app_dev.php" +
-//         url.substring(getPosition(url), url.length + 1);
-// }
-//
-// function getPosition(url) {
-//     return url.split("/", 3).join("/").length;
-// }

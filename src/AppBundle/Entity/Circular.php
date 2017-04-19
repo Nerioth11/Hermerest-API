@@ -8,6 +8,7 @@
 
 namespace AppBundle\Entity;
 
+use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -16,5 +17,8 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Circular extends Message
 {
-
+    public function __construct($subject = null, $message = null, ?DateTime $sendingDate = null, ?Centre $centre = null)
+    {
+        parent::__construct($subject, $message, $sendingDate, $centre);
+    }
 }

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Course;
+use AppBundle\Entity\Message;
 use AppBundle\Entity\Student;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -35,11 +36,24 @@ class Centre
      */
     private $students;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Message", mappedBy="centre")
+     */
+    private $messages;
+
     public function __construct($name = null)
     {
         $this->classes = new ArrayCollection();
         $this->students = new ArrayCollection();
-        $this->name=$name;
+        $this->messages = new ArrayCollection();
+        $this->name = $name;
+    }
+
+    public function containsClassNamedBy($name)
+    {
+        foreach ($this->getClasses() as $class)
+            if ($class->getName() == $name) return true;
+        return false;
     }
 
     /**
@@ -144,10 +158,57 @@ class Centre
         return $this->students;
     }
 
-    public function containsClassNamedBy($name)
+    /**
+     * Add message
+     *
+     * @param Message $message
+     *
+     * @return Centre
+     */
+    public function addMessage(Message $message)
     {
-        foreach ($this->getClasses() as $class)
-            if ($class->getName() == $name) return true;
-        return false;
+        $this->messages[] = $message;
+
+        return $this;
     }
+
+    /**
+     * Remove message
+     *
+     * @param Message $message
+     */
+    public function removeMessage(Message $message)
+    {
+        $this->messages->removeElement($message);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * Get messages by type
+     *
+     * @param $type
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMessagesOfType($type)
+    {
+        $messages = new ArrayCollection();
+        $className = "\\AppBundle\\Entity\\" . $type;
+        $class = get_class(new $className());
+
+        foreach ($this->messages as $message)
+            if ($message instanceof $class)
+                $messages->add($message);
+
+        return $messages;
+    }
+
 }

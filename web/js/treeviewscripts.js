@@ -82,4 +82,17 @@ function checkSiblings($el, checked) {
             .addClass('custom-indeterminate');
     }
 }
+
+function resetTreeview(modalName) {
+    $(modalName + " .treeviewFirstLi > img.expand").show();
+    $(modalName + " .treeviewFirstLi > img.collapse").hide();
+    $(modalName + " .treeviewFirstLi > img.expand").parent().children('ul').show();
+
+    $(modalName + " .treeviewSecondLevel img.expand").hide();
+    $(modalName + " .treeviewSecondLevel img.collapse").show();
+    $(modalName + " .treeviewSecondLevel img").parent().children('ul').hide();
+
+    $(modalName + " .treeviewFirstLi > input[type=checkbox").prop('checked', false);
+    $(modalName + " .treeviewFirstLi > input[type=checkbox").trigger("change");
+}
 // });

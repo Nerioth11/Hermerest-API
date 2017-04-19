@@ -514,26 +514,28 @@ function deleteParentCallback(response) {
 function openSendCircularDialog() {
     $("#circularSubjectInput").val("");
     $("#circularContentTextArea").val("");
+    resetTreeview("#sendCircularModal");
     $("#sendCircularModal").show();
 }
 
-function openViewCircularDialog() {
-    $("#viewCircularModal").show();
+function openViewCircularDialog(circularId) {
+    setViewCircularDialogInfo(circularId);
 }
 
-function sendCircular() {
-    if ($("#circularSubjectInput").val().trim() === "") alert("El asunto de la circular no debe estar vacío");
-    else {
+function setViewCircularDialogInfo(circularId) {
+    getCall("/messaging/circulars/getCircular?id=" + circularId, setViewCircularDialogInfoCallback);
+}
 
-        $("#circularsTable tbody").prepend(
-            "<tr>" +
-            "<td>" + getTodaysDate() + "</td>" +
-            "<td>" + $("#circularSubjectInput").val() + "</td>" +
-            "<td class='tableButton'><button class='infoButton' onclick='openViewCircularDialog()'>Ver</button></td>" +
-            "</tr>"
-        );
-        closeModal();
+function setViewCircularDialogInfoCallback(response) {
+    if (!response.found) {
+        alert("Error al obtener los datos de la circular");
+        return;
     }
+
+    $("#viewCircularModal .modalTitle").text(response.circularSubject + " (" + dateToString(response.circularSendingDate.date) + ")");
+    $("#viewCircularModal .messageTextArea").text(response.circularMessage);
+
+    $("#viewCircularModal").show();
 }
 
 function filterCirculars() {
@@ -547,11 +549,40 @@ function filterCirculars() {
     });
 }
 
+function sendCircular(centreId) {
+    if ($("#circularSubjectInput").val().trim() === "") alert("El asunto de la circular no debe estar vacío");
+    else
+        postCall("/messaging/circulars/sendCircular",
+            {
+                "subject": $("#circularSubjectInput").val(),
+                "message": $("#circularContentTextArea").val(),
+            },
+            sendCircularCallback
+        );
+}
+
+function sendCircularCallback(response) {
+    if (!response.sent) {
+        alert("Error al enviar la circular");
+        return;
+    }
+
+    $("#circularsTable tbody").prepend(
+        "<tr>" +
+        "<td>" + getTodaysDate() + "</td>" +
+        "<td>" + response.sentCircularSubject + "</td>" +
+        "<td class='tableButton'><button class='infoButton' onclick='openViewCircularDialog(" + response.sentCircularId + ")'>Ver</button></td>" +
+        "</tr>"
+    );
+    closeModal();
+}
+
 // AUTHORIZATIONS
 function openSendAuthorizationDialog() {
     $("#authorizationSubjectInput").val("");
     $("#authorizationDateInput").val("");
     $("#authorizationContentTextArea").val("");
+    resetTreeview("#sendAuthorizationModal");
     $("#sendAuthorizationModal").show();
 }
 
@@ -561,14 +592,14 @@ function openViewAuthorizationDialog() {
 
 function sendAuthorization() {
     if ($("#authorizationSubjectInput").val().trim() === "" || $("#authorizationDateInput").val().trim() === "") alert("El asunto y la fecha límite de la circular no deben estar vacíos");
-    else if (dateComparator(dateInputToString($("#authorizationDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
+    else if (dateComparator(dateToString($("#authorizationDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
     else {
 
         $("#authorizationsTable tbody").prepend(
             "<tr>" +
             "<td>" + getTodaysDate() + "</td>" +
             "<td>" + $("#authorizationSubjectInput").val() + "</td>" +
-            "<td>" + dateInputToString($("#authorizationDateInput").val()) + "</td>" +
+            "<td>" + dateToString($("#authorizationDateInput").val()) + "</td>" +
             "<td class='tableButton'><button class='infoButton' onclick='openViewAuthorizationDialog()'>Ver</button></td>" +
             "</tr>"
         );
@@ -596,6 +627,7 @@ function openSendPollDialog() {
     $("#pollSubjectInput").val("");
     $("#pollDateInput").val("");
     $("#pollContentTextArea").val("");
+    resetTreeview("#sendPollModal");
     $("#sendPollModal").show();
 }
 
@@ -616,14 +648,14 @@ function deletePollOption(button) {
 
 function sendPoll() {
     if ($("#pollSubjectInput").val().trim() === "" || $("#pollDateInput").val().trim() === "") alert("El asunto y la fecha límite de la circular no deben estar vacíos");
-    else if (dateComparator(dateInputToString($("#pollDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
+    else if (dateComparator(dateToString($("#pollDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
     else {
 
         $("#pollsTable tbody").prepend(
             "<tr>" +
             "<td>" + getTodaysDate() + "</td>" +
             "<td>" + $("#pollSubjectInput").val() + "</td>" +
-            "<td>" + dateInputToString($("#pollDateInput").val()) + "</td>" +
+            "<td>" + dateToString($("#pollDateInput").val()) + "</td>" +
             "<td class='tableButton'><button class='infoButton' onclick='openViewPollDialog()'>Ver</button></td>" +
             "</tr>"
         );

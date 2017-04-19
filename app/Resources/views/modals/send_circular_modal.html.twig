@@ -23,6 +23,6 @@
 {% endblock %}
 
 {% block modal_footer %}
-    <button class="primaryButton" type="button" onclick="sendCircular()">Enviar</button>
+    <button class="primaryButton" type="button" onclick="sendCircular({{ app.user.centre.getId() }})">Enviar</button>
     <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
 {% endblock %}
