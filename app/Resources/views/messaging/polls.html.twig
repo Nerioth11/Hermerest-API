@@ -46,22 +46,24 @@
     <table class="table" id="pollsTable">
         <thead>
         <tr>
-            <th>Fecha de envío</th>
             <th>Asunto</th>
+            <th>Fecha de envío</th>
             {#<th>Remitente</th>#}
             <th>Fecha límite</th>
         </tr>
         </thead>
         <tbody>
+        {% for poll in app.user.getCentre().getMessagesOfType('Poll') %}
         <tr>
-            <td>12/12/2016</td>
-            <td>Fecha celebración Carnaval</td>
+            <td>{{ poll.getSubject() }}</td>
+            <td>{{ poll.getSendingDate()|date('d/m/Y') }}</td>
             {#<td>Armando Balmaseda</td>#}
-            <td class="pastDate">15/01/2017</td>
+            <td>{{ poll.getLimitDate()|date('d/m/Y') }}</td>
             <td class="tableButton">
-                <button class="infoButton" onclick="openViewPollDialog()">Ver</button>
+                <button class="infoButton" onclick="openViewPollDialog({{ poll.getId() }})">Ver</button>
             </td>
         </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}
@@ -72,6 +74,6 @@
         $(".modal").eq(0).attr("id", "sendPollModal");
         $(".modal").eq(1).attr("id", "viewPollModal");
 
-        checkAndSetPastDates();
+        checkAndSetPastDates("pollsTable");
     </script>
 {% endblock %}

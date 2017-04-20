@@ -2,17 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6e06172-8bc6-487a-88c6-fe9d6006e63d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/view_authorization_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/view_authorization_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/view_circular_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/view_circular_modal.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig" afterPath="$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Authorization.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Authorization.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Poll.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Poll.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/scripts.js" afterPath="$PROJECT_DIR$/web/js/scripts.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/utilscripts.js" afterPath="$PROJECT_DIR$/web/js/utilscripts.js" />
     </list>
@@ -34,8 +28,8 @@
           <file leaf-file-name="polls.html.twig" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="477">
-                  <caret line="74" column="31" lean-forward="false" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
+                <state relative-caret-position="17">
+                  <caret line="48" column="20" lean-forward="false" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
                   <folding>
                     <element signature="e#12#26#0#Twig" expanded="true" />
                   </folding>
@@ -43,13 +37,13 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="send_poll_modal.html.twig" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_poll_modal.html.twig">
+          <file leaf-file-name="view_poll_modal.html.twig" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="9" column="36" lean-forward="false" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
+                <state relative-caret-position="51">
+                  <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
                   <folding>
-                    <element signature="e#12#34#0#Twig" expanded="true" />
+                    <element signature="e#12#34#0#Twig" expanded="false" />
                   </folding>
                 </state>
               </provider>
@@ -58,8 +52,8 @@
           <file leaf-file-name="PollsController.php" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="153">
-                  <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+                <state relative-caret-position="165">
+                  <caret line="35" column="42" lean-forward="true" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
                   <folding>
                     <element signature="e#50#76#0#PHP" expanded="true" />
                   </folding>
@@ -74,12 +68,12 @@
           <file leaf-file-name="scripts.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/web/js/scripts.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="-1057">
-                  <caret line="599" column="39" lean-forward="false" selection-start-line="599" selection-start-column="39" selection-end-line="599" selection-end-column="39" />
+                <state relative-caret-position="314">
+                  <caret line="742" column="71" lean-forward="true" selection-start-line="742" selection-start-column="71" selection-end-line="742" selection-end-column="71" />
                   <folding>
-                    <marker date="1492693707714" expanded="true" signature="4577:4584" ph="×" />
-                    <marker date="1492693707714" expanded="true" signature="8884:8891" ph="×" />
-                    <marker date="1492693707714" expanded="true" signature="22603:22610" ph="×" />
+                    <marker date="1492703536214" expanded="true" signature="4577:4584" ph="×" />
+                    <marker date="1492703536214" expanded="true" signature="8884:8891" ph="×" />
+                    <marker date="1492703536214" expanded="true" signature="23357:23364" ph="×" />
                   </folding>
                 </state>
               </provider>
@@ -88,8 +82,8 @@
           <file leaf-file-name="utilscripts.js" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/web/js/utilscripts.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="221">
-                  <caret line="13" column="29" lean-forward="true" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+                <state relative-caret-position="476">
+                  <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
                   <folding />
                 </state>
               </provider>
@@ -149,7 +143,6 @@
       <find>opensendcircu</find>
       <find>opensend</find>
       <find>sendcircular</find>
-      <find>sendau</find>
       <find>opense</find>
       <find>filter</find>
       <find>each(</find>
@@ -158,6 +151,7 @@
       <find>forEach</find>
       <find>Poll</find>
       <find>Authorization</find>
+      <find>sendau</find>
       <find>authorization</find>
     </findStrings>
     <replaceStrings>
@@ -215,7 +209,6 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Facade/CircularFacade.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Message.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Circular.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Centre.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/messaging/CircularsController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/modal.html.twig" />
@@ -224,17 +217,18 @@
         <option value="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Authorization.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Poll.php" />
-        <option value="$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig" />
-        <option value="$PROJECT_DIR$/web/js/utilscripts.js" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/view_circular_modal.html.twig" />
-        <option value="$PROJECT_DIR$/web/js/scripts.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/view_authorization_modal.html.twig" />
-        <option value="$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Facade/PollFacade.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Facade/PollOptionFacade.php" />
+        <option value="$PROJECT_DIR$/web/js/utilscripts.js" />
+        <option value="$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig" />
+        <option value="$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php" />
+        <option value="$PROJECT_DIR$/web/js/scripts.js" />
       </list>
     </option>
   </component>
@@ -457,6 +451,32 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="messaging" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hermerest" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Hermerest" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="AppBundle" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
+              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="centre" />
               <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
             </PATH_ELEMENT>
           </PATH>
@@ -732,12 +752,12 @@
       <workItem from="1492448755634" duration="8376000" />
       <workItem from="1492469165549" duration="609000" />
       <workItem from="1492605038842" duration="16982000" />
-      <workItem from="1492684587819" duration="8600000" />
+      <workItem from="1492684587819" duration="14748000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="252761000" />
+    <option name="totallyTimeSpent" value="258909000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -788,7 +808,7 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="93" />
+      <option name="time" value="111" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -929,14 +949,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/centre/ClassesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="984">
-          <caret line="113" column="41" lean-forward="false" selection-start-line="113" selection-start-column="37" selection-end-line="113" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/symfony/symfony/src/Symfony/Component/Debug/ErrorHandler.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
@@ -951,14 +963,6 @@
           <folding>
             <element signature="e#118#146#0#PHP" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/PollOption.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="38" column="46" lean-forward="false" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1038,22 +1042,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Poll.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="422">
-          <caret line="36" column="131" lean-forward="false" selection-start-line="36" selection-start-column="131" selection-end-line="36" selection-end-column="131" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Authorization.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="25" column="128" lean-forward="true" selection-start-line="25" selection-start-column="128" selection-end-line="25" selection-end-column="128" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="425">
@@ -1067,7 +1055,7 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="e#12#34#0#Twig" expanded="true" />
+            <element signature="e#12#34#0#Twig" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1077,24 +1065,6 @@
         <state relative-caret-position="604">
           <caret line="103" column="17" lean-forward="true" selection-start-line="103" selection-start-column="17" selection-end-line="103" selection-end-column="17" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="52" column="16" lean-forward="false" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="70" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="77" column="0" lean-forward="true" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1113,34 +1083,6 @@
           <folding>
             <element signature="e#12#34#0#Twig" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="22" column="33" lean-forward="true" selection-start-line="22" selection-start-column="33" selection-end-line="22" selection-end-column="33" />
-          <folding>
-            <element signature="e#12#34#0#Twig" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="477">
-          <caret line="74" column="31" lean-forward="false" selection-start-line="74" selection-start-column="31" selection-end-line="74" selection-end-column="31" />
-          <folding>
-            <element signature="e#12#26#0#Twig" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/treeviewscripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="45" column="25" lean-forward="false" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1168,10 +1110,44 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/utilscripts.js">
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="29" lean-forward="true" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
+        <state relative-caret-position="213">
+          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="66" selection-end-column="5" />
+          <folding>
+            <element signature="e#50#85#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Poll.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="36" column="131" lean-forward="false" selection-start-line="36" selection-start-column="131" selection-end-line="36" selection-end-column="131" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Authorization.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="323">
+          <caret line="25" column="128" lean-forward="true" selection-start-line="25" selection-start-column="128" selection-end-line="25" selection-end-column="128" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/PollOption.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="425">
+          <caret line="38" column="46" lean-forward="false" selection-start-line="38" selection-start-column="46" selection-end-line="38" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/centre/ClassesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-22">
+          <caret line="71" column="29" lean-forward="true" selection-start-line="71" selection-start-column="29" selection-end-line="71" selection-end-column="29" />
           <folding />
         </state>
       </provider>
@@ -1186,34 +1162,76 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php">
+    <entry file="file://$PROJECT_DIR$/web/js/treeviewscripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="213">
-          <caret line="24" column="0" lean-forward="false" selection-start-line="24" selection-start-column="0" selection-end-line="66" selection-end-column="5" />
+        <state relative-caret-position="195">
+          <caret line="45" column="25" lean-forward="false" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/utilscripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="20" lean-forward="false" selection-start-line="28" selection-start-column="20" selection-end-line="28" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="44" column="18" lean-forward="false" selection-start-line="44" selection-start-column="18" selection-end-line="44" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/authorizations.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="162">
+          <caret line="49" column="22" lean-forward="false" selection-start-line="49" selection-start-column="22" selection-end-line="49" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="48" column="20" lean-forward="false" selection-start-line="48" selection-start-column="20" selection-end-line="48" selection-end-column="20" />
           <folding>
-            <element signature="e#50#85#0#PHP" expanded="true" />
+            <element signature="e#12#26#0#Twig" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php">
+    <entry file="file://$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="27" column="4" lean-forward="true" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+        <state relative-caret-position="51">
+          <caret line="3" column="0" lean-forward="false" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
           <folding>
-            <element signature="e#50#76#0#PHP" expanded="true" />
+            <element signature="e#12#34#0#Twig" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/web/js/scripts.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1057">
-          <caret line="599" column="39" lean-forward="false" selection-start-line="599" selection-start-column="39" selection-end-line="599" selection-end-column="39" />
+        <state relative-caret-position="314">
+          <caret line="742" column="71" lean-forward="true" selection-start-line="742" selection-start-column="71" selection-end-line="742" selection-end-column="71" />
           <folding>
-            <marker date="1492693707714" expanded="true" signature="4577:4584" ph="×" />
-            <marker date="1492693707714" expanded="true" signature="8884:8891" ph="×" />
-            <marker date="1492693707714" expanded="true" signature="22603:22610" ph="×" />
+            <marker date="1492703536214" expanded="true" signature="4577:4584" ph="×" />
+            <marker date="1492703536214" expanded="true" signature="8884:8891" ph="×" />
+            <marker date="1492703536214" expanded="true" signature="23357:23364" ph="×" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="35" column="42" lean-forward="true" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
+          <folding>
+            <element signature="e#50#76#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>

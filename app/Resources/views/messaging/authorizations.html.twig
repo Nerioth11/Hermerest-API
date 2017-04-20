@@ -47,8 +47,8 @@
     <table class="table" id="authorizationsTable">
         <thead>
         <tr>
-            <th>Fecha de envío</th>
             <th>Asunto</th>
+            <th>Fecha de envío</th>
             {#<th>Remitente</th>#}
             <th>Fecha límite</th>
         </tr>
@@ -56,8 +56,8 @@
         <tbody>
         {% for authorization in app.user.getCentre().getMessagesOfType('Authorization') %}
             <tr>
-                <td>{{ authorization.getSendingDate()|date('d/m/Y') }}</td>
                 <td>{{ authorization.getSubject() }}</td>
+                <td>{{ authorization.getSendingDate()|date('d/m/Y') }}</td>
                 {#<td>Armando Balmaseda</td>#}
                 <td>{{ authorization.getLimitDate()|date('d/m/Y') }}</td>
                 <td class="tableButton">
@@ -76,6 +76,6 @@
         $(".modal").eq(0).attr("id", "sendAuthorizationModal");
         $(".modal").eq(1).attr("id", "viewAuthorizationModal");
 
-        checkAndSetPastDates();
+        checkAndSetPastDates("authorizationsTable");
     </script>
 {% endblock %}

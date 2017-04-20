@@ -568,8 +568,8 @@ function sendCircularCallback(response) {
 
     $("#circularsTable tbody").prepend(
         "<tr>" +
-        "<td>" + getTodaysDate() + "</td>" +
         "<td>" + response.sentCircularSubject + "</td>" +
+        "<td>" + getTodaysDate() + "</td>" +
         "<td class='tableButton'><button class='infoButton' onclick='openViewCircularDialog(" + response.sentCircularId + ")'>Ver</button></td>" +
         "</tr>"
     );
@@ -589,7 +589,7 @@ function openViewAuthorizationDialog(authorizationId) {
     getCall("/messaging/authorizations/getAuthorization?id=" + authorizationId, openViewAuthorizationDialogCallback);
 }
 
-function openViewAuthorizationDialogCallback(response){
+function openViewAuthorizationDialogCallback(response) {
     if (!response.found) {
         alert("Error al obtener los datos de la authorization");
         return;
@@ -627,8 +627,8 @@ function sendAuthorizationCallback(response) {
 
     $("#authorizationsTable tbody").prepend(
         "<tr>" +
-        "<td>" + getTodaysDate() + "</td>" +
         "<td>" + response.sentAuthorizationSubject + "</td>" +
+        "<td>" + getTodaysDate() + "</td>" +
         "<td>" + dateToString(response.sentAuthorizationLimitDate.date) + "</td>" +
         "<td class='tableButton'><button class='infoButton' onclick='openViewAuthorizationDialog(" + response.sentAuthorizationId + ")'>Ver</button></td>" +
         "</tr>"
@@ -663,7 +663,28 @@ function openSendPollDialog() {
     $("#sendPollModal").show();
 }
 
-function openViewPollDialog() {
+function openViewPollDialog(pollId) {
+    $("#viewPollModal #pollResultList").empty();
+    getCall("/messaging/polls/getPoll?id=" + pollId, openViewPollDialogCallback);
+}
+
+function openViewPollDialogCallback(response) {
+    if (!response.found) {
+        alert("Error al obtener los datos de la encuesta");
+        return;
+    }
+
+    $("#viewPollModal .modalTitle").text(response.pollSubject);
+    $("#viewPollModalSendingDate").text(dateToString(response.pollSendingDate.date));
+    $("#viewPollModalLimitDate").text(dateToString(response.pollLimitDate.date));
+    $("#viewPollModal .messageTextArea").text(response.pollMessage);
+
+    response.pollOptions.forEach(function (option) {
+        $("#pollResultList").append(
+            "<li>" + option + ": TODO</li>"
+        )
+    });
+
     $("#viewPollModal").show();
 }
 
@@ -685,17 +706,37 @@ function sendPoll() {
     else if ($("#sendPollModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else if ($("#addedPollOptionsList").children().length < 2) alert("Indique, al menos, 2 opciones para la encuesta");
     else {
-
-        $("#pollsTable tbody").prepend(
-            "<tr>" +
-            "<td>" + getTodaysDate() + "</td>" +
-            "<td>" + $("#pollSubjectInput").val() + "</td>" +
-            "<td>" + dateToString($("#pollDateInput").val()) + "</td>" +
-            "<td class='tableButton'><button class='infoButton' onclick='openViewPollDialog()'>Ver</button></td>" +
-            "</tr>"
+        postCall("/messaging/polls/sendPoll",
+            {
+                "subject": $("#pollSubjectInput").val(),
+                "limitDate": $("#pollDateInput").val(),
+                "message": $("#pollContentTextArea").val(),
+                "multipleChoice": $("#multipleChoiceCheckbox").is(':checked'),
+                "options": $("#addedPollOptionsList li").map(function () {
+                    return this.innerText.slice(0, -1)
+                }).get()
+            },
+            sendPollCallback
         );
-        closeModal();
+
     }
+}
+
+function sendPollCallback(response) {
+    if (!response.sent) {
+        alert("Error al enviar la encuesta");
+        return;
+    }
+
+    $("#pollsTable tbody").prepend(
+        "<tr>" +
+        "<td>" + $("#pollSubjectInput").val() + "</td>" +
+        "<td>" + getTodaysDate() + "</td>" +
+        "<td>" + dateToString($("#pollDateInput").val()) + "</td>" +
+        "<td class='tableButton'><button class='infoButton' onclick='openViewPollDialog(" + response.sentPollId + ")'>Ver</button></td>" +
+        "</tr>"
+    );
+    closeModal();
 }
 
 function filterPolls() {

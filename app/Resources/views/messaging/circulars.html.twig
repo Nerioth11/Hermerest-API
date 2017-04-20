@@ -42,16 +42,16 @@
     <table class="table" id="circularsTable">
         <thead>
         <tr>
-            <th>Fecha de envío</th>
             <th>Asunto</th>
+            <th>Fecha de envío</th>
             {#<th>Remitente</th>#}
         </tr>
         </thead>
         <tbody>
         {% for circular in app.user.getCentre().getMessagesOfType('Circular') %}
             <tr>
-                <td>{{ circular.getSendingDate()|date('d/m/Y') }}</td>
                 <td>{{ circular.getSubject }}</td>
+                <td>{{ circular.getSendingDate()|date('d/m/Y') }}</td>
                 {#<td>Enrique Morales</td>#}
                 <td class="tableButton">
                     <button class="infoButton" onclick="openViewCircularDialog({{ circular.getId() }})">Ver</button>

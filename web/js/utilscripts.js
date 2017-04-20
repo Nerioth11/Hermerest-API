@@ -25,8 +25,8 @@ function dateComparator(date1, date2) {
     else return -1;
 }
 
-function checkAndSetPastDates(){
-    $("#authorizationsTable > tbody > tr").each(function () {
+function checkAndSetPastDates(table) {
+    $("#" + table + " > tbody > tr").each(function () {
         var td = $(this).children().eq(2);
         if (dateComparator($(td).text(), getTodaysDate()) === -1)
             $(td).addClass('pastDate');

@@ -3,8 +3,11 @@
 namespace AppBundle\Controller\messaging;
 
 use AppBundle\Entity\Poll;
+use AppBundle\Entity\PollOption;
 use AppBundle\Facade\PollFacade;
+use AppBundle\Facade\PollOptionFacade;
 use DateTime;
+use DateTimeZone;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -31,12 +34,16 @@ class PollsController extends Controller
 
         $centre = $this->get('security.token_storage')->getToken()->getUser()->getCentre();
         $subject = $request->request->get('subject');
-        $limitDate = date_create_from_format('Y-m-d G:i:s',$request->request->get('limitDate') . " 23:59:59", new DateTimeZone('UTC'));
+        $limitDate = date_create_from_format('Y-m-d G:i:s', $request->request->get('limitDate') . " 23:59:59", new DateTimeZone('UTC'));
         $message = $request->request->get('message');
+        $multipleChoice = $request->request->get('multipleChoice');
+        $pollOptions = $request->request->get('options');
         $sendingDate = new DateTime();
 
-        $poll = new Poll($subject, $message, $sendingDate, $centre, $limitDate);
+        $poll = new Poll($subject, $message, $sendingDate, $centre, $limitDate, $multipleChoice === "true" ? true : false);
         $pollFacade->create($poll);
+
+        $this->addPollOptionsToPoll($pollOptions, $poll);
 
         return new JsonResponse([
             'sent' => true,
@@ -56,12 +63,25 @@ class PollsController extends Controller
         $pollId = $request->query->get('id');
         $poll = $pollFacade->find($pollId);
 
+        $pollOptions = array();
+        foreach ($poll->getPollOptions() as $pollOption)
+            array_push($pollOptions, $pollOption->getText());
+
         return new JSonResponse([
             'found' => true,
             'pollSubject' => $poll->getSubject(),
             'pollMessage' => $poll->getMessage(),
             'pollSendingDate' => $poll->getSendingDate(),
             'pollLimitDate' => $poll->getLimitDate(),
+            'pollOptions' => $pollOptions,
         ]);
+    }
+
+    private function addPollOptionsToPoll($pollOptions, $poll)
+    {
+        $pollOptionFacade = new PollOptionFacade($this->getDoctrine()->getManager());
+
+        foreach ($pollOptions as $pollOptionText)
+            $pollOptionFacade->create(new PollOption($pollOptionText, $poll));
     }
 }
