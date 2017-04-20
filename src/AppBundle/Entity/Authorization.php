@@ -23,7 +23,7 @@ class Authorization extends Message
      */
     private $limitDate;
 
-    public function __construct($subject = null, $message = null, ?DateTime $sendingDate = null, ?Centre $centre = null, $limitDate = null)
+    public function __construct($subject = null, $message = null, ?DateTime $sendingDate = null, ?Centre $centre = null, ?DateTime $limitDate = null)
     {
         $this->limitDate = $limitDate;
         parent::__construct($subject, $message, $sendingDate, $centre);

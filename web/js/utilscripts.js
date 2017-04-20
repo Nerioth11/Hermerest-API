@@ -24,3 +24,11 @@ function dateComparator(date1, date2) {
     if (date1.substring(0, 2) > date2.substring(0, 2)) return 1;
     else return -1;
 }
+
+function checkAndSetPastDates(){
+    $("#authorizationsTable > tbody > tr").each(function () {
+        var td = $(this).children().eq(2);
+        if (dateComparator($(td).text(), getTodaysDate()) === -1)
+            $(td).addClass('pastDate');
+    });
+}

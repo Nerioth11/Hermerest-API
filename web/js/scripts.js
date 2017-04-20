@@ -519,20 +519,18 @@ function openSendCircularDialog() {
 }
 
 function openViewCircularDialog(circularId) {
-    setViewCircularDialogInfo(circularId);
+    getCall("/messaging/circulars/getCircular?id=" + circularId, openViewCircularDialogCallback);
 }
 
-function setViewCircularDialogInfo(circularId) {
-    getCall("/messaging/circulars/getCircular?id=" + circularId, setViewCircularDialogInfoCallback);
-}
 
-function setViewCircularDialogInfoCallback(response) {
+function openViewCircularDialogCallback(response) {
     if (!response.found) {
         alert("Error al obtener los datos de la circular");
         return;
     }
 
-    $("#viewCircularModal .modalTitle").text(response.circularSubject + " (" + dateToString(response.circularSendingDate.date) + ")");
+    $("#viewCircularModal .modalTitle").text(response.circularSubject);
+    $("#viewCircularModalSendingDate").text(dateToString(response.circularSendingDate.date));
     $("#viewCircularModal .messageTextArea").text(response.circularMessage);
 
     $("#viewCircularModal").show();
@@ -549,7 +547,7 @@ function filterCirculars() {
     });
 }
 
-function sendCircular(centreId) {
+function sendCircular() {
     if ($("#circularSubjectInput").val().trim() === "") alert("El asunto de la circular no debe estar vacío");
     else if ($("#sendCircularModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else
@@ -587,26 +585,55 @@ function openSendAuthorizationDialog() {
     $("#sendAuthorizationModal").show();
 }
 
-function openViewAuthorizationDialog() {
+function openViewAuthorizationDialog(authorizationId) {
+    getCall("/messaging/authorizations/getAuthorization?id=" + authorizationId, openViewAuthorizationDialogCallback);
+}
+
+function openViewAuthorizationDialogCallback(response){
+    if (!response.found) {
+        alert("Error al obtener los datos de la authorization");
+        return;
+    }
+
+    $("#viewAuthorizationModal .modalTitle").text(response.authorizationSubject);
+    $("#viewAuthorizationModalSendingDate").text(dateToString(response.authorizationSendingDate.date));
+    $("#viewAuthorizationModalLimitDate").text(dateToString(response.authorizationLimitDate.date));
+    $("#viewAuthorizationModal .messageTextArea").text(response.authorizationMessage);
+
     $("#viewAuthorizationModal").show();
 }
 
 function sendAuthorization() {
-    if ($("#authorizationSubjectInput").val().trim() === "" || $("#authorizationDateInput").val().trim() === "") alert("El asunto y la fecha límite de la circular no deben estar vacíos");
+    if ($("#authorizationSubjectInput").val().trim() === "" || $("#authorizationDateInput").val().trim() === "") alert("El asunto y la fecha límite de la authorization no deben estar vacíos");
     else if (dateComparator(dateToString($("#authorizationDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
     else if ($("#sendAuthorizationModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else {
-
-        $("#authorizationsTable tbody").prepend(
-            "<tr>" +
-            "<td>" + getTodaysDate() + "</td>" +
-            "<td>" + $("#authorizationSubjectInput").val() + "</td>" +
-            "<td>" + dateToString($("#authorizationDateInput").val()) + "</td>" +
-            "<td class='tableButton'><button class='infoButton' onclick='openViewAuthorizationDialog()'>Ver</button></td>" +
-            "</tr>"
+        postCall("/messaging/authorizations/sendAuthorization",
+            {
+                "subject": $("#authorizationSubjectInput").val(),
+                "limitDate": $("#authorizationDateInput").val(),
+                "message": $("#authorizationContentTextArea").val(),
+            },
+            sendAuthorizationCallback
         );
-        closeModal();
     }
+}
+
+function sendAuthorizationCallback(response) {
+    if (!response.sent) {
+        alert("Error al enviar la autorización");
+        return;
+    }
+
+    $("#authorizationsTable tbody").prepend(
+        "<tr>" +
+        "<td>" + getTodaysDate() + "</td>" +
+        "<td>" + response.sentAuthorizationSubject + "</td>" +
+        "<td>" + dateToString(response.sentAuthorizationLimitDate.date) + "</td>" +
+        "<td class='tableButton'><button class='infoButton' onclick='openViewAuthorizationDialog(" + response.sentAuthorizationId + ")'>Ver</button></td>" +
+        "</tr>"
+    );
+    closeModal();
 }
 
 function filterAuthorizations() {
@@ -642,7 +669,7 @@ function openViewPollDialog() {
 
 function addPollOption() {
     if ($("#newPollOptionInput").val().trim() === "") alert("La opción no debe estar vacía");
-    else if($("#addedPollOptionsList li:contains('" + $("#newPollOptionInput").val() + "')").length > 0) alert("La opción ya ha sido añadida")
+    else if ($("#addedPollOptionsList li:contains('" + $("#newPollOptionInput").val() + "')").length > 0) alert("La opción ya ha sido añadida")
     else {
         $("#addedPollOptionsList").append("<li>" + $("#newPollOptionInput").val() + "<a  class='deleteCross' onclick='deletePollOption(this)'>&times;</a></li>");
     }

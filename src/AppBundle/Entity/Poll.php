@@ -34,7 +34,7 @@ class Poll extends Message
      */
     private $pollOptions;
 
-    public function __construct($subject = null, $message = null, ?DateTime $sendingDate = null, ?Centre $centre = null, $limitDate = null, $multipleChoice = null)
+    public function __construct($subject = null, $message = null, ?DateTime $sendingDate = null, ?Centre $centre = null, ?DateTime $limitDate = null, $multipleChoice = null)
     {
         $this->pollOptions = new ArrayCollection();
         $this->limitDate = $limitDate;

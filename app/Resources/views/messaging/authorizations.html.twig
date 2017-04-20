@@ -17,7 +17,8 @@
 {% endblock %}
 
 {% block main_filters %}
-    <input class="filterInput" id="authorizationSubjectInputFilter" type="text" placeholder="Asunto de la autorización" onkeyup="filterAuthorizations()">
+    <input class="filterInput" id="authorizationSubjectInputFilter" type="text" placeholder="Asunto de la autorización"
+           onkeyup="filterAuthorizations()">
 
     <select class="dropdown" id="authorizationMonthDropdownFilter" onchange="filterAuthorizations()">
         <option value="">Cualquier mes</option>
@@ -53,15 +54,18 @@
         </tr>
         </thead>
         <tbody>
-        <tr>
-            <td>12/12/2016</td>
-            <td>Excursión Museo Elder</td>
-            {#<td>Armando Balmaseda</td>#}
-            <td class="pastDate">18/12/2016</td>
-            <td class="tableButton">
-                <button class="infoButton" onclick="openViewAuthorizationDialog()">Ver</button>
-            </td>
-        </tr>
+        {% for authorization in app.user.getCentre().getMessagesOfType('Authorization') %}
+            <tr>
+                <td>{{ authorization.getSendingDate()|date('d/m/Y') }}</td>
+                <td>{{ authorization.getSubject() }}</td>
+                {#<td>Armando Balmaseda</td>#}
+                <td>{{ authorization.getLimitDate()|date('d/m/Y') }}</td>
+                <td class="tableButton">
+                    <button class="infoButton" onclick="openViewAuthorizationDialog({{ authorization.getId() }})">Ver
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
 {% endblock %}
@@ -71,5 +75,7 @@
     <script>
         $(".modal").eq(0).attr("id", "sendAuthorizationModal");
         $(".modal").eq(1).attr("id", "viewAuthorizationModal");
+
+        checkAndSetPastDates();
     </script>
 {% endblock %}
