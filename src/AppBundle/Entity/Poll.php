@@ -31,6 +31,7 @@ class Poll extends Message
 
     /**
      * @ORM\OneToMany(targetEntity="PollOption", mappedBy="poll")
+     * @ORM\OrderBy({"text" = "ASC"})
      */
     private $pollOptions;
 

@@ -46,6 +46,7 @@ class Student
 
     /**
      * @ORM\ManyToMany(targetEntity="Progenitor", inversedBy="children")
+     * @ORM\OrderBy({"name" = "ASC"})
      * @ORM\JoinTable(name="student_parent",
      *      joinColumns={@ORM\JoinColumn(name="student", referencedColumnName="id", onDelete="cascade")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="parent", referencedColumnName="id", onDelete="cascade")}

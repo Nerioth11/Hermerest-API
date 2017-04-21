@@ -31,6 +31,7 @@ class Progenitor
 
     /**
      * @ORM\ManyToMany(targetEntity="Student", mappedBy="parents")
+     * * @ORM\OrderBy({"surname" = "ASC", "name" = "ASC"})
      */
     private $children;
 

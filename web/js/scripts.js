@@ -67,6 +67,12 @@ function autoimportClassCallback(response) {
 
 function openNewClassDialog() {
     $("#classNameInput").val("");
+    $("#studentNameFilterInput").val("");
+    $("#addedStudentsList li").each(function () {
+        $("#studentsDropdown").append("<option value='" + $(this).attr('id') + "'>" + $(this).text().slice(0, -1) + "</option>");
+    });
+    $("#addedStudentsList").empty();
+    hideNotMatchingStudentsFromStudentsDropdown();
     $("#newClassModal").show();
 }
 
@@ -93,7 +99,8 @@ function addNewClassCallback(response) {
         "<td class='tableButton'><button class='infoButton'><a href='class?id=" + response.addedClassId + "'>Ver</a></button></td>" +
         "</tr>"
     );
-    closeModal();
+
+    addStudentsToClass(response.addedClassId, addStudentsToClassCallback);
 }
 
 
@@ -169,27 +176,32 @@ function deleteStudentFromStudentsList(button) {
     hideNotMatchingStudentsFromStudentsDropdown();
 }
 
-function addStudentToClass(classId) {
+function addStudentsToClass(classId, callback) {
     var studentsIds = [];
     $("#addedStudentsList li").each(function () {
         studentsIds.push($(this).attr('id'));
     });
 
 
-    if (studentsIds.length === 0) {
+    if (studentsIds.length === 0 && callback !== addStudentsToClassCallback) {
         alert("Seleccione algún alumno");
+        return;
+    }
+
+    if (studentsIds.length === 0 && callback === addStudentsToClassCallback) {
+        closeModal();
         return;
     }
 
     for (var i = 0; i < studentsIds.length; i++) {
         postCall("/centre/class/addStudent",
             {"studentId": studentsIds[i], "classId": classId},
-            addStudentToClassCallback
+            callback
         );
     }
 }
 
-function addStudentToClassCallback(response) {
+function addStudentsToClassAndShowItCallback(response) {
     if (!response.added) {
         alert("No se pudo añadir al alumno");
         return;
@@ -205,6 +217,22 @@ function addStudentToClassCallback(response) {
 
     $("#studentsDropdown [value='" + response.addedStudentId + "']").remove();
     $("#numberOfStudents").text(parseInt($("#numberOfStudents").text()) + 1);
+    closeModal();
+}
+
+function addStudentsToClassCallback(response) {
+    if (!response.added) {
+        alert("No se pudo añadir al alumno");
+        return;
+    }
+    var numberOfStudentsOfCurrentClass = parseInt($("#classesTable tr").last().children().eq(1).text());
+    $("#classesTable tr td:first-child").each(function(){
+        if($(this).text() === response.addedStudentOldClassName) {
+            $(this).next().text(parseInt($(this).next().text()) - 1);
+                return;
+        }
+    });
+    $("#classesTable tr").last().children().eq(1).text(numberOfStudentsOfCurrentClass + 1);
     closeModal();
 }
 

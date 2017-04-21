@@ -28,16 +28,19 @@ class Centre
 
     /**
      * @ORM\OneToMany(targetEntity="Course", mappedBy="centre")
+     * @ORM\OrderBy({"name" = "ASC"})
      */
     private $classes;
 
     /**
      * @ORM\OneToMany(targetEntity="Student", mappedBy="centre")
+     * @ORM\OrderBy({"surname" = "ASC", "name" = "ASC"})
      */
     private $students;
 
     /**
      * @ORM\OneToMany(targetEntity="Message", mappedBy="centre")
+     * @ORM\OrderBy({"sendingDate" = "DESC"})
      */
     private $messages;
 
@@ -52,7 +55,7 @@ class Centre
     public function containsClassNamedBy($name)
     {
         foreach ($this->getClasses() as $class)
-            if ($class->getName() == $name) return true;
+            if (strtolower($class->getName()) == strtolower($name)) return true;
         return false;
     }
 

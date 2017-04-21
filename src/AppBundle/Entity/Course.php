@@ -36,6 +36,7 @@ class Course
 
     /**
      * @ORM\OneToMany(targetEntity="Student", mappedBy="class")
+     * @ORM\OrderBy({"surname" = "ASC", "name" = "ASC"})
      */
     private $students;
 

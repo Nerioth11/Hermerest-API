@@ -13,6 +13,23 @@
         {#<option value="11">Jimeno Jiménez</option>#}
         {#<option value="12">Rodrigo Rodríguez</option>#}
     {#</select>#}
+    <br/><br/><br/>
+    <b>Alumnos</b>
+    <br/><br/>
+    <input class="modalInput" id="studentNameFilterInput" type="text" placeholder="Nombre del alumno"
+           onkeyup="hideNotMatchingStudentsFromStudentsDropdown()">
+    <br/><br/>
+    Alumno<br/>
+    <select class="dropdown" id="studentsDropdown">
+        <option value="-1">--</option>
+        {% for student in app.user.centre.getStudents() %}
+            <option value="{{ student.getId() }}">{{ student.getSurname() }}, {{ student.getName() }}</option>
+        {% endfor %}
+    </select>
+    <br/><br/>
+    <button class="primaryButton" id="addStudentButton" type="button" onclick="addStudentToStudentsList()">Añadir alumno</button>
+
+    <ul id="addedStudentsList"></ul>
 {% endblock %}
 
 {% block modal_footer %}

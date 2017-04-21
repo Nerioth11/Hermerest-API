@@ -89,6 +89,9 @@ class ClassController extends Controller
 
         $student = $studentFacade->find($studentId);
         $class = $courseFacade->find($classId);
+
+        $oldClasName = $student->getClass() == null ? null : $student->getClass()->getName();
+
         $student->setClass($class);
         $studentFacade->edit();
 
@@ -97,6 +100,7 @@ class ClassController extends Controller
             'addedStudentId' => $student->getId(),
             'addedStudentName' => $student->getName(),
             'addedStudentSurname' => $student->getSurname(),
+            'addedStudentOldClassName' => $oldClasName,
         ]);
     }
 
