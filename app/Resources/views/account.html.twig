@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajustes{% endblock %}
+
+{% block modals %}
+    {{ include('/modals/edit_account_modal.html.twig') }}
+{% endblock %}
+
+{% block main_title %}
+    <h1>Administrador: <span id="administratorNameTitle">{{ app.user.getName() }}</span></h1>
+    <hr/>
+{% endblock %}
+
+{% block action_panel %}
+    <button class="defaultButton" type="button" onclick="openEditAccountDialog()">Editar cuenta</button>
+{% endblock %}
+
+{% block main_filters %}
+{% endblock %}
+
+{% block main_content %}
+    <div id="administratorInfoDiv">
+        <h2>Información de mi cuenta</h2>
+        <ul id="administratorInfo">
+            <li><b>Usuario: </b><span id="administratorUser">{{ app.user.getUser() }}</span></li>
+            <li><b>Nombre: </b><span id="administratorName">{{ app.user.getName() }}</span></li>
+            <li><b>Centro: </b><span id="administratorCenter">{{ app.user.getCentre().getName }}</span></li>
+        </ul>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+<script>
+    $(".modal").eq(0).attr("id", "editAccountModal");
+</script>
+{% endblock %}

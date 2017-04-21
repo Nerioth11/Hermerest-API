@@ -226,10 +226,10 @@ function addStudentsToClassCallback(response) {
         return;
     }
     var numberOfStudentsOfCurrentClass = parseInt($("#classesTable tr").last().children().eq(1).text());
-    $("#classesTable tr td:first-child").each(function(){
-        if($(this).text() === response.addedStudentOldClassName) {
+    $("#classesTable tr td:first-child").each(function () {
+        if ($(this).text() === response.addedStudentOldClassName) {
             $(this).next().text(parseInt($(this).next().text()) - 1);
-                return;
+            return;
         }
     });
     $("#classesTable tr").last().children().eq(1).text(numberOfStudentsOfCurrentClass + 1);
@@ -412,14 +412,6 @@ function openAddParentDialog() {
     $("#addedParentsList").empty();
     $("#addParentModal").show();
 }
-
-// function openEditParentDialog(button) {
-//     parentTelephone = $(button).parent().parent().children().eq(0).text();
-//     parentFullname = $(button).parent().parent().children().eq(1).text();
-//     $("#editParentModal #parentTelephoneInput").val(parentTelephone);
-//     $("#editParentModal #parentFullnameInput").val(parentFullname);
-//     $("#editParentModal").show();
-// }
 
 function editStudent(studentId) {
     var studentName = $("#studentNameInput").val()
@@ -746,7 +738,6 @@ function sendPoll() {
             },
             sendPollCallback
         );
-
     }
 }
 
@@ -780,4 +771,46 @@ function filterPolls() {
             (rowPollState === pollState || pollState === 0)) $(this).show();
         else $(this).hide();
     });
+}
+
+// ACCOUNT
+function openEditAccountDialog() {
+    $("#administratorUserInput").val($("#administratorUser").text());
+    $("#administratorNameInput").val($("#administratorName").text());
+    $("#administratorNewPasswordInput").val("");
+    $("#administratorRepeatNewPasswordInput").val("");
+    $("#administratorCurrentPasswordInput").val("");
+    $("#editAccountModal").show();
+}
+
+function editAccount(administratorId) {
+    if ($("#administratorUserInput").val().trim() === "" || $("#administratorNameInput").val().trim() === "") alert("El nombre y el usuario no pueden estar vacíos");
+    else if ($("#administratorNewPasswordInput").val().length > 0 && ($("#administratorNewPasswordInput").val().length < 4 || $("#administratorNewPasswordInput").val().length > 16 )) alert("La contraseña debe tener entre 4 y 16 caracteres");
+    else if ($("#administratorNewPasswordInput").val() !== $("#administratorRepeatNewPasswordInput").val()) alert("Las contraseñas no coinciden");
+    else if ($("#administratorCurrentPasswordInput").val().trim().length === 0) alert("Inserte su contraseña actual");
+    else {
+        postCall("/account/edit",
+            {
+                "user": $("#administratorUserInput").val(),
+                "name": $("#administratorNameInput").val(),
+                "oldPassword": $("#administratorCurrentPasswordInput").val(),
+                "newPassword": $("#administratorNewPasswordInput").val(),
+            },
+            editAccountCallback
+        );
+    }
+}
+
+function editAccountCallback(response) {
+    if (!response.edited) {
+        alert(response.error);
+        return;
+    }
+
+    $("#administratorNameHeader").text(response.editedAdministratorName);
+    $("#administratorNameTitle").text(response.editedAdministratorName);
+    $("#administratorName").text(response.editedAdministratorName);
+    $("#administratorUser").text(response.editedAdministratorUser);
+
+    closeModal();
 }

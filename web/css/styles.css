@@ -110,11 +110,11 @@ input[type=file]{
     margin-left: 5px;
 }
 
-#studentInfo {
+#studentInfo, #administratorInfo {
     list-style-type: none;
 }
 
-#studentInfo li {
+#studentInfo li, #administratorInfo li {
     margin-left: -40px;
     margin-bottom: 10px;
 }

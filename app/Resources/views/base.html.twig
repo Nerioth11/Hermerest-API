@@ -22,7 +22,7 @@
 <header>
     <div id="headerLoginDiv">
         <span>
-            Conectado como: {{ app.user.name }}<a id="logout" href={{ path('logout') }}>Cerrar sesión</a>
+            Conectado como: <span id="administratorNameHeader">{{ app.user.name }}</span><a id="logout" href={{ path('logout') }}>Cerrar sesión</a>
         </span>
     </div>
 
@@ -42,7 +42,7 @@
         <li><a href="{{ path('circulars') }}">Circulares</a></li>
         <li><a href="{{ path('polls') }}">Encuestas</a></li>
         <hr class="navbar_separator"/>
-        <li><a href="{{ path('settings') }}">Ajustes</a></li>
+        <li><a href="{{ path('account') }}">Mi cuenta</a></li>
     </ul>
 </nav>
 

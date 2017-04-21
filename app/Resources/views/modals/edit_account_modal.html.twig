@@ -1,0 +1,27 @@
+{% extends 'modals/modal.html.twig' %}
+
+ {% block modal_header %}
+     Editar cuenta
+ {% endblock %}
+
+{% block modal_body %}
+    Usuario<span style="color:red;">*</span><br/>
+    <input class="modalInput" id="administratorUserInput" type="text">
+    <br/><br/>
+    Nombre<span style="color:red;">*</span><br/>
+    <input class="modalInput" id="administratorNameInput" type="text">
+    <br/><br/>
+    Nueva contraseña<br/>
+    <input class="modalInput" id="administratorNewPasswordInput" type="password">
+    <br/><br/>
+    Repetir nueva contraseña<br/>
+    <input class="modalInput" id="administratorRepeatNewPasswordInput" type="password">
+    <br/><br/><br/>
+    Contraseña actual<span style="color:red;">*</span><br/>
+    <input class="modalInput" id="administratorCurrentPasswordInput" type="password">
+{% endblock %}
+
+{% block modal_footer %}
+    <button class="primaryButton" type="button" onclick="editAccount({{ app.user.getId() }})">Guardar cambios</button>
+    <button class="defaultButton" type="button" onclick="closeModal()">Cancelar</button>
+{% endblock %}
