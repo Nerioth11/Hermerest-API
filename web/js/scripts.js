@@ -572,8 +572,8 @@ function sendCircular() {
     else if ($("#sendCircularModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else {
         var studentsIds = [];
-        $(".treeview .recipientStudentLi").each(function(){
-            if($(this).children().first().is(':checked')) studentsIds.push(this.id);
+        $(".treeview .recipientStudentLi").each(function () {
+            if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
         postCall("/messaging/circulars/sendCircular",
@@ -613,6 +613,8 @@ function openSendAuthorizationDialog() {
 }
 
 function openViewAuthorizationDialog(authorizationId) {
+    $("#viewAuthorizationModal #authorizedStudentsList").empty();
+    $("#viewAuthorizationModal #unauthorizedStudentsList").empty();
     getCall("/messaging/authorizations/getAuthorization?id=" + authorizationId, openViewAuthorizationDialogCallback);
 }
 
@@ -627,6 +629,17 @@ function openViewAuthorizationDialogCallback(response) {
     $("#viewAuthorizationModalLimitDate").text(dateToString(response.authorizationLimitDate.date));
     $("#viewAuthorizationModal .messageTextArea").text(response.authorizationMessage);
 
+    if (dateComparator($("#viewAuthorizationModalLimitDate").text(), getTodaysDate()) < 0)
+        $("#viewAuthorizationModalLimitDate").addClass('pastDate');
+    else
+        $("#viewAuthorizationModalLimitDate").removeClass('pastDate');
+
+    response.students.forEach(function (student) {
+        $(student[1] === 1 ? "#authorizedStudentsList" : "#unauthorizedStudentsList").append(
+            "<li>" + student[0] + "</li>"
+        )
+    });
+
     $("#viewAuthorizationModal").show();
 }
 
@@ -636,8 +649,8 @@ function sendAuthorization() {
     else if ($("#sendAuthorizationModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else {
         var studentsIds = [];
-        $(".treeview .recipientStudentLi").each(function(){
-            if($(this).children().first().is(':checked')) studentsIds.push(this.id);
+        $(".treeview .recipientStudentLi").each(function () {
+            if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
         postCall("/messaging/authorizations/sendAuthorization",
@@ -712,10 +725,28 @@ function openViewPollDialogCallback(response) {
     $("#viewPollModalLimitDate").text(dateToString(response.pollLimitDate.date));
     $("#viewPollModal .messageTextArea").text(response.pollMessage);
 
+    if (dateComparator($("#viewPollModalLimitDate").text(), getTodaysDate()) < 0)
+        $("#viewPollModalLimitDate").addClass('pastDate');
+    else
+        $("#viewPollModalLimitDate").removeClass('pastDate');
+
     response.pollOptions.forEach(function (option) {
         $("#pollResultList").append(
-            "<li>" + option + ": TODO</li>"
+            "<li>" + option[0] + ": <span class='pollResult'>" + option[1] + "</span></li>"
         )
+    });
+
+    var pollResults = [];
+    $("#pollResultList .pollResult ").each(function () {
+        pollResults.push($(this).text());
+    });
+
+    var mostVotedOptionValue = Math.max.apply(Math, pollResults);
+    $("#pollResultList .pollResult ").each(function () {
+        if (parseInt($(this).text()) === mostVotedOptionValue){
+            $(this).parent().css('color', '#4CAF50');
+            $(this).parent().css("font-weight","bold");
+        }
     });
 
     $("#viewPollModal").show();
@@ -740,8 +771,8 @@ function sendPoll() {
     else if ($("#addedPollOptionsList").children().length < 2) alert("Indique, al menos, 2 opciones para la encuesta");
     else {
         var studentsIds = [];
-        $(".treeview .recipientStudentLi").each(function(){
-            if($(this).children().first().is(':checked')) studentsIds.push(this.id);
+        $(".treeview .recipientStudentLi").each(function () {
+            if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
         postCall("/messaging/polls/sendPoll",

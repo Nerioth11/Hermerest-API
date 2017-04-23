@@ -41,7 +41,7 @@ class PollsController extends Controller
         $pollOptions = $request->request->get('options');
         $sendingDate = new DateTime();
 
-        $poll = new Poll($subject, $message, $sendingDate, $centre, $limitDate, $multipleChoice === "true" ? true : false);
+        $poll = new Poll($subject, $message, $sendingDate, $centre, $limitDate, $multipleChoice == "true" ? true : false);
         $pollFacade->create($poll);
 
         $this->addPollOptionsToPoll($pollOptions, $poll);
@@ -68,7 +68,7 @@ class PollsController extends Controller
 
         $pollOptions = array();
         foreach ($poll->getPollOptions() as $pollOption)
-            array_push($pollOptions, $pollOption->getText());
+            array_push($pollOptions, [$pollOption->getText(), count($pollOption->getReplies())]);
 
         return new JSonResponse([
             'found' => true,

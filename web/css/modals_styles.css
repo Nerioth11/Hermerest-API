@@ -65,7 +65,7 @@
 
 .modal-body_left_panel {
     display: inline-block;
-    padding-right: 30px;
+    padding-right: 20px;
     /*margin-right: -2px;*/
     /*border-right: solid #A9A9A9 1px;*/
 }
@@ -73,7 +73,7 @@
 .modal-body_right_panel {
     display: inline-block;
     vertical-align: top;
-    padding-left: 30px;
+    padding-left: 20px;
     /*margin-left: -3px;*/
     /*border-left: solid #A9A9A9 1px;*/
 }
@@ -98,7 +98,7 @@
 }
 
 /*student*/
-.addParentClarification{
+.addParentClarification {
     font-size: small;
     margin: 0;
     color: red;
@@ -131,5 +131,17 @@
 
 #pollResultList {
     padding-bottom: 10px;
+}
+
+/*authorizations*/
+#authorizedStudentsList, #unauthorizedStudentsList {
+    margin: 0;
+    list-style-type: none;
+    padding-left: 0;
+    /*font-size: small;*/
+}
+
+#authorizedStudentsList li, #pollResultList li, #unauthorizedStudentsList{
+    padding-bottom: 4px;
 }
 
