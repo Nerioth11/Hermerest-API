@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\AuthorizationReply;
+use AppBundle\Entity\PollReply;
 use AppBundle\Entity\Student;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -35,9 +37,21 @@ class Progenitor
      */
     private $children;
 
+    /**
+     * @ORM\OneToMany(targetEntity="AuthorizationReply", mappedBy="parent")
+     */
+    private $authorizationReplies;
+
+    /**
+     * @ORM\OneToMany(targetEntity="PollReply", mappedBy="parent")
+     */
+    private $pollReplies;
+
     public function __construct($name = null, $telephone = null)
     {
         $this->children = new ArrayCollection();
+        $this->authorizationReplies = new ArrayCollection();
+        $this->pollReplies = new ArrayCollection();
         $this->name = $name;
         $this->telephone = $telephone;
     }
@@ -132,5 +146,73 @@ class Progenitor
     public function getChildren()
     {
         return $this->children;
+    }
+
+    /**
+     * Add authorizationReply
+     *
+     * @param AuthorizationReply $authorizationReply
+     *
+     * @return Progenitor
+     */
+    public function addAuthorizationReply(AuthorizationReply $authorizationReply)
+    {
+        $this->authorizationReplies[] = $authorizationReply;
+
+        return $this;
+    }
+
+    /**
+     * Remove authorizationReply
+     *
+     * @param AuthorizationReply $authorizationReply
+     */
+    public function removeAuthorizationReply(AuthorizationReply $authorizationReply)
+    {
+        $this->authorizationReplies->removeElement($authorizationReply);
+    }
+
+    /**
+     * Get authorizationReplies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAuthorizationReplies()
+    {
+        return $this->authorizationReplies;
+    }
+
+    /**
+     * Add pollReply
+     *
+     * @param PollReply $pollReply
+     *
+     * @return Progenitor
+     */
+    public function addPollReply(PollReply $pollReply)
+    {
+        $this->pollReplies[] = $pollReply;
+
+        return $this;
+    }
+
+    /**
+     * Remove pollReply
+     *
+     * @param PollReply $pollReply
+     */
+    public function removePollReply(PollReply $pollReply)
+    {
+        $this->pollReplies->removeElement($pollReply);
+    }
+
+    /**
+     * Get pollReplies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPollReplies()
+    {
+        return $this->pollReplies;
     }
 }

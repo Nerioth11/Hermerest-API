@@ -8,8 +8,11 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Attachment;
 use AppBundle\Entity\Centre;
+use AppBundle\Entity\Student;
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -49,8 +52,26 @@ abstract class Message
      */
     private $centre;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Student", inversedBy="messages")
+     * @ORM\OrderBy({"surname" = "ASC", "name" = "ASC"})
+     * @ORM\JoinTable(name="message_student",
+     *      joinColumns={@ORM\JoinColumn(name="message", referencedColumnName="id", onDelete="cascade")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="student", referencedColumnName="id", onDelete="cascade")}
+     *      )
+     */
+    private $students;
+
+    /**
+     * @ORM\OneToMany(targetEntity="Attachment", mappedBy="message")
+     * @ORM\OrderBy({"name" = "ASC"})
+     */
+    private $attachments;
+
     public function __construct($subject, $message, ?DateTime $sendingDate, ?Centre $centre)
     {
+        $this->students = new ArrayCollection();
+        $this->attachments = new ArrayCollection();
         $this->subject = $subject;
         $this->message = $message;
         $this->sendingDate = $sendingDate;
@@ -161,5 +182,73 @@ abstract class Message
     public function getCentre()
     {
         return $this->centre;
+    }
+
+    /**
+     * Add student
+     *
+     * @param Student $student
+     *
+     * @return Message
+     */
+    public function addStudent(Student $student)
+    {
+        $this->students[] = $student;
+
+        return $this;
+    }
+
+    /**
+     * Remove student
+     *
+     * @param Student $student
+     */
+    public function removeStudent(Student $student)
+    {
+        $this->students->removeElement($student);
+    }
+
+    /**
+     * Get students
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getStudents()
+    {
+        return $this->students;
+    }
+
+    /**
+     * Add attachment
+     *
+     * @param Attachment $attachment
+     *
+     * @return Message
+     */
+    public function addAttachment(Attachment $attachment)
+    {
+        $this->attachments[] = $attachment;
+
+        return $this;
+    }
+
+    /**
+     * Remove attachment
+     *
+     * @param Attachment $attachment
+     */
+    public function removeAttachment(Attachment $attachment)
+    {
+        $this->attachments->removeElement($attachment);
+    }
+
+    /**
+     * Get attachments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
     }
 }

@@ -9,6 +9,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\Poll;
+use AppBundle\Entity\PollReply;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -36,8 +37,14 @@ class PollOption
      */
     private $poll;
 
+    /**
+     * @ORM\OneToMany(targetEntity="PollReply", mappedBy="pollOption")
+     */
+    private $replies;
+
     public function __construct($text = null, Poll $poll = null)
     {
+        $this->replies = new ArrayCollection();
         $this->text = $text;
         $this->poll = $poll;
     }
@@ -98,5 +105,39 @@ class PollOption
     public function getPoll()
     {
         return $this->poll;
+    }
+
+    /**
+     * Add reply
+     *
+     * @param PollReply $reply
+     *
+     * @return PollOption
+     */
+    public function addReply(PollReply $reply)
+    {
+        $this->replies[] = $reply;
+
+        return $this;
+    }
+
+    /**
+     * Remove reply
+     *
+     * @param PollReply $reply
+     */
+    public function removeReply(PollReply $reply)
+    {
+        $this->replies->removeElement($reply);
+    }
+
+    /**
+     * Get replies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getReplies()
+    {
+        return $this->replies;
     }
 }

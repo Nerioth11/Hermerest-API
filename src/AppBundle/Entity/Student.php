@@ -2,8 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\AuthorizationReply;
 use AppBundle\Entity\Centre;
 use AppBundle\Entity\Course;
+use AppBundle\Entity\Message;
 use AppBundle\Entity\Progenitor;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -54,9 +56,22 @@ class Student
      */
     private $parents;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Message", mappedBy="students")
+     * @ORM\OrderBy({"sendingDate" = "DESC"})
+     */
+    private $messages;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AuthorizationReply", mappedBy="student")
+     */
+    private $authorizationReplies;
+
     public function __construct($name = null, $surname = null, Course $class = null, Centre $centre = null)
     {
         $this->parents = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+        $this->authorizationReplies = new ArrayCollection();
         $this->name = $name;
         $this->surname = $surname;
         $this->class = $class;
@@ -202,5 +217,73 @@ class Student
     public function getParents()
     {
         return $this->parents;
+    }
+
+    /**
+     * Add message
+     *
+     * @param Message $message
+     *
+     * @return Student
+     */
+    public function addMessage(Message $message)
+    {
+        $this->messages[] = $message;
+
+        return $this;
+    }
+
+    /**
+     * Remove message
+     *
+     * @param Message $message
+     */
+    public function removeMessage(Message $message)
+    {
+        $this->messages->removeElement($message);
+    }
+
+    /**
+     * Get messages
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMessages()
+    {
+        return $this->messages;
+    }
+
+    /**
+     * Add authorizationReply
+     *
+     * @param AuthorizationReply $authorizationReply
+     *
+     * @return Student
+     */
+    public function addAuthorizationReply(AuthorizationReply $authorizationReply)
+    {
+        $this->authorizationReplies[] = $authorizationReply;
+
+        return $this;
+    }
+
+    /**
+     * Remove authorizationReply
+     *
+     * @param AuthorizationReply $authorizationReply
+     */
+    public function removeAuthorizationReply(AuthorizationReply $authorizationReply)
+    {
+        $this->authorizationReplies->removeElement($authorizationReply);
+    }
+
+    /**
+     * Get authorizationReplies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAuthorizationReplies()
+    {
+        return $this->authorizationReplies;
     }
 }
