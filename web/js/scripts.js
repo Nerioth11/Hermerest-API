@@ -570,14 +570,21 @@ function filterCirculars() {
 function sendCircular() {
     if ($("#circularSubjectInput").val().trim() === "") alert("El asunto de la circular no debe estar vacío");
     else if ($("#sendCircularModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
-    else
+    else {
+        var studentsIds = [];
+        $(".treeview .recipientStudentLi").each(function(){
+            if($(this).children().first().is(':checked')) studentsIds.push(this.id);
+        });
+
         postCall("/messaging/circulars/sendCircular",
             {
                 "subject": $("#circularSubjectInput").val(),
                 "message": $("#circularContentTextArea").val(),
+                "studentsIds": studentsIds
             },
             sendCircularCallback
         );
+    }
 }
 
 function sendCircularCallback(response) {
@@ -628,11 +635,17 @@ function sendAuthorization() {
     else if (dateComparator(dateToString($("#authorizationDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
     else if ($("#sendAuthorizationModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else {
+        var studentsIds = [];
+        $(".treeview .recipientStudentLi").each(function(){
+            if($(this).children().first().is(':checked')) studentsIds.push(this.id);
+        });
+
         postCall("/messaging/authorizations/sendAuthorization",
             {
                 "subject": $("#authorizationSubjectInput").val(),
                 "limitDate": $("#authorizationDateInput").val(),
                 "message": $("#authorizationContentTextArea").val(),
+                "studentsIds": studentsIds
             },
             sendAuthorizationCallback
         );
@@ -726,12 +739,18 @@ function sendPoll() {
     else if ($("#sendPollModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else if ($("#addedPollOptionsList").children().length < 2) alert("Indique, al menos, 2 opciones para la encuesta");
     else {
+        var studentsIds = [];
+        $(".treeview .recipientStudentLi").each(function(){
+            if($(this).children().first().is(':checked')) studentsIds.push(this.id);
+        });
+
         postCall("/messaging/polls/sendPoll",
             {
                 "subject": $("#pollSubjectInput").val(),
                 "limitDate": $("#pollDateInput").val(),
                 "message": $("#pollContentTextArea").val(),
                 "multipleChoice": $("#multipleChoiceCheckbox").is(':checked'),
+                "studentsIds": studentsIds,
                 "options": $("#addedPollOptionsList li").map(function () {
                     return this.innerText.slice(0, -1)
                 }).get()

@@ -6,6 +6,7 @@ use AppBundle\Entity\Poll;
 use AppBundle\Entity\PollOption;
 use AppBundle\Facade\PollFacade;
 use AppBundle\Facade\PollOptionFacade;
+use AppBundle\Facade\StudentFacade;
 use DateTime;
 use DateTimeZone;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -45,6 +46,8 @@ class PollsController extends Controller
 
         $this->addPollOptionsToPoll($pollOptions, $poll);
 
+        $this->sendPoll($request->request->get('studentsIds'), $poll, $pollFacade);
+
         return new JsonResponse([
             'sent' => true,
             'sentPollId' => $poll->getId(),
@@ -83,5 +86,14 @@ class PollsController extends Controller
 
         foreach ($pollOptions as $pollOptionText)
             $pollOptionFacade->create(new PollOption($pollOptionText, $poll));
+    }
+
+    private function sendPoll($studentsIds, $poll, $pollFacade)
+    {
+        $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
+        foreach ($studentsIds as $studentId) {
+            $poll->addStudent($studentFacade->find($studentId));
+            $pollFacade->edit();
+        }
     }
 }

@@ -4,6 +4,7 @@ namespace AppBundle\Controller\messaging;
 
 use AppBundle\Entity\Authorization;
 use AppBundle\Facade\AuthorizationFacade;
+use AppBundle\Facade\StudentFacade;
 use DateTime;
 use DateTimeZone;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -39,6 +40,8 @@ class AuthorizationsController extends Controller
         $authorization = new Authorization($subject, $message, $sendingDate, $centre, $limitDate);
         $authorizationFacade->create($authorization);
 
+        $this->sendAuthorization($request->request->get('studentsIds'), $authorization, $authorizationFacade);
+
         return new JsonResponse([
             'sent' => true,
             'sentAuthorizationId' => $authorization->getId(),
@@ -64,5 +67,14 @@ class AuthorizationsController extends Controller
             'authorizationSendingDate' => $authorization->getSendingDate(),
             'authorizationLimitDate' => $authorization->getLimitDate(),
         ]);
+    }
+
+    private function sendAuthorization($studentsIds, $authorization, $authorizationFacade)
+    {
+        $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
+        foreach ($studentsIds as $studentId) {
+            $authorization->addStudent($studentFacade->find($studentId));
+            $authorizationFacade->edit();
+        }
     }
 }

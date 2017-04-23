@@ -4,6 +4,7 @@ namespace AppBundle\Controller\messaging;
 
 use AppBundle\Entity\Circular;
 use AppBundle\Facade\CircularFacade;
+use AppBundle\Facade\StudentFacade;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -37,6 +38,8 @@ class CircularsController extends Controller
         $circular = new Circular($subject, $message, $sendingDate, $centre);
         $circularFacade->create($circular);
 
+        $this->sendCircular($request->request->get('studentsIds'), $circular, $circularFacade);
+
         return new JsonResponse([
             'sent' => true,
             'sentCircularId' => $circular->getId(),
@@ -60,5 +63,14 @@ class CircularsController extends Controller
             'circularMessage' => $circular->getMessage(),
             'circularSendingDate' => $circular->getSendingDate(),
         ]);
+    }
+
+    private function sendCircular($studentsIds, $circular, $circularFacade)
+    {
+        $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
+        foreach ($studentsIds as $studentId) {
+            $circular->addStudent($studentFacade->find($studentId));
+            $circularFacade->edit();
+        }
     }
 }

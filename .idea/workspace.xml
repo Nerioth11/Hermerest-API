@@ -2,14 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6e06172-8bc6-487a-88c6-fe9d6006e63d" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/AppBundle/EntityTODO/MessageParent.php" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/AppBundle/EntityTODO/AuthorizationReply.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/AuthorizationReply.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Authorization.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Authorization.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Message.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Message.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/PollOption.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/PollOption.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Progenitor.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Progenitor.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Entity/Student.php" afterPath="$PROJECT_DIR$/src/AppBundle/Entity/Student.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/messaging/CircularsController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/messaging/CircularsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php" afterPath="$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/web/js/scripts.js" afterPath="$PROJECT_DIR$/web/js/scripts.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,14 +22,32 @@
     <splitter split-orientation="horizontal" split-proportion="0.48482934">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Attachment.php" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Attachment.php">
+          <file leaf-file-name="PollsController.php" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="629">
-                  <caret line="42" column="0" lean-forward="true" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-                  <folding>
-                    <element signature="e#117#146#0#PHP" expanded="true" />
-                  </folding>
+                <state relative-caret-position="317">
+                  <caret line="39" column="45" lean-forward="false" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="AuthorizationsController.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="119">
+                  <caret line="42" column="8" lean-forward="false" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="110" />
+                  <folding />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="CircularsController.php" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/CircularsController.php">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="640">
+                  <caret line="67" column="75" lean-forward="false" selection-start-line="67" selection-start-column="75" selection-end-line="67" selection-end-column="75" />
+                  <folding />
                 </state>
               </provider>
             </entry>
@@ -45,12 +59,12 @@
           <file leaf-file-name="scripts.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/web/js/scripts.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="329">
-                  <caret line="787" column="55" lean-forward="false" selection-start-line="787" selection-start-column="55" selection-end-line="787" selection-end-column="55" />
+                <state relative-caret-position="450">
+                  <caret line="578" column="0" lean-forward="false" selection-start-line="578" selection-start-column="0" selection-end-line="585" selection-end-column="10" />
                   <folding>
-                    <marker date="1492778369929" expanded="true" signature="4953:4960" ph="×" />
-                    <marker date="1492778369929" expanded="true" signature="10028:10035" ph="×" />
-                    <marker date="1492778369929" expanded="true" signature="24116:24123" ph="×" />
+                    <marker date="1492960266796" expanded="true" signature="4953:4960" ph="×" />
+                    <marker date="1492960266796" expanded="true" signature="10028:10035" ph="×" />
+                    <marker date="1492960266796" expanded="true" signature="24586:24593" ph="×" />
                   </folding>
                 </state>
               </provider>
@@ -100,8 +114,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>me</find>
-      <find>messag</find>
       <find>messagin</find>
       <find>messaging</find>
       <find>messaging/</find>
@@ -109,7 +121,6 @@
       <find>getmessages</find>
       <find>opensendcircu</find>
       <find>opensend</find>
-      <find>sendcircular</find>
       <find>opense</find>
       <find>filter</find>
       <find>each(</find>
@@ -130,6 +141,9 @@
       <find>editparent</find>
       <find>authorization</find>
       <find>polloption</find>
+      <find>sendcircular</find>
+      <find>sendpoll</find>
+      <find>circ</find>
     </findStrings>
     <replaceStrings>
       <replace>base.html.twig</replace>
@@ -165,13 +179,11 @@
         <option value="$PROJECT_DIR$/src/AppBundle/EntityTODO/Message.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Facade/CircularFacade.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Circular.php" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/messaging/CircularsController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/modal.html.twig" />
         <option value="$PROJECT_DIR$/web/js/treeviewscripts.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Facade/AuthorizationFacade.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/send_circular_modal.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/view_circular_modal.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/view_authorization_modal.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Facade/PollFacade.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Facade/PollOptionFacade.php" />
@@ -180,7 +192,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/messaging/polls.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/messaging/circulars.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/view_poll_modal.html.twig" />
-        <option value="$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/new_class_modal.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/modals/add_student_modal.html.twig" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Centre.php" />
@@ -193,7 +204,6 @@
         <option value="$PROJECT_DIR$/app/Resources/views/base.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/centre/student.html.twig" />
         <option value="$PROJECT_DIR$/app/Resources/views/account.html.twig" />
-        <option value="$PROJECT_DIR$/web/js/scripts.js" />
         <option value="$PROJECT_DIR$/src/AppBundle/Controller/AccountController.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/EntityTODO/AuthorizationReply.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Authorization.php" />
@@ -207,6 +217,10 @@
         <option value="$PROJECT_DIR$/src/AppBundle/Facade/AttachmentFacade.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Message.php" />
         <option value="$PROJECT_DIR$/src/AppBundle/Entity/Attachment.php" />
+        <option value="$PROJECT_DIR$/web/js/scripts.js" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/messaging/CircularsController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php" />
+        <option value="$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php" />
       </list>
     </option>
   </component>
@@ -722,12 +736,12 @@
       <workItem from="1492605038842" duration="16982000" />
       <workItem from="1492684587819" duration="15451000" />
       <workItem from="1492768160319" duration="10844000" />
-      <workItem from="1492948834463" duration="8842000" />
+      <workItem from="1492948834463" duration="10868000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="279298000" />
+    <option name="totallyTimeSpent" value="281324000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -794,16 +808,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="17" column="29" lean-forward="false" selection-start-line="17" selection-start-column="29" selection-end-line="17" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/CircularsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="62" selection-end-column="5" />
-          <folding>
-            <element signature="e#50#80#0#PHP" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -989,22 +993,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="291">
-          <caret line="34" column="8" lean-forward="false" selection-start-line="34" selection-start-column="8" selection-end-line="34" selection-end-column="91" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="33" column="8" lean-forward="false" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="53" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/web/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1972">
@@ -1056,18 +1044,6 @@
         <state relative-caret-position="153">
           <caret line="9" column="55" lean-forward="false" selection-start-line="9" selection-start-column="33" selection-end-line="9" selection-end-column="55" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/web/js/scripts.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="787" column="55" lean-forward="false" selection-start-line="787" selection-start-column="55" selection-end-line="787" selection-end-column="55" />
-          <folding>
-            <marker date="1492778369929" expanded="true" signature="4953:4960" ph="×" />
-            <marker date="1492778369929" expanded="true" signature="10028:10035" ph="×" />
-            <marker date="1492778369929" expanded="true" signature="24116:24123" ph="×" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1185,16 +1161,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Message.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="524">
-          <caret line="239" column="37" lean-forward="true" selection-start-line="239" selection-start-column="37" selection-end-line="239" selection-end-column="37" />
-          <folding>
-            <element signature="e#118#150#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Administrator.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="323">
@@ -1210,6 +1176,52 @@
           <folding>
             <element signature="e#117#146#0#PHP" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Entity/Message.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="839">
+          <caret line="226" column="7" lean-forward="true" selection-start-line="226" selection-start-column="7" selection-end-line="226" selection-end-column="7" />
+          <folding>
+            <element signature="e#118#150#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/web/js/scripts.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="450">
+          <caret line="578" column="0" lean-forward="false" selection-start-line="578" selection-start-column="0" selection-end-line="585" selection-end-column="10" />
+          <folding>
+            <marker date="1492960266796" expanded="true" signature="4953:4960" ph="×" />
+            <marker date="1492960266796" expanded="true" signature="10028:10035" ph="×" />
+            <marker date="1492960266796" expanded="true" signature="24586:24593" ph="×" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/CircularsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="640">
+          <caret line="67" column="75" lean-forward="false" selection-start-line="67" selection-start-column="75" selection-end-line="67" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/AuthorizationsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="42" column="8" lean-forward="false" selection-start-line="42" selection-start-column="8" selection-end-line="42" selection-end-column="110" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AppBundle/Controller/messaging/PollsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="317">
+          <caret line="39" column="45" lean-forward="false" selection-start-line="39" selection-start-column="45" selection-end-line="39" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
