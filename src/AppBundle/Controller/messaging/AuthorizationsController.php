@@ -2,7 +2,9 @@
 
 namespace AppBundle\Controller\messaging;
 
+use AppBundle\Entity\Attachment;
 use AppBundle\Entity\Authorization;
+use AppBundle\Facade\AttachmentFacade;
 use AppBundle\Facade\AuthorizationFacade;
 use AppBundle\Facade\StudentFacade;
 use DateTime;
@@ -35,10 +37,15 @@ class AuthorizationsController extends Controller
         $subject = $request->request->get('subject');
         $limitDate = date_create_from_format('Y-m-d G:i:s', $request->request->get('limitDate') . " 23:59:59", new DateTimeZone('UTC'));
         $message = $request->request->get('message');
+        $fileName = $request->request->get('fileName');
+        $fileContent = $request->request->get('fileContent');
         $sendingDate = new DateTime();
+        date_timezone_set($sendingDate, timezone_open('Atlantic/Canary'));
 
         $authorization = new Authorization($subject, $message, $sendingDate, $centre, $limitDate);
         $authorizationFacade->create($authorization);
+
+        if ($fileName != null) $this->attachFile($fileName, $fileContent, $authorization);
 
         $this->sendAuthorization($request->request->get('studentsIds'), $authorization, $authorizationFacade);
 
@@ -59,6 +66,7 @@ class AuthorizationsController extends Controller
         $authorizationFacade = new AuthorizationFacade($this->getDoctrine()->getManager());
         $authorizationId = $request->query->get('id');
         $authorization = $authorizationFacade->find($authorizationId);
+        $authorizationAttachment = count($authorization->getAttachments()) == 0 ? null : $authorization->getAttachments()[0];
 
         $students = array();
         foreach ($authorization->getStudents() as $student)
@@ -75,6 +83,8 @@ class AuthorizationsController extends Controller
             'authorizationSendingDate' => $authorization->getSendingDate(),
             'authorizationLimitDate' => $authorization->getLimitDate(),
             'students' => $students,
+            'authorizationAttachmentId' => $authorizationAttachment == null ? null : $authorizationAttachment->getId(),
+            'authorizationAttachmentName' => $authorizationAttachment == null ? null : $authorizationAttachment->getName()
         ]);
     }
 
@@ -105,5 +115,16 @@ class AuthorizationsController extends Controller
             if ($reply->getStudent() === $student && $reply->getAuthorized()) $yes++;
             if ($reply->getStudent() === $student && !$reply->getAuthorized()) $no++;
         }
+    }
+
+    private function attachFile($fileName, $fileContent, $message)
+    {
+        $attachmentFacade = new AttachmentFacade($this->getDoctrine()->getManager());
+        $attachment = new Attachment($fileName, $message);
+        $attachmentFacade->create($attachment);
+
+        $file = fopen("C:\\xampp\\htdocs\\Hermerest_attachments\\" . $attachment->getId(), "w");
+        fwrite($file, base64_decode($fileContent));
+        fclose($file);
     }
 }

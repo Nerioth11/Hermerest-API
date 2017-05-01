@@ -13,9 +13,10 @@
         <input class="modalMessageInput" id="pollDateInput" type="date">
         <br/><br/>
         <div class="attachFileDiv">
-            <img class="icon" src="{{ asset('images/attachment.png') }}" alt="Adjuntar archivo"/> Adjuntar archivo
+            {#<img class="icon" src="{{ asset('images/attachment.png') }}" alt="Adjuntar archivo"/> Adjuntar archivo#}
+            <input id="attachFileInput" type="file" accept=".pdf"><span id="attachedFile" style="display: none;"></span>
         </div>
-        <textarea class="messageTextArea" id="pollContentTextArea" type="text" rows="20" cols="60"></textarea>
+        <textarea class="messageTextArea" id="pollContentTextArea" rows="20" cols="60"></textarea>
     </div>
     <div class="modal-body_right_panel">
         <div id="pollOptionsDiv">

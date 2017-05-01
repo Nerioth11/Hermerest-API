@@ -534,6 +534,8 @@ function deleteParentCallback(response) {
 function openSendCircularDialog() {
     $("#circularSubjectInput").val("");
     $("#circularContentTextArea").val("");
+    $("#attachFileInput").val(null);
+    $("#attachedFile").text("");
     resetTreeview("#sendCircularModal");
     $("#sendCircularModal").show();
 }
@@ -552,6 +554,10 @@ function openViewCircularDialogCallback(response) {
     $("#viewCircularModal .modalTitle").text(response.circularSubject);
     $("#viewCircularModalSendingDate").text(dateToString(response.circularSendingDate.date));
     $("#viewCircularModal .messageTextArea").text(response.circularMessage);
+    $("#viewCircularModal #attachedFiles").html(response.circularAttachmentId === null ? "No hay archivos adjuntos" :
+        "<a href='http://localhost:8000/Hermerest_attachments/" + response.circularAttachmentId + "' download='" + response.circularAttachmentName + "'>" +
+        response.circularAttachmentName +
+        "</a>");
 
     $("#viewCircularModal").show();
 }
@@ -569,22 +575,39 @@ function filterCirculars() {
 
 function sendCircular() {
     if ($("#circularSubjectInput").val().trim() === "") alert("El asunto de la circular no debe estar vacío");
-    else if ($("#sendCircularModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
+    else if ($("#sendCircularModal .recipientStudentLi input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else {
         var studentsIds = [];
         $(".treeview .recipientStudentLi").each(function () {
             if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
-        postCall("/messaging/circulars/sendCircular",
-            {
-                "subject": $("#circularSubjectInput").val(),
-                "message": $("#circularContentTextArea").val(),
-                "studentsIds": studentsIds
-            },
-            sendCircularCallback
-        );
+        var file = document.getElementById('attachFileInput').files[0];
+        var fileName;
+        if (file !== undefined) {
+            fileName = document.getElementById('attachFileInput').files[0].name
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                $("#attachedFile").text(event.target.result.replace(/^[^,]*,/, ''));
+                sendCircularPost(studentsIds, fileName);
+            };
+            reader.readAsDataURL(file);
+        } else sendCircularPost(studentsIds, fileName);
+
     }
+}
+
+function sendCircularPost(studentsIds, fileName) {
+    postCall("/messaging/circulars/sendCircular",
+        {
+            "subject": $("#circularSubjectInput").val(),
+            "message": $("#circularContentTextArea").val(),
+            "studentsIds": studentsIds,
+            "fileName": fileName,
+            "fileContent": $("#attachedFile").text(),
+        },
+        sendCircularCallback
+    );
 }
 
 function sendCircularCallback(response) {
@@ -608,6 +631,8 @@ function openSendAuthorizationDialog() {
     $("#authorizationSubjectInput").val("");
     $("#authorizationDateInput").val("");
     $("#authorizationContentTextArea").val("");
+    $("#attachFileInput").val(null);
+    $("#attachedFile").text("");
     resetTreeview("#sendAuthorizationModal");
     $("#sendAuthorizationModal").show();
 }
@@ -620,7 +645,7 @@ function openViewAuthorizationDialog(authorizationId) {
 
 function openViewAuthorizationDialogCallback(response) {
     if (!response.found) {
-        alert("Error al obtener los datos de la authorization");
+        alert("Error al obtener los datos de la autorización");
         return;
     }
 
@@ -628,6 +653,10 @@ function openViewAuthorizationDialogCallback(response) {
     $("#viewAuthorizationModalSendingDate").text(dateToString(response.authorizationSendingDate.date));
     $("#viewAuthorizationModalLimitDate").text(dateToString(response.authorizationLimitDate.date));
     $("#viewAuthorizationModal .messageTextArea").text(response.authorizationMessage);
+    $("#viewAuthorizationModal #attachedFiles").html(response.authorizationAttachmentId === null ? "No hay archivos adjuntos" :
+        "<a href='http://localhost:8000/Hermerest_attachments/" + response.authorizationAttachmentId + "' download='" + response.authorizationAttachmentName + "'>" +
+        response.authorizationAttachmentName +
+        "</a>");
 
     if (dateComparator($("#viewAuthorizationModalLimitDate").text(), getTodaysDate()) < 0)
         $("#viewAuthorizationModalLimitDate").addClass('pastDate');
@@ -644,25 +673,41 @@ function openViewAuthorizationDialogCallback(response) {
 }
 
 function sendAuthorization() {
-    if ($("#authorizationSubjectInput").val().trim() === "" || $("#authorizationDateInput").val().trim() === "") alert("El asunto y la fecha límite de la authorization no deben estar vacíos");
+    if ($("#authorizationSubjectInput").val().trim() === "" || $("#authorizationDateInput").val().trim() === "") alert("El asunto y la fecha límite de la autorización no deben estar vacíos");
     else if (dateComparator(dateToString($("#authorizationDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
-    else if ($("#sendAuthorizationModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
+    else if ($("#sendAuthorizationModal .recipientStudentLi input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else {
         var studentsIds = [];
         $(".treeview .recipientStudentLi").each(function () {
             if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
-        postCall("/messaging/authorizations/sendAuthorization",
-            {
-                "subject": $("#authorizationSubjectInput").val(),
-                "limitDate": $("#authorizationDateInput").val(),
-                "message": $("#authorizationContentTextArea").val(),
-                "studentsIds": studentsIds
-            },
-            sendAuthorizationCallback
-        );
+        var file = document.getElementById('attachFileInput').files[0];
+        var fileName;
+        if (file !== undefined) {
+            fileName = document.getElementById('attachFileInput').files[0].name
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                $("#attachedFile").text(event.target.result.replace(/^[^,]*,/, ''));
+                sendAuthorizationPost(studentsIds, fileName);
+            };
+            reader.readAsDataURL(file);
+        } else sendAuthorizationPost(studentsIds, fileName);
     }
+}
+
+function sendAuthorizationPost(studentsIds, fileName) {
+    postCall("/messaging/authorizations/sendAuthorization",
+        {
+            "subject": $("#authorizationSubjectInput").val(),
+            "limitDate": $("#authorizationDateInput").val(),
+            "message": $("#authorizationContentTextArea").val(),
+            "studentsIds": studentsIds,
+            "fileName": fileName,
+            "fileContent": $("#attachedFile").text(),
+        },
+        sendAuthorizationCallback
+    );
 }
 
 function sendAuthorizationCallback(response) {
@@ -705,6 +750,8 @@ function openSendPollDialog() {
     $("#newPollOptionInput").val("");
     $("#multipleChoiceCheckbox").prop('checked', false);
     $("#addedPollOptionsList").empty();
+    $("#attachFileInput").val(null);
+    $("#attachedFile").text("");
     resetTreeview("#sendPollModal");
     $("#sendPollModal").show();
 }
@@ -724,6 +771,10 @@ function openViewPollDialogCallback(response) {
     $("#viewPollModalSendingDate").text(dateToString(response.pollSendingDate.date));
     $("#viewPollModalLimitDate").text(dateToString(response.pollLimitDate.date));
     $("#viewPollModal .messageTextArea").text(response.pollMessage);
+    $("#viewPollModal #attachedFiles").html(response.pollAttachmentId === null ? "No hay archivos adjuntos" :
+        "<a href='http://localhost:8000/Hermerest_attachments/" + response.pollAttachmentId + "' download='" + response.pollAttachmentName + "'>" +
+        response.pollAttachmentName +
+        "</a>");
 
     if (dateComparator($("#viewPollModalLimitDate").text(), getTodaysDate()) < 0)
         $("#viewPollModalLimitDate").addClass('pastDate');
@@ -743,9 +794,9 @@ function openViewPollDialogCallback(response) {
 
     var mostVotedOptionValue = Math.max.apply(Math, pollResults);
     $("#pollResultList .pollResult ").each(function () {
-        if (parseInt($(this).text()) === mostVotedOptionValue){
+        if (parseInt($(this).text()) === mostVotedOptionValue) {
             $(this).parent().css('color', '#4CAF50');
-            $(this).parent().css("font-weight","bold");
+            $(this).parent().css("font-weight", "bold");
         }
     });
 
@@ -767,7 +818,7 @@ function deletePollOption(button) {
 function sendPoll() {
     if ($("#pollSubjectInput").val().trim() === "" || $("#pollDateInput").val().trim() === "") alert("El asunto y la fecha límite de la circular no deben estar vacíos");
     else if (dateComparator(dateToString($("#pollDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
-    else if ($("#sendPollModal input:checkbox:checked").length === 0) alert("Marque algún destinatario");
+    else if ($("#sendPollModal .recipientStudentLi input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else if ($("#addedPollOptionsList").children().length < 2) alert("Indique, al menos, 2 opciones para la encuesta");
     else {
         var studentsIds = [];
@@ -775,20 +826,36 @@ function sendPoll() {
             if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
-        postCall("/messaging/polls/sendPoll",
-            {
-                "subject": $("#pollSubjectInput").val(),
-                "limitDate": $("#pollDateInput").val(),
-                "message": $("#pollContentTextArea").val(),
-                "multipleChoice": $("#multipleChoiceCheckbox").is(':checked'),
-                "studentsIds": studentsIds,
-                "options": $("#addedPollOptionsList li").map(function () {
-                    return this.innerText.slice(0, -1)
-                }).get()
-            },
-            sendPollCallback
-        );
+        var file = document.getElementById('attachFileInput').files[0];
+        var fileName;
+        if (file !== undefined) {
+            fileName = document.getElementById('attachFileInput').files[0].name
+            var reader = new FileReader();
+            reader.onload = function (event) {
+                $("#attachedFile").text(event.target.result.replace(/^[^,]*,/, ''));
+                sendPollPost(studentsIds, fileName);
+            };
+            reader.readAsDataURL(file);
+        } else sendPollPost(studentsIds, fileName);
     }
+}
+
+function sendPollPost(studentsIds, fileName) {
+    postCall("/messaging/polls/sendPoll",
+        {
+            "subject": $("#pollSubjectInput").val(),
+            "limitDate": $("#pollDateInput").val(),
+            "message": $("#pollContentTextArea").val(),
+            "multipleChoice": $("#multipleChoiceCheckbox").is(':checked'),
+            "studentsIds": studentsIds,
+            "fileName": fileName,
+            "fileContent": $("#attachedFile").text(),
+            "options": $("#addedPollOptionsList li").map(function () {
+                return this.innerText.slice(0, -1)
+            }).get()
+        },
+        sendPollCallback
+    );
 }
 
 function sendPollCallback(response) {
