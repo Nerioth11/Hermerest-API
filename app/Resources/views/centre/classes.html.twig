@@ -32,7 +32,7 @@
                 <td>{{ class.getName() }}</td>
                 <td>{{ class.getStudents()|length }}</td>
                 <td class="tableButton">
-                    <button class="infoButton"><a href="{{ path('class') }}?id={{ class.getId() }}">Ver</a></button>
+                    <button class="infoButton" onclick="window.location.href='{{ path('class') }}?id={{ class.getId() }}'">Ver</button>
                 </td>
             </tr>
         {% endfor %}

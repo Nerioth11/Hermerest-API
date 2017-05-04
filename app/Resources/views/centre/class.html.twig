@@ -32,7 +32,7 @@
             <tr id="{{ student.getId() }}">
                 <td>{{ student.getSurname() }}, {{ student.getName() }}</td>
                 <td class="tableButton">
-                    <button class="infoButton"><a href="{{ path('student') }}?id={{ student.getId() }}">Ver</a></button>
+                    <button class="infoButton" onclick="window.location.href='{{ path('student') }}?id={{ student.getId() }}'">Ver</button>
                 </td>
                 <td class="tableButton">
                     <button class="warningButton" onclick="deleteStudentFromClass({{ student.getId() }})">Eliminar

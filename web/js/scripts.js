@@ -96,7 +96,7 @@ function addNewClassCallback(response) {
         "<tr>" +
         "<td>" + response.addedClassName + "</td>" +
         "<td>0</td>" +
-        "<td class='tableButton'><button class='infoButton'><a href='class?id=" + response.addedClassId + "'>Ver</a></button></td>" +
+        "<td class='tableButton'><button class='infoButton' onclick='window.location.href=\"class?id=" + response.addedClassId + "\"'>Ver</button></td>" +
         "</tr>"
     );
 
@@ -210,7 +210,7 @@ function addStudentsToClassAndShowItCallback(response) {
     $("#studentsTable").append(
         "<tr id='" + response.addedStudentId + "'>" +
         "<td>" + response.addedStudentSurname + ", " + response.addedStudentName + "</td>" +
-        "<td class='tableButton'><button class='infoButton'><a href='student?id=" + response.addedStudentId + "'>Ver</a></button></td>" +
+        "<td class='tableButton'><button class='infoButton' onclick='window.location.href=\"student?id=" + response.addedStudentId + "\"'>Ver</button></td>" +
         "<td class='tableButton'><button class='warningButton' onclick='deleteStudentFromClass(" + response.addedStudentId + ")'>Eliminar</button></td>" +
         "</tr>"
     );
@@ -345,7 +345,7 @@ function registerStudentCallback(response) {
         "<tr>" +
         "<td>" + response.studentSurname + ", " + response.studentName + "</td>" +
         "<td>" + response.studentClass + "</td>" +
-        "<td class='tableButton'><button class='infoButton'><a href='student?id=" + response.studentId + "'>Ver</a></button></td>" +
+        "<td class='tableButton'><button class='infoButton' onclick='window.location.href=\"student?id=" + response.studentId + "\"'>Ver</button></td>" +
         "</tr>"
     );
 
@@ -566,8 +566,8 @@ function filterCirculars() {
     var circularSubject = $("#circularSubjectInputFilter").val().toLowerCase();
     var circularMonth = $("#circularMonthDropdown :selected").val();
     $("#circularsTable > tbody > tr").each(function () {
-        var rowCircularSubject = $(this).children().eq(1).text().toLowerCase();
-        var rowCircularMonth = $(this).children().eq(0).text().substring(3, 5);
+        var rowCircularSubject = $(this).children().eq(0).text().toLowerCase();
+        var rowCircularMonth = $(this).children().eq(1).text().substring(3, 5);
         if (rowCircularSubject.includes(circularSubject) && (rowCircularMonth === circularMonth || circularMonth === "")) $(this).show();
         else $(this).hide();
     });
@@ -733,8 +733,8 @@ function filterAuthorizations() {
     var authorizationState = parseInt($("#authorizationStateDropdownFilter :selected").val());
     $("#authorizationsTable > tbody > tr").each(function () {
         var rowAuthorizationState = dateComparator($(this).children().eq(2).text(), getTodaysDate());
-        var rowAuthorizationSubject = $(this).children().eq(1).text().toLowerCase();
-        var rowAuthorizationMonth = $(this).children().eq(0).text().substring(3, 5);
+        var rowAuthorizationSubject = $(this).children().eq(0).text().toLowerCase();
+        var rowAuthorizationMonth = $(this).children().eq(1).text().substring(3, 5);
         if (rowAuthorizationSubject.includes(authorizationSubject) &&
             (rowAuthorizationMonth === authorizationMonth || authorizationMonth === "") &&
             (rowAuthorizationState === authorizationState || authorizationState === 0)) $(this).show();
@@ -881,8 +881,8 @@ function filterPolls() {
     var pollState = parseInt($("#pollStateDropdownFilter :selected").val());
     $("#pollsTable > tbody > tr").each(function () {
         var rowPollState = dateComparator($(this).children().eq(2).text(), getTodaysDate());
-        var rowPollSubject = $(this).children().eq(1).text().toLowerCase();
-        var rowPollMonth = $(this).children().eq(0).text().substring(3, 5);
+        var rowPollSubject = $(this).children().eq(0).text().toLowerCase();
+        var rowPollMonth = $(this).children().eq(1).text().substring(3, 5);
         if (rowPollSubject.includes(pollSubject) &&
             (rowPollMonth === pollMonth || pollMonth === "") &&
             (rowPollState === pollState || pollState === 0)) $(this).show();

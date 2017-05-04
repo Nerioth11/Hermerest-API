@@ -42,7 +42,7 @@
             <td>{{ student.getSurname() }}, {{ student.getName() }}</td>
             <td>{{ student.getClass() is null ? '-' : student.getClass().getName() }}</td>
             <td class="tableButton">
-                <button class="infoButton"><a href="{{ path('student') }}?id={{ student.getId() }}">Ver</a></button>
+                <button class="infoButton" onclick="window.location.href='{{ path('student') }}?id={{ student.getId() }}'">Ver</button>
             </td>
         </tr>
         {% endfor %}
