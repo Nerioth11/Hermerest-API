@@ -2,13 +2,12 @@
 
 namespace AppBundle\Controller\messaging;
 
-use AppBundle\Entity\Attachment;
 use AppBundle\Entity\Poll;
 use AppBundle\Entity\PollOption;
-use AppBundle\Facade\AttachmentFacade;
 use AppBundle\Facade\PollFacade;
 use AppBundle\Facade\PollOptionFacade;
 use AppBundle\Facade\StudentFacade;
+use AppBundle\Utils\AttachmentManager;
 use DateTime;
 use DateTimeZone;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -51,7 +50,7 @@ class PollsController extends Controller
 
         $this->addPollOptionsToPoll($pollOptions, $poll);
 
-        if ($fileName != null) $this->attachFile($fileName, $fileContent, $poll);
+        if ($fileName != null) AttachmentManager::attachFileToMessage($fileName, $fileContent, $poll, $this->getDoctrine()->getManager());
 
         $this->sendPoll($request->request->get('studentsIds'), $poll, $pollFacade);
 
@@ -105,16 +104,5 @@ class PollsController extends Controller
             $poll->addStudent($studentFacade->find($studentId));
             $pollFacade->edit();
         }
-    }
-
-    private function attachFile($fileName, $fileContent, $message)
-    {
-        $attachmentFacade = new AttachmentFacade($this->getDoctrine()->getManager());
-        $attachment = new Attachment($fileName, $message);
-        $attachmentFacade->create($attachment);
-
-        $file = fopen("C:\\xampp\\htdocs\\Hermerest_attachments\\" . $attachment->getId(), "w");
-        fwrite($file, base64_decode($fileContent));
-        fclose($file);
     }
 }

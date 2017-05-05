@@ -2,11 +2,10 @@
 
 namespace AppBundle\Controller\messaging;
 
-use AppBundle\Entity\Attachment;
 use AppBundle\Entity\Authorization;
-use AppBundle\Facade\AttachmentFacade;
 use AppBundle\Facade\AuthorizationFacade;
 use AppBundle\Facade\StudentFacade;
+use AppBundle\Utils\AttachmentManager;
 use DateTime;
 use DateTimeZone;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -45,7 +44,7 @@ class AuthorizationsController extends Controller
         $authorization = new Authorization($subject, $message, $sendingDate, $centre, $limitDate);
         $authorizationFacade->create($authorization);
 
-        if ($fileName != null) $this->attachFile($fileName, $fileContent, $authorization);
+        if ($fileName != null) AttachmentManager::attachFileToMessage($fileName, $fileContent, $authorization, $this->getDoctrine()->getManager());
 
         $this->sendAuthorization($request->request->get('studentsIds'), $authorization, $authorizationFacade);
 
@@ -73,7 +72,7 @@ class AuthorizationsController extends Controller
             array_push($students,
                 [
                     $student->getSurname() . ", " . $student->getName(),
-                    $this->getStudentAuthorizationState($authorization, $student)
+                    $student->isAuthorizedTo($authorization) ? 1 : 0
                 ]);
 
         return new JSonResponse([
@@ -95,36 +94,5 @@ class AuthorizationsController extends Controller
             $authorization->addStudent($studentFacade->find($studentId));
             $authorizationFacade->edit();
         }
-    }
-
-    private function getStudentAuthorizationState($authorization, $student)
-    {
-        $replies = $authorization->getReplies();
-        $yes = 0;
-        $no = 0;
-        $this->getYesAndNoForStudent($student, $replies, $yes, $no);
-
-        if ($yes == 0 && $no == 0) return 0;
-        else if ($no > 0) return 0;
-        else return 1;
-    }
-
-    private function getYesAndNoForStudent($student, $replies, &$yes, &$no)
-    {
-        foreach ($replies as $reply) {
-            if ($reply->getStudent() === $student && $reply->getAuthorized()) $yes++;
-            if ($reply->getStudent() === $student && !$reply->getAuthorized()) $no++;
-        }
-    }
-
-    private function attachFile($fileName, $fileContent, $message)
-    {
-        $attachmentFacade = new AttachmentFacade($this->getDoctrine()->getManager());
-        $attachment = new Attachment($fileName, $message);
-        $attachmentFacade->create($attachment);
-
-        $file = fopen("C:\\xampp\\htdocs\\Hermerest_attachments\\" . $attachment->getId(), "w");
-        fwrite($file, base64_decode($fileContent));
-        fclose($file);
     }
 }

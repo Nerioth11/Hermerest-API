@@ -2,11 +2,10 @@
 
 namespace AppBundle\Controller\messaging;
 
-use AppBundle\Entity\Attachment;
 use AppBundle\Entity\Circular;
-use AppBundle\Facade\AttachmentFacade;
 use AppBundle\Facade\CircularFacade;
 use AppBundle\Facade\StudentFacade;
+use AppBundle\Utils\AttachmentManager;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -43,7 +42,7 @@ class CircularsController extends Controller
         $circular = new Circular($subject, $message, $sendingDate, $centre);
         $circularFacade->create($circular);
 
-        if ($fileName != null) $this->attachFile($fileName, $fileContent, $circular);
+        if ($fileName != null) AttachmentManager::attachFileToMessage($fileName, $fileContent, $circular, $this->getDoctrine()->getManager());
 
         $this->sendCircular($request->request->get('studentsIds'), $circular, $circularFacade);
 
@@ -82,16 +81,5 @@ class CircularsController extends Controller
             $circular->addStudent($studentFacade->find($studentId));
             $circularFacade->edit();
         }
-    }
-
-    private function attachFile($fileName, $fileContent, $message)
-    {
-        $attachmentFacade = new AttachmentFacade($this->getDoctrine()->getManager());
-        $attachment = new Attachment($fileName, $message);
-        $attachmentFacade->create($attachment);
-
-        $file = fopen("C:\\xampp\\htdocs\\Hermerest_attachments\\" . $attachment->getId(), "w");
-        fwrite($file, base64_decode($fileContent));
-        fclose($file);
     }
 }

@@ -286,4 +286,24 @@ class Student
     {
         return $this->authorizationReplies;
     }
+
+
+    public function isAuthorizedTo(Authorization $authorization)
+    {
+        $replies = $authorization->getReplies();
+        $yes = 0;
+        $no = 0;
+        $this->getYesAndNoForAuthorization($replies, $yes, $no);
+
+        if (($yes == 0 && $no == 0) || $no > 0) return false;
+        else return true;
+    }
+
+    private function getYesAndNoForAuthorization($replies, &$yes, &$no)
+    {
+        foreach ($replies as $reply) {
+            if ($reply->getStudent() === $this && $reply->getAuthorized()) $yes++;
+            if ($reply->getStudent() === $this && !$reply->getAuthorized()) $no++;
+        }
+    }
 }
