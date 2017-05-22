@@ -8,12 +8,12 @@ use AppBundle\Facade\PollFacade;
 use AppBundle\Facade\PollOptionFacade;
 use AppBundle\Facade\StudentFacade;
 use AppBundle\Utils\AttachmentManager;
+use AppBundle\Utils\ResponseFactory;
 use DateTime;
 use DateTimeZone;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class PollsController extends Controller
@@ -54,11 +54,10 @@ class PollsController extends Controller
 
         $this->sendPoll($request->request->get('studentsIds'), $poll, $pollFacade);
 
-        return new JsonResponse([
-            'sent' => true,
-            'sentPollId' => $poll->getId(),
-            'sentPollLimitDate' => $poll->getLimitDate(),
-            'sentPollSubject' => $poll->getSubject(),
+        return ResponseFactory::createJsonResponse(true, [
+            'id' => $poll->getId(),
+            'limitDate' => $poll->getLimitDate(),
+            'subject' => $poll->getSubject(),
         ]);
     }
 
@@ -77,15 +76,14 @@ class PollsController extends Controller
         foreach ($poll->getPollOptions() as $pollOption)
             array_push($pollOptions, [$pollOption->getText(), count($pollOption->getReplies())]);
 
-        return new JSonResponse([
-            'found' => true,
-            'pollSubject' => $poll->getSubject(),
-            'pollMessage' => $poll->getMessage(),
-            'pollSendingDate' => $poll->getSendingDate(),
-            'pollLimitDate' => $poll->getLimitDate(),
-            'pollOptions' => $pollOptions,
-            'pollAttachmentId' => $pollAttachment == null ? null : $pollAttachment->getId(),
-            'pollAttachmentName' => $pollAttachment == null ? null : $pollAttachment->getName()
+        return ResponseFactory::createJsonResponse(true, [
+            'subject' => $poll->getSubject(),
+            'message' => $poll->getMessage(),
+            'sendingDate' => $poll->getSendingDate(),
+            'limitDate' => $poll->getLimitDate(),
+            'options' => $pollOptions,
+            'attachmentId' => $pollAttachment == null ? null : $pollAttachment->getId(),
+            'attachmentName' => $pollAttachment == null ? null : $pollAttachment->getName()
         ]);
     }
 

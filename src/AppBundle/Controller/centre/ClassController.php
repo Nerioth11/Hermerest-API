@@ -4,10 +4,10 @@ namespace AppBundle\Controller\centre;
 
 use AppBundle\Facade\CourseFacade;
 use AppBundle\Facade\StudentFacade;
+use AppBundle\Utils\ResponseFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class ClassController extends Controller
@@ -40,17 +40,13 @@ class ClassController extends Controller
         $centre = $class->getCentre();
 
         if ($centre->containsClassNamedBy($className) && ($className != $class->getName()))
-            return new JsonResponse([
-                'edited' => false,
-                'error' => "Ya existe una clase con con este nombre."
-            ]);
+            return ResponseFactory::createJsonResponse(false, "Ya existe una clase con nombre: " . $className);
 
         $class->setName($className);
         $courseFacade->edit();
 
-        return new JsonResponse([
-            'edited' => true,
-            'className' => $class->getName()
+        return ResponseFactory::createJsonResponse(true, [
+            'name' => $class->getName()
         ]);
     }
 
@@ -67,11 +63,10 @@ class ClassController extends Controller
         $student->setClass(null);
         $studentFacade->edit();
 
-        return new JsonResponse([
-            'deleted' => true,
-            'deletedStudentId' => $student->getId(),
-            'deletedStudentName' => $student->getName(),
-            'deletedStudentSurname' => $student->getSurname(),
+        return ResponseFactory::createJsonResponse(true, [
+            'id' => $student->getId(),
+            'name' => $student->getName(),
+            'surname' => $student->getSurname(),
         ]);
     }
 
@@ -95,12 +90,11 @@ class ClassController extends Controller
         $student->setClass($class);
         $studentFacade->edit();
 
-        return new JsonResponse([
-            'added' => true,
-            'addedStudentId' => $student->getId(),
-            'addedStudentName' => $student->getName(),
-            'addedStudentSurname' => $student->getSurname(),
-            'addedStudentOldClassName' => $oldClasName,
+        return ResponseFactory::createJsonResponse(true, [
+            'id' => $student->getId(),
+            'name' => $student->getName(),
+            'surname' => $student->getSurname(),
+            'oldClassName' => $oldClasName,
         ]);
     }
 
@@ -116,9 +110,7 @@ class ClassController extends Controller
         $class = $courseFacade->find($classId);
         $courseFacade->remove($class);
 
-        return new JsonResponse([
-            'deleted' => true,
-        ]);
+        return ResponseFactory::createJsonResponse(true, []);
     }
 
 }

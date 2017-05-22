@@ -6,7 +6,7 @@
  * Time: 20:33
  */
 
-namespace AppBundle\Response;
+namespace AppBundle\Utils;
 
 
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -16,17 +16,14 @@ class ResponseFactory
 
     public static function createJsonResponse($success, $content)
     {
-        if (!$success) {
-            return new JsonResponse([
+        return $success ?
+            new JsonResponse([
+                'success' => true,
+                'content' => $content,
+            ]) :
+            new JsonResponse([
                 'success' => false,
                 'error' => $content,
             ]);
-        } else {
-            return new JsonResponse([
-                'success' => true,
-                'content' => $content,
-            ]);
-        }
-
     }
 }

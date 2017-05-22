@@ -2,14 +2,13 @@
 
 namespace AppBundle\Controller\centre;
 
-use AppBundle\Entity\Progenitor;
 use AppBundle\Facade\CourseFacade;
 use AppBundle\Facade\ProgenitorFacade;
 use AppBundle\Facade\StudentFacade;
+use AppBundle\Utils\ResponseFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class StudentController extends Controller
@@ -41,10 +40,7 @@ class StudentController extends Controller
 
         $studentFacade->remove($student);
 
-        return new JsonResponse([
-            'deleted' => true,
-            'deletedStudentId' => $student->getId(),
-        ]);
+        return ResponseFactory::createJsonResponse(true, []);
     }
 
     /**
@@ -70,11 +66,10 @@ class StudentController extends Controller
 
         $studentFacade->edit();
 
-        return new JsonResponse([
-            'edited' => true,
-            'studentName' => $student->getName(),
-            'studentSurname' => $student->getSurname(),
-            'studentClass' => $student->getClass()->getName(),
+        return ResponseFactory::createJsonResponse(true, [
+            'name' => $student->getName(),
+            'surname' => $student->getSurname(),
+            'class' => $student->getClass()->getName(),
         ]);
     }
 
@@ -96,9 +91,8 @@ class StudentController extends Controller
         $student->removeParent($parent);
         $studentFacade->edit();
 
-        return new JsonResponse([
-            'deleted' => true,
-            'deletedParentId' => $parentId,
+        return ResponseFactory::createJsonResponse(true, [
+            'id' => $parentId,
         ]);
     }
 }

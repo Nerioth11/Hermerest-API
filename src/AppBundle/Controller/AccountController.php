@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Facade\AdministratorFacade;
+use AppBundle\Utils\ResponseFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -46,10 +47,9 @@ class AccountController extends Controller
 
         $administratorFacade->edit();
 
-        return new JsonResponse([
-            'edited' => true,
-            'editedAdministratorUser' => $administrator->getUser(),
-            'editedAdministratorName' => $administrator->getName(),
+        return ResponseFactory::createJsonResponse(true, [
+            'user' => $administrator->getUser(),
+            'name' => $administrator->getName(),
         ]);
     }
 }

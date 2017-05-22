@@ -6,12 +6,12 @@ use AppBundle\Entity\Authorization;
 use AppBundle\Facade\AuthorizationFacade;
 use AppBundle\Facade\StudentFacade;
 use AppBundle\Utils\AttachmentManager;
+use AppBundle\Utils\ResponseFactory;
 use DateTime;
 use DateTimeZone;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class AuthorizationsController extends Controller
@@ -48,11 +48,10 @@ class AuthorizationsController extends Controller
 
         $this->sendAuthorization($request->request->get('studentsIds'), $authorization, $authorizationFacade);
 
-        return new JsonResponse([
-            'sent' => true,
-            'sentAuthorizationId' => $authorization->getId(),
-            'sentAuthorizationLimitDate' => $authorization->getLimitDate(),
-            'sentAuthorizationSubject' => $authorization->getSubject(),
+        return ResponseFactory::createJsonResponse(true, [
+            'id' => $authorization->getId(),
+            'limitDate' => $authorization->getLimitDate(),
+            'subject' => $authorization->getSubject(),
         ]);
     }
 
@@ -75,15 +74,14 @@ class AuthorizationsController extends Controller
                     $student->isAuthorizedTo($authorization) ? 1 : 0
                 ]);
 
-        return new JSonResponse([
-            'found' => true,
-            'authorizationSubject' => $authorization->getSubject(),
-            'authorizationMessage' => $authorization->getMessage(),
-            'authorizationSendingDate' => $authorization->getSendingDate(),
-            'authorizationLimitDate' => $authorization->getLimitDate(),
+        return ResponseFactory::createJsonResponse(true, [
+            'subject' => $authorization->getSubject(),
+            'message' => $authorization->getMessage(),
+            'sendingDate' => $authorization->getSendingDate(),
+            'limitDate' => $authorization->getLimitDate(),
             'students' => $students,
-            'authorizationAttachmentId' => $authorizationAttachment == null ? null : $authorizationAttachment->getId(),
-            'authorizationAttachmentName' => $authorizationAttachment == null ? null : $authorizationAttachment->getName()
+            'attachmentId' => $authorizationAttachment == null ? null : $authorizationAttachment->getId(),
+            'attachmentName' => $authorizationAttachment == null ? null : $authorizationAttachment->getName()
         ]);
     }
 

@@ -1,3 +1,4 @@
+// DATES
 function getTodaysDate() {
     today = new Date()
     day = today.getDate();
@@ -31,4 +32,9 @@ function checkAndSetPastDates(table) {
         if (dateComparator($(td).text(), getTodaysDate()) === -1)
             $(td).addClass('pastDate');
     });
+}
+
+// MODALS
+function closeModal() {
+    $(".modal").hide();
 }

@@ -6,10 +6,10 @@ use AppBundle\Entity\Circular;
 use AppBundle\Facade\CircularFacade;
 use AppBundle\Facade\StudentFacade;
 use AppBundle\Utils\AttachmentManager;
+use AppBundle\Utils\ResponseFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use DateTime;
 
@@ -46,10 +46,9 @@ class CircularsController extends Controller
 
         $this->sendCircular($request->request->get('studentsIds'), $circular, $circularFacade);
 
-        return new JsonResponse([
-            'sent' => true,
-            'sentCircularId' => $circular->getId(),
-            'sentCircularSubject' => $circular->getSubject(),
+        return ResponseFactory::createJsonResponse(true, [
+            'id' => $circular->getId(),
+            'subject' => $circular->getSubject(),
         ]);
     }
 
@@ -64,13 +63,12 @@ class CircularsController extends Controller
         $circular = $circularFacade->find($circularId);
         $circularAttachment = count($circular->getAttachments()) == 0 ? null : $circular->getAttachments()[0];
 
-        return new JSonResponse([
-            'found' => true,
-            'circularSubject' => $circular->getSubject(),
-            'circularMessage' => $circular->getMessage(),
-            'circularSendingDate' => $circular->getSendingDate(),
-            'circularAttachmentId' => $circularAttachment == null ? null : $circularAttachment->getId(),
-            'circularAttachmentName' => $circularAttachment == null ? null : $circularAttachment->getName()
+        return ResponseFactory::createJsonResponse(true, [
+            'subject' => $circular->getSubject(),
+            'message' => $circular->getMessage(),
+            'sendingDate' => $circular->getSendingDate(),
+            'attachmentId' => $circularAttachment == null ? null : $circularAttachment->getId(),
+            'attachmentName' => $circularAttachment == null ? null : $circularAttachment->getName()
         ]);
     }
 

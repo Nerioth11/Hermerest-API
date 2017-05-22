@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 
 class SecurityController extends Controller
 {
-        public function loginAction(Request $request)
+    public function loginAction(Request $request)
     {
         //Llamamos al servicio de autenticacion
         $authenticationUtils = $this->get('security.authentication_utils');

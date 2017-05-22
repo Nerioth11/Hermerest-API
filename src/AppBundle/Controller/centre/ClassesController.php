@@ -3,16 +3,15 @@
 namespace AppBundle\Controller\centre;
 
 use AppBundle\Entity\Course;
-use AppBundle\Entity\Progenitor;
 use AppBundle\Entity\Student;
 use AppBundle\Facade\CentreFacade;
 use AppBundle\Facade\CourseFacade;
 use AppBundle\Facade\ProgenitorFacade;
 use AppBundle\Facade\StudentFacade;
+use AppBundle\Utils\ResponseFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class ClassesController extends Controller
@@ -42,18 +41,14 @@ class ClassesController extends Controller
         $centre = $centreFacade->find($centreId);
 
         if ($centre->containsClassNamedBy($className))
-            return new JsonResponse([
-                'added' => false,
-                'error' => "Ya existe una clase con con este nombre."
-            ]);
+            return ResponseFactory::createJsonResponse(false, "Ya existe una clase con nombre: " . $className);
 
         $newClass = new Course($className, $centre);
         $courseFacade->create($newClass);
 
-        return new JsonResponse([
-            'added' => true,
-            'addedClassId' => $newClass->getId(),
-            'addedClassName' => $newClass->getName()
+        return ResponseFactory::createJsonResponse(true, [
+            'id' => $newClass->getId(),
+            'name' => $newClass->getName()
         ]);
     }
 
@@ -72,21 +67,17 @@ class ClassesController extends Controller
         array_pop($students);
 
         if ($centre->containsClassNamedBy($className))
-            return new JsonResponse([
-                'added' => false,
-                'error' => "Ya existe una clase con nombre: " . $className
-            ]);
+            return ResponseFactory::createJsonResponse(false, "Ya existe una clase con nombre: " . $className);
 
         $class = new Course($className, $centre);
         $courseFacade->create($class);
 
         $this->autoimportStudentsToClass($students, $class, $centre, $studentFacade, $courseFacade, $parentFacade);
 
-        return new JsonResponse([
-            'imported' => true,
-            'addedClassId' => $class->getId(),
-            'addedClassName' => $class->getName(),
-            'addedClassStudents' => count($class->getStudents()),
+        return ResponseFactory::createJsonResponse(true, [
+            'id' => $class->getId(),
+            'name' => $class->getName(),
+            'students' => count($class->getStudents()),
         ]);
     }
 

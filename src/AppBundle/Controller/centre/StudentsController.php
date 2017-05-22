@@ -2,15 +2,14 @@
 
 namespace AppBundle\Controller\centre;
 
-use AppBundle\Entity\Progenitor;
 use AppBundle\Entity\Student;
 use AppBundle\Facade\CourseFacade;
 use AppBundle\Facade\ProgenitorFacade;
 use AppBundle\Facade\StudentFacade;
+use AppBundle\Utils\ResponseFactory;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
 class StudentsController extends Controller
@@ -35,13 +34,13 @@ class StudentsController extends Controller
 
         $parent = $progenitorFacade->findByTelephone($parentTelephone);
 
-        if ($parent == null) return new JsonResponse(['found' => false]);
+        if ($parent == null) return ResponseFactory::createJsonResponse(true, ['found' => false]);
 
-        return new JsonResponse([
+        return ResponseFactory::createJsonResponse(true, [
             'found' => true,
-            'parentId' => $parent->getId(),
-            'parentTelephone' => $parent->getTelephone(),
-            'parentFullname' => $parent->getName(),
+            'id' => $parent->getId(),
+            'telephone' => $parent->getTelephone(),
+            'fullname' => $parent->getName(),
         ]);
     }
 
@@ -62,12 +61,11 @@ class StudentsController extends Controller
         $student = new Student($studentName, $studentSurname, $class, $class->getCentre());
         $studentFacade->create($student);
 
-        return new JsonResponse([
-            'registered' => true,
-            'studentId' => $student->getId(),
-            'studentClass' => $student->getClass()->getName(),
-            'studentName' => $student->getName(),
-            'studentSurname' => $student->getSurname(),
+        return ResponseFactory::createJsonResponse(true, [
+            'id' => $student->getId(),
+            'class' => $student->getClass()->getName(),
+            'name' => $student->getName(),
+            'surname' => $student->getSurname(),
         ]);
     }
 
@@ -89,12 +87,10 @@ class StudentsController extends Controller
         $student->addParent($parent);
         $studentFacade->edit();
 
-        return new JsonResponse([
-            'added' => true,
-            'addedParentId' => $parent->getId(),
-            'addedParentTelephone' => $parent->getTelephone(),
-            'addedParentFullname' => $parent->getName(),
-            'studentId' => $student->getId(),
+        return ResponseFactory::createJsonResponse(true, [
+            'id' => $parent->getId(),
+            'telephone' => $parent->getTelephone(),
+            'fullname' => $parent->getName(),
         ]);
     }
 }
