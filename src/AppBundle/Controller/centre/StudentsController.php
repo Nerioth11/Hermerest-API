@@ -23,42 +23,20 @@ class StudentsController extends Controller
     }
 
     /**
-     * @Route("/centre/students/findParent", name="find_parent")
-     * @Method("GET")
-     */
-    public function findParentAction(Request $request)
-    {
-        $parentTelephone = $request->query->get('parentTelephone');
-
-        $progenitorFacade = new ProgenitorFacade($this->getDoctrine()->getManager());
-
-        $parent = $progenitorFacade->findByTelephone($parentTelephone);
-
-        if ($parent == null) return ResponseFactory::createJsonResponse(true, ['found' => false]);
-
-        return ResponseFactory::createJsonResponse(true, [
-            'found' => true,
-            'id' => $parent->getId(),
-            'telephone' => $parent->getTelephone(),
-            'fullname' => $parent->getName(),
-        ]);
-    }
-
-    /**
-     * @Route("/centre/students/register", name="register_student")
+     * @Route("/students", name="register_student")
      * @Method("POST")
      */
     public function registerStudentAction(Request $request)
     {
-        $studentName = $request->request->get('studentName');
-        $studentSurname = $request->request->get('studentSurname');
-        $studentClass = $request->request->get('studentClass');
-
         $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
         $courseFacade = new CourseFacade($this->getDoctrine()->getManager());
-        $class = $courseFacade->find($studentClass);
-
-        $student = new Student($studentName, $studentSurname, $class, $class->getCentre());
+        $class = $courseFacade->find($request->request->get('studentClass'));
+        $student = new Student(
+            $request->request->get('studentName'),
+            $request->request->get('studentSurname'),
+            $class,
+            $class->getCentre()
+        );
         $studentFacade->create($student);
 
         return ResponseFactory::createJsonResponse(true, [
@@ -70,20 +48,14 @@ class StudentsController extends Controller
     }
 
     /**
-     * @Route("/centre/students/addParent", name="add_parent")
+     * @Route("/students/{studentId}/parents/{parentTelephone}", name="add_parent")
      * @Method("POST")
      */
-    public function addParentAction(Request $request)
+    public function addParentAction(Request $request, $studentId, $parentTelephone)
     {
-        $studentId = $request->request->get('studentId');
-        $parentTelephone = $request->request->get('parentTelephone');
-
         $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
-        $progenitorFacade = new ProgenitorFacade($this->getDoctrine()->getManager());
-
         $student = $studentFacade->find($studentId);
-        $parent = $progenitorFacade->findByTelephone($parentTelephone);
-
+        $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->findByTelephone($parentTelephone);
         $student->addParent($parent);
         $studentFacade->edit();
 
@@ -91,6 +63,7 @@ class StudentsController extends Controller
             'id' => $parent->getId(),
             'telephone' => $parent->getTelephone(),
             'fullname' => $parent->getName(),
+            'studentId' => $student->getId(),
         ]);
     }
 }

@@ -21,31 +21,22 @@ class ClassesController extends Controller
      */
     public function classesAction()
     {
-        return $this->render('/centre/classes.html.twig',
-            [
-                'classes' => $this->getUser()->getCentre()->getClasses()
-            ]);
+        return $this->render('/centre/classes.html.twig', ['classes' => $this->getUser()->getCentre()->getClasses()]);
     }
 
     /**
-     * @Route("/centre/classes/add", name="add_class")
+     * @Route("/classes", name="add_class")
      * @Method("POST")
      */
     public function addClassAction(Request $request)
     {
-        $courseFacade = new CourseFacade($this->getDoctrine()->getManager());
-        $centreFacade = new CentreFacade($this->getDoctrine()->getManager());
+        $centre = (new CentreFacade($this->getDoctrine()->getManager()))->find($request->request->get('centreId'));
 
-        $className = $request->request->get('className');
-        $centreId = $request->request->get('centreId');
-        $centre = $centreFacade->find($centreId);
+        if ($centre->containsClassNamedBy($request->request->get('className')))
+            return ResponseFactory::createJsonResponse(false, "Ya existe una clase con nombre: " . $request->request->get('className'));
 
-        if ($centre->containsClassNamedBy($className))
-            return ResponseFactory::createJsonResponse(false, "Ya existe una clase con nombre: " . $className);
-
-        $newClass = new Course($className, $centre);
-        $courseFacade->create($newClass);
-
+        $newClass = new Course($request->request->get('className'), $centre);
+        (new CourseFacade($this->getDoctrine()->getManager()))->create($newClass);
         return ResponseFactory::createJsonResponse(true, [
             'id' => $newClass->getId(),
             'name' => $newClass->getName()

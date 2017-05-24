@@ -21,7 +21,7 @@
         <option value=" ">Cualquier curso</option>
         <option value="">Sin curso</option>
         {% for class in app.user.centre.getClasses() %}
-        <option value="{{ class.getName() }}">{{ class.getName() }}</option>
+            <option value="{{ class.getName() }}">{{ class.getName() }}</option>
         {% endfor %}
     </select>
     <input class="filterInput" id="studentNameFilterInput" type="text" placeholder="Nombre del alumno"
@@ -38,13 +38,16 @@
         </thead>
         <tbody>
         {% for student in app.user.getCentre().getStudents() %}
-        <tr>
-            <td>{{ student.getSurname() }}, {{ student.getName() }}</td>
-            <td>{{ student.getClass() is null ? '-' : student.getClass().getName() }}</td>
-            <td class="tableButton">
-                <button class="infoButton" onclick="window.location.href='{{ path('student') }}?id={{ student.getId() }}'">Ver</button>
-            </td>
-        </tr>
+            <tr>
+                <td>{{ student.getSurname() }}, {{ student.getName() }}</td>
+                <td>{{ student.getClass() is null ? '-' : student.getClass().getName() }}</td>
+                <td class="tableButton">
+                    <button class="infoButton"
+                            onclick="window.location.href='{{ path('student', {id: student.getId()}) }}'">
+                        Ver
+                    </button>
+                </td>
+            </tr>
         {% endfor %}
         </tbody>
     </table>

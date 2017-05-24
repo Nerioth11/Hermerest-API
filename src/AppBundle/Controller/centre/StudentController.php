@@ -14,58 +14,34 @@ use Symfony\Component\HttpFoundation\Request;
 class StudentController extends Controller
 {
     /**
-     * @Route("/centre/student", name="student")
+     * @Route("/centre/students/{id}", name="student")
      */
-    public function studentAction(Request $request)
+    public function studentAction(Request $request, $id)
     {
-        $studentId = $request->query->get('id');
-        $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
-
-        return $this->render('/centre/student.html.twig',
-            [
-                'student' => $studentFacade->find($studentId)
-            ]);
+        return $this->render('/centre/student.html.twig', ['student' => (new StudentFacade($this->getDoctrine()->getManager()))->find($id)]);
     }
 
     /**
-     * @Route("/centre/student/delete", name="delete_student")
-     * @Method("POST")
+     * @Route("/students/{id}", name="delete_student")
+     * @Method("DELETE")
      */
-    public function deleteStudentAction(Request $request)
+    public function deleteStudentAction(Request $request, $id)
     {
-        $studentId = $request->request->get('studentId');
-
         $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
-        $student = $studentFacade->find($studentId);
-
-        $studentFacade->remove($student);
-
+        $studentFacade->remove($studentFacade->find($id));
         return ResponseFactory::createJsonResponse(true, []);
     }
 
     /**
-     * @Route("/centre/student/edit", name="edit_student")
-     * @Method("POST")
+     * @Route("/students/{id}", name="edit_student")
+     * @Method("PATCH")
      */
-    public function editStudentAction(Request $request)
+    public function editStudentAction(Request $request, $id)
     {
-        $studentId = $request->request->get('studentId');
-        $studentName = $request->request->get('studentName');
-        $studentSurname = $request->request->get('studentSurname');
-        $studentClassId = $request->request->get('studentClass');
-
-        $courseFacade = new CourseFacade($this->getDoctrine()->getManager());
         $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
-
-        $class = $courseFacade->find($studentClassId);
-        $student = $studentFacade->find($studentId);
-
-        $student->setName($studentName);
-        $student->setSurname($studentSurname);
-        $student->setClass($class);
-
+        $student = $studentFacade->find($id);
+        $this->setStudentFields($request, $student);
         $studentFacade->edit();
-
         return ResponseFactory::createJsonResponse(true, [
             'name' => $student->getName(),
             'surname' => $student->getSurname(),
@@ -74,25 +50,21 @@ class StudentController extends Controller
     }
 
     /**
-     * @Route("/centre/student/deleteParent", name="delete_parent")
-     * @Method("POST")
+     * @Route("/students/{studentId}/parents/{parentId}", name="delete_parent")
+     * @Method("DELETE")
      */
-    public function deleteParentAction(Request $request)
+    public function deleteParentAction(Request $request, $studentId, $parentId)
     {
-        $studentId = $request->request->get('studentId');
-        $parentId = $request->request->get('parentId');
-
         $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
-        $progenitorFacade = new ProgenitorFacade($this->getDoctrine()->getManager());
-
-        $student = $studentFacade->find($studentId);
-        $parent = $progenitorFacade->find($parentId);
-
-        $student->removeParent($parent);
+        $studentFacade->find($studentId)->removeParent((new ProgenitorFacade($this->getDoctrine()->getManager()))->find($parentId));
         $studentFacade->edit();
+        return ResponseFactory::createJsonResponse(true, ['id' => $parentId]);
+    }
 
-        return ResponseFactory::createJsonResponse(true, [
-            'id' => $parentId,
-        ]);
+    private function setStudentFields(Request $request, $student)
+    {
+        $student->setName($request->request->get('studentName'));
+        $student->setSurname($request->request->get('studentSurname'));
+        $student->setClass((new CourseFacade($this->getDoctrine()->getManager()))->find($request->request->get('studentClass')));
     }
 }

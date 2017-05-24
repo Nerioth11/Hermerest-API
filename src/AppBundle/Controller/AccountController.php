@@ -21,35 +21,37 @@ class AccountController extends Controller
     }
 
     /**
-     * @Route("/account/edit", name="edit_account")
-     * @Method("POST")
+     * @Route("/administrators/{id}", name="edit_account")
+     * @Method("PATCH")
      */
-    public function deleteStudentAction(Request $request)
+    public function deleteStudentAction(Request $request, $id)
     {
         $administratorFacade = new AdministratorFacade($this->getDoctrine()->getManager());
-        $administrator = $this->get('security.token_storage')->getToken()->getUser();
-        $user = $request->request->get('user');
-        $name = $request->request->get('name');
-        $oldPassword = $request->request->get('oldPassword');
-        $newPassword = $request->request->get('newPassword');
+        $administrator = $administratorFacade->find($id);
 
-        if (md5($oldPassword) != $administrator->getPassword()) {
-            return new JsonResponse([
-                'edited' => false,
-                'error' => "La contraseña actual no es correcta"
-            ]);
-        }
+        if ($this->oldPasswordIsIncorrect($request, $administrator))
+            return new JsonResponse(['edited' => false, 'error' => "La contraseña actual no es correcta"]);
 
-        $administrator->setUser($user);
-        $administrator->setName($name);
-        if (strlen($newPassword) >= 4 && strlen($newPassword) <= 16)
-            $administrator->setPassword(md5($newPassword));
+        $administrator->setUser($request->request->get('user'));
+        $administrator->setName($request->request->get('name'));
+
+        if ($this->newPasswordIsSetAndHasCorrectLength($request))
+            $administrator->setPassword(md5($request->request->get('newPassword')));
 
         $administratorFacade->edit();
-
         return ResponseFactory::createJsonResponse(true, [
             'user' => $administrator->getUser(),
             'name' => $administrator->getName(),
         ]);
+    }
+
+    private function newPasswordIsSetAndHasCorrectLength(Request $request)
+    {
+        return strlen($request->request->get('newPassword')) >= 4 && strlen($request->request->get('newPassword')) <= 16;
+    }
+
+    private function oldPasswordIsIncorrect(Request $request, $administrator)
+    {
+        return md5($request->request->get('oldPassword')) != $administrator->getPassword();
     }
 }

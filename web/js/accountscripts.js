@@ -7,13 +7,13 @@ function openEditAccountDialog() {
     $("#editAccountModal").show();
 }
 
-function editAccount() {
+function editAccount(id) {
     if ($("#administratorUserInput").val().trim() === "" || $("#administratorNameInput").val().trim() === "") alert("El nombre y el usuario no pueden estar vacíos");
     else if ($("#administratorNewPasswordInput").val().length > 0 && ($("#administratorNewPasswordInput").val().length < 4 || $("#administratorNewPasswordInput").val().length > 16 )) alert("La contraseña debe tener entre 4 y 16 caracteres");
     else if ($("#administratorNewPasswordInput").val() !== $("#administratorRepeatNewPasswordInput").val()) alert("Las contraseñas no coinciden");
     else if ($("#administratorCurrentPasswordInput").val().trim().length === 0) alert("Inserte su contraseña actual");
     else {
-        postCall("/account/edit",
+        patchCall("/administrators/" + id,
             {
                 "user": $("#administratorUserInput").val(),
                 "name": $("#administratorNameInput").val(),

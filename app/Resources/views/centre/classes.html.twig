@@ -11,7 +11,8 @@
     {#<button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>#}
     <div class="defaultButton actionPanelRightButton autoimportButton">
         <label for="files" class="btn">Autoimportar desde .csv</label>
-        <input id="files" style="visibility:hidden;" type="file" accept=".csv" onchange="handleAutoimportFile(this.files)">
+        <input id="files" style="visibility:hidden;" type="file" accept=".csv"
+               onchange="handleAutoimportFile(this.files)">
     </div>
 {% endblock %}
 
@@ -32,7 +33,9 @@
                 <td>{{ class.getName() }}</td>
                 <td>{{ class.getStudents()|length }}</td>
                 <td class="tableButton">
-                    <button class="infoButton" onclick="window.location.href='{{ path('class') }}?id={{ class.getId() }}'">Ver</button>
+                    <button class="infoButton"
+                            onclick="window.location.href='{{ path('class', {'id': class.getId()}) }}'">Ver
+                    </button>
                 </td>
             </tr>
         {% endfor %}

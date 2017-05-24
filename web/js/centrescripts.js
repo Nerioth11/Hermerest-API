@@ -74,7 +74,7 @@ function addNewClass(centreId) {
     var className = $("#classNameInput").val();
     if (className.trim().length === 0) alert("Rellene todos los campos");
     else {
-        postCall("/centre/classes/add",
+        postCall("/classes",
             {"className": className, "centreId": centreId},
             addNewClassCallback
         );
@@ -90,7 +90,7 @@ function addNewClassCallback(response) {
         "<tr>" +
         "<td>" + response.content.name + "</td>" +
         "<td>0</td>" +
-        "<td class='tableButton'><button class='infoButton' onclick='window.location.href=\"class?id=" + response.content.id + "\"'>Ver</button></td>" +
+        "<td class='tableButton'><button class='infoButton' onclick='window.location.href=\"classes/" + response.content.id + "\"'>Ver</button></td>" +
         "</tr>"
     );
 
@@ -115,8 +115,8 @@ function editClass(classId) {
     var className = $("#classNameInput").val();
     if (className.trim().length === 0) alert("Rellene todos los campos");
     else {
-        postCall("/centre/class/edit",
-            {"className": className, "classId": classId},
+        patchCall("/classes/" + classId,
+            {"className": className},
             editClassCallback
         );
     }
@@ -131,11 +131,8 @@ function editClassCallback(response) {
     closeModal();
 }
 
-function deleteStudentFromClass(studentId) {
-    postCall("/centre/class/deleteStudent",
-        {"studentId": studentId},
-        deleteStudentFromClassCallback
-    );
+function deleteStudentFromClass(studentId, classId) {
+    deleteCall("/classes/" + classId + "/students/" + studentId, {}, deleteStudentFromClassCallback);
 }
 
 function deleteStudentFromClassCallback(response) {
@@ -187,12 +184,8 @@ function addStudentsToClass(classId, callback) {
         return;
     }
 
-    for (var i = 0; i < studentsIds.length; i++) {
-        postCall("/centre/class/addStudent",
-            {"studentId": studentsIds[i], "classId": classId},
-            callback
-        );
-    }
+    for (var i = 0; i < studentsIds.length; i++)
+        postCall("/classes/" + classId + "/students/" + studentsIds[i], {}, callback);
 }
 
 function addStudentsToClassAndShowItCallback(response) {
@@ -252,11 +245,7 @@ function hideNotMatchingStudentsFromStudentsDropdown() {
 
 function deleteClass(classId) {
     if (!confirm("¿Está seguro de que desea eliminar el curso?")) return;
-
-    postCall("/centre/class/delete",
-        {"classId": classId},
-        deleteClassCallback
-    );
+    deleteCall("/classes/" + classId, {}, deleteClassCallback);
 }
 
 function deleteClassCallback(response) {
@@ -265,7 +254,7 @@ function deleteClassCallback(response) {
         return;
     }
 
-    window.location.replace("classes");
+    window.location.replace("../classes");
 }
 
 
@@ -322,7 +311,7 @@ function registerStudent() {
         return;
     }
 
-    postCall("/centre/students/register",
+    postCall("/students",
         {"studentName": studentName, "studentSurname": studentSurname, "studentClass": studentClass},
         registerStudentCallback
     );
@@ -339,7 +328,7 @@ function registerStudentCallback(response) {
         "<tr>" +
         "<td>" + response.content.surname + ", " + response.content.name + "</td>" +
         "<td>" + response.content.class + "</td>" +
-        "<td class='tableButton'><button class='infoButton' onclick='window.location.href=\"student?id=" + response.content.id + "\"'>Ver</button></td>" +
+        "<td class='tableButton'><button class='infoButton' onclick='window.location.href=\"students/" + response.content.id + "\"'>Ver</button></td>" +
         "</tr>"
     );
 
@@ -356,13 +345,13 @@ $(".modal-body_content #parentTelephoneInput").on('input', function () {
         return;
     }
 
-    getCall("/centre/students/findParent?parentTelephone=" + parentTelephone,
+    getCall("/parents?telephone=" + parentTelephone,
         searchParentByTelephoneCallback
     );
 });
 
 function searchParentByTelephoneCallback(response) {
-    if(!response.success){
+    if (!response.success) {
         alert(response.error);
         return;
     }
@@ -408,9 +397,8 @@ function editStudent(studentId) {
         return;
     }
 
-    postCall("/centre/student/edit",
+    patchCall("/students/" + studentId,
         {
-            "studentId": studentId,
             "studentName": studentName,
             "studentSurname": studentSurname,
             "studentClass": studentClass
@@ -436,10 +424,7 @@ function editStudentCallback(response) {
 function deleteStudent(studentId) {
     if (!confirm("¿Está seguro de que desea eliminar al alumno?")) return;
 
-    postCall("/centre/student/delete",
-        {"studentId": studentId},
-        deleteStudentCallback
-    );
+    deleteCall("/students/" + studentId, {}, deleteStudentCallback);
 }
 
 function deleteStudentCallback(response) {
@@ -448,7 +433,7 @@ function deleteStudentCallback(response) {
         return;
     }
 
-    window.location.replace("students");
+    window.location.replace("../students");
 }
 
 function addParents(studentId) {
@@ -458,12 +443,9 @@ function addParents(studentId) {
         parentsTelephones.push($(this).attr('id'));
     });
 
-    for (var i = 0; i < parentsTelephones.length; i++) {
-        postCall("/centre/students/addParent",
-            {"studentId": studentId, "parentTelephone": parentsTelephones[i]},
-            addParentsCallback
-        );
-    }
+    for (var i = 0; i < parentsTelephones.length; i++)
+        postCall("/students/" + studentId + "/parents/" + parentsTelephones[i], {}, addParentsCallback);
+
 }
 
 function addParentsCallback(response) {
@@ -476,7 +458,7 @@ function addParentsCallback(response) {
         "<tr id='" + response.content.id + "'>" +
         "<td>" + response.content.telephone + "</td>" +
         "<td>" + response.content.fullname + "</td>" +
-        "<td class='tableButton'><button class='warningButton' onclick='deleteParent(" + response.studentId + "," + response.content.id + ")'>Eliminar</button></td>" +
+        "<td class='tableButton'><button class='warningButton' onclick='deleteParent(" + response.content.studentId + "," + response.content.id + ")'>Eliminar</button></td>" +
         "</tr>"
     );
 
@@ -486,10 +468,7 @@ function addParentsCallback(response) {
 function deleteParent(studentId, parentId) {
     if (!confirm("¿Está seguro de que desea eliminar al padre?")) return;
 
-    postCall("/centre/student/deleteParent",
-        {"studentId": studentId, "parentId": parentId},
-        deleteParentCallback
-    );
+    deleteCall("/students/" + studentId + "/parents/" + parentId, {}, deleteParentCallback);
 }
 
 function deleteParentCallback(response) {

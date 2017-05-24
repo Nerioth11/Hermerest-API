@@ -35,7 +35,7 @@
                     <button class="infoButton" onclick="window.location.href='{{ path('student') }}?id={{ student.getId() }}'">Ver</button>
                 </td>
                 <td class="tableButton">
-                    <button class="warningButton" onclick="deleteStudentFromClass({{ student.getId() }})">Eliminar
+                    <button class="warningButton" onclick="deleteStudentFromClass({{ student.getId() }},{{ class.getId() }})">Eliminar
                     </button>
                 </td>
             </tr>

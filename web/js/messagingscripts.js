@@ -9,7 +9,7 @@ function openSendCircularDialog() {
 }
 
 function openViewCircularDialog(circularId) {
-    getCall("/messaging/circulars/getCircular?id=" + circularId, openViewCircularDialogCallback);
+    getCall("/circulars/" + circularId, openViewCircularDialogCallback);
 }
 
 
@@ -66,7 +66,7 @@ function sendCircular() {
 }
 
 function sendCircularPost(studentsIds, fileName) {
-    postCall("/messaging/circulars/sendCircular",
+    postCall("/circulars",
         {
             "subject": $("#circularSubjectInput").val(),
             "message": $("#circularContentTextArea").val(),
@@ -108,7 +108,7 @@ function openSendAuthorizationDialog() {
 function openViewAuthorizationDialog(authorizationId) {
     $("#viewAuthorizationModal #authorizedStudentsList").empty();
     $("#viewAuthorizationModal #unauthorizedStudentsList").empty();
-    getCall("/messaging/authorizations/getAuthorization?id=" + authorizationId, openViewAuthorizationDialogCallback);
+    getCall("/authorizations/" + authorizationId, openViewAuthorizationDialogCallback);
 }
 
 function openViewAuthorizationDialogCallback(response) {
@@ -165,7 +165,7 @@ function sendAuthorization() {
 }
 
 function sendAuthorizationPost(studentsIds, fileName) {
-    postCall("/messaging/authorizations/sendAuthorization",
+    postCall("/authorizations",
         {
             "subject": $("#authorizationSubjectInput").val(),
             "limitDate": $("#authorizationDateInput").val(),
@@ -226,7 +226,7 @@ function openSendPollDialog() {
 
 function openViewPollDialog(pollId) {
     $("#viewPollModal #pollResultList").empty();
-    getCall("/messaging/polls/getPoll?id=" + pollId, openViewPollDialogCallback);
+    getCall("/polls/" + pollId, openViewPollDialogCallback);
 }
 
 function openViewPollDialogCallback(response) {
@@ -309,7 +309,7 @@ function sendPoll() {
 }
 
 function sendPollPost(studentsIds, fileName) {
-    postCall("/messaging/polls/sendPoll",
+    postCall("/polls",
         {
             "subject": $("#pollSubjectInput").val(),
             "limitDate": $("#pollDateInput").val(),

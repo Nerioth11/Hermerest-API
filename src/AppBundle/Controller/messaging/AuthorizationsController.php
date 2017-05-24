@@ -25,29 +25,32 @@ class AuthorizationsController extends Controller
     }
 
     /**
-     * @Route("/messaging/authorizations/sendAuthorization", name="send_authorization")
+     * @Route("/authorizations", name="send_authorization")
      * @Method("POST")
      */
     public function sendAuthorizationAction(Request $request)
     {
         $authorizationFacade = new AuthorizationFacade($this->getDoctrine()->getManager());
-
-        $centre = $this->get('security.token_storage')->getToken()->getUser()->getCentre();
-        $subject = $request->request->get('subject');
-        $limitDate = date_create_from_format('Y-m-d G:i:s', $request->request->get('limitDate') . " 23:59:59", new DateTimeZone('UTC'));
-        $message = $request->request->get('message');
-        $fileName = $request->request->get('fileName');
-        $fileContent = $request->request->get('fileContent');
         $sendingDate = new DateTime();
         date_timezone_set($sendingDate, timezone_open('Atlantic/Canary'));
-
-        $authorization = new Authorization($subject, $message, $sendingDate, $centre, $limitDate);
+        $authorization = new Authorization(
+            $request->request->get('subject'),
+            $request->request->get('message'),
+            $sendingDate,
+            $this->get('security.token_storage')->getToken()->getUser()->getCentre(),
+            date_create_from_format('Y-m-d G:i:s', $request->request->get('limitDate') . " 23:59:59", new DateTimeZone('UTC'))
+        );
         $authorizationFacade->create($authorization);
 
-        if ($fileName != null) AttachmentManager::attachFileToMessage($fileName, $fileContent, $authorization, $this->getDoctrine()->getManager());
+        if ($request->request->get('fileName') != null)
+            AttachmentManager::attachFileToMessage(
+                $request->request->get('fileName'),
+                $request->request->get('fileContent'),
+                $authorization,
+                $this->getDoctrine()->getManager()
+            );
 
         $this->sendAuthorization($request->request->get('studentsIds'), $authorization, $authorizationFacade);
-
         return ResponseFactory::createJsonResponse(true, [
             'id' => $authorization->getId(),
             'limitDate' => $authorization->getLimitDate(),
@@ -56,30 +59,19 @@ class AuthorizationsController extends Controller
     }
 
     /**
-     * @Route("/messaging/authorizations/getAuthorization", name="get_authorization")
+     * @Route("/authorizations/{id}", name="get_authorization")
      * @Method("GET")
      */
-    public function getAuthorizationAction(Request $request)
+    public function getAuthorizationAction(Request $request, $id)
     {
-        $authorizationFacade = new AuthorizationFacade($this->getDoctrine()->getManager());
-        $authorizationId = $request->query->get('id');
-        $authorization = $authorizationFacade->find($authorizationId);
+        $authorization = (new AuthorizationFacade($this->getDoctrine()->getManager()))->find($id);
         $authorizationAttachment = count($authorization->getAttachments()) == 0 ? null : $authorization->getAttachments()[0];
-
-        $students = array();
-        foreach ($authorization->getStudents() as $student)
-            array_push($students,
-                [
-                    $student->getSurname() . ", " . $student->getName(),
-                    $student->isAuthorizedTo($authorization) ? 1 : 0
-                ]);
-
         return ResponseFactory::createJsonResponse(true, [
             'subject' => $authorization->getSubject(),
             'message' => $authorization->getMessage(),
             'sendingDate' => $authorization->getSendingDate(),
             'limitDate' => $authorization->getLimitDate(),
-            'students' => $students,
+            'students' => $this->getAuthorizationResults($authorization),
             'attachmentId' => $authorizationAttachment == null ? null : $authorizationAttachment->getId(),
             'attachmentName' => $authorizationAttachment == null ? null : $authorizationAttachment->getName()
         ]);
@@ -87,10 +79,21 @@ class AuthorizationsController extends Controller
 
     private function sendAuthorization($studentsIds, $authorization, $authorizationFacade)
     {
-        $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
         foreach ($studentsIds as $studentId) {
-            $authorization->addStudent($studentFacade->find($studentId));
+            $authorization->addStudent((new StudentFacade($this->getDoctrine()->getManager()))->find($studentId));
             $authorizationFacade->edit();
         }
+    }
+
+    private function getAuthorizationResults($authorization)
+    {
+        $students = array();
+        foreach ($authorization->getStudents() as $student)
+            array_push($students,
+                [
+                    $student->getSurname() . ", " . $student->getName(),
+                    $student->isAuthorizedTo($authorization) ? 1 : 0
+                ]);
+        return $students;
     }
 }

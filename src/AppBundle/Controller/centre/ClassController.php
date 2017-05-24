@@ -13,56 +13,44 @@ use Symfony\Component\HttpFoundation\Request;
 class ClassController extends Controller
 {
     /**
-     * @Route("/centre/class", name="class")
+     * @Route("/centre/classes/{id}", name="class")
      */
-    public function classAction(Request $request)
+    public function classAction(Request $request, $id)
     {
-        $classId = $request->query->get('id');
-        $courseFacade = new CourseFacade($this->getDoctrine()->getManager());
-
-        return $this->render('/centre/class.html.twig',
-            [
-                'class' => $courseFacade->find($classId)
-            ]);
+        return $this->render('/centre/class.html.twig', [
+            'class' => (new CourseFacade($this->getDoctrine()->getManager()))->find($id)
+        ]);
     }
 
     /**
-     * @Route("/centre/class/edit", name="edit_class")
-     * @Method("POST")
+     * @Route("/classes/{id}", name="edit_class")
+     * @Method("PATCH")
      */
-    public function editClassAction(Request $request)
+    public function editClassAction(Request $request, $id)
     {
         $className = $request->request->get('className');
-        $classId = $request->request->get('classId');
         $courseFacade = new CourseFacade($this->getDoctrine()->getManager());
+        $class = $courseFacade->find($id);
 
-        $class = $courseFacade->find($classId);
-        $centre = $class->getCentre();
-
-        if ($centre->containsClassNamedBy($className) && ($className != $class->getName()))
+        if ($this->classNameAlreadyExists($class, $className))
             return ResponseFactory::createJsonResponse(false, "Ya existe una clase con nombre: " . $className);
 
         $class->setName($className);
         $courseFacade->edit();
 
-        return ResponseFactory::createJsonResponse(true, [
-            'name' => $class->getName()
-        ]);
+        return ResponseFactory::createJsonResponse(true, ['name' => $class->getName()]);
     }
 
     /**
-     * @Route("/centre/class/deleteStudent", name="delete_student_from_class")
-     * @Method("POST")
+     * @Route("/classes/{classId}/students/{studentId}", name="delete_student_from_class")
+     * @Method("DELETE")
      */
-    public function deleteStudentAction(Request $request)
+    public function deleteStudentAction(Request $request, $classId, $studentId)
     {
-        $studentId = $request->request->get('studentId');
         $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
-
         $student = $studentFacade->find($studentId);
         $student->setClass(null);
         $studentFacade->edit();
-
         return ResponseFactory::createJsonResponse(true, [
             'id' => $student->getId(),
             'name' => $student->getName(),
@@ -71,46 +59,38 @@ class ClassController extends Controller
     }
 
     /**
-     * @Route("/centre/class/addStudent", name="add_student_to_class")
+     * @Route("/classes/{classId}/students/{studentId}", name="add_student_to_class")
      * @Method("POST")
      */
-    public function addStudentAction(Request $request)
+    public function addStudentAction(Request $request, $classId, $studentId)
     {
-        $studentId = $request->request->get('studentId');
-        $classId = $request->request->get('classId');
-
         $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
-        $courseFacade = new CourseFacade($this->getDoctrine()->getManager());
-
         $student = $studentFacade->find($studentId);
-        $class = $courseFacade->find($classId);
-
-        $oldClasName = $student->getClass() == null ? null : $student->getClass()->getName();
-
-        $student->setClass($class);
+        $student->setClass((new CourseFacade($this->getDoctrine()->getManager()))->find($classId));
         $studentFacade->edit();
 
         return ResponseFactory::createJsonResponse(true, [
             'id' => $student->getId(),
             'name' => $student->getName(),
             'surname' => $student->getSurname(),
-            'oldClassName' => $oldClasName,
+            'oldClassName' => $student->getClass() == null ? null : $student->getClass()->getName(),
         ]);
     }
 
     /**
-     * @Route("/centre/class/delete", name="delete_class")
-     * @Method("POST")
+     * @Route("/classes/{id}", name="delete_class")
+     * @Method("DELETE")
      */
-    public function deleteClassAction(Request $request)
+    public function deleteClassAction(Request $request, $id)
     {
-        $classId = $request->request->get('classId');
         $courseFacade = new CourseFacade($this->getDoctrine()->getManager());
-
-        $class = $courseFacade->find($classId);
-        $courseFacade->remove($class);
-
+        $courseFacade->remove($courseFacade->find($id));
         return ResponseFactory::createJsonResponse(true, []);
+    }
+
+    private function classNameAlreadyExists($class, $className)
+    {
+        return $class->getCentre()->containsClassNamedBy($className) && ($className != $class->getName());
     }
 
 }

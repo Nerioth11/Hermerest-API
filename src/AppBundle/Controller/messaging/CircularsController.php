@@ -24,28 +24,30 @@ class CircularsController extends Controller
     }
 
     /**
-     * @Route("/messaging/circulars/sendCircular", name="send_circular")
+     * @Route("/circulars", name="send_circular")
      * @Method("POST")
      */
     public function sendCircularAction(Request $request)
     {
         $circularFacade = new CircularFacade($this->getDoctrine()->getManager());
+        $sendingDate = new DateTime();date_timezone_set($sendingDate, timezone_open('Atlantic/Canary'));
 
-        $centre = $this->get('security.token_storage')->getToken()->getUser()->getCentre();
-        $subject = $request->request->get('subject');
-        $message = $request->request->get('message');
-        $fileName = $request->request->get('fileName');
-        $fileContent = $request->request->get('fileContent');
-        $sendingDate = new DateTime();
-        date_timezone_set($sendingDate, timezone_open('Atlantic/Canary'));
-
-        $circular = new Circular($subject, $message, $sendingDate, $centre);
+        $circular = new Circular(
+            $request->request->get('subject'),
+            $request->request->get('message'),
+            $sendingDate,
+            $this->get('security.token_storage')->getToken()->getUser()->getCentre()
+        );
         $circularFacade->create($circular);
 
-        if ($fileName != null) AttachmentManager::attachFileToMessage($fileName, $fileContent, $circular, $this->getDoctrine()->getManager());
+        if ($request->request->get('fileName') != null)
+            AttachmentManager::attachFileToMessage(
+                $request->request->get('fileName'),
+                $request->request->get('fileContent'),
+                $circular,
+                $this->getDoctrine()->getManager());
 
         $this->sendCircular($request->request->get('studentsIds'), $circular, $circularFacade);
-
         return ResponseFactory::createJsonResponse(true, [
             'id' => $circular->getId(),
             'subject' => $circular->getSubject(),
@@ -53,16 +55,13 @@ class CircularsController extends Controller
     }
 
     /**
-     * @Route("/messaging/circulars/getCircular", name="get_circular")
+     * @Route("/circulars/{id}", name="get_circular")
      * @Method("GET")
      */
-    public function getCircularAction(Request $request)
+    public function getCircularAction(Request $request, $id)
     {
-        $circularFacade = new CircularFacade($this->getDoctrine()->getManager());
-        $circularId = $request->query->get('id');
-        $circular = $circularFacade->find($circularId);
+        $circular = (new CircularFacade($this->getDoctrine()->getManager()))->find($id);
         $circularAttachment = count($circular->getAttachments()) == 0 ? null : $circular->getAttachments()[0];
-
         return ResponseFactory::createJsonResponse(true, [
             'subject' => $circular->getSubject(),
             'message' => $circular->getMessage(),
@@ -74,9 +73,8 @@ class CircularsController extends Controller
 
     private function sendCircular($studentsIds, $circular, $circularFacade)
     {
-        $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
         foreach ($studentsIds as $studentId) {
-            $circular->addStudent($studentFacade->find($studentId));
+            $circular->addStudent((new StudentFacade($this->getDoctrine()->getManager()))->find($studentId));
             $circularFacade->edit();
         }
     }
