@@ -44,7 +44,7 @@ class ClassesController extends Controller
     }
 
     /**
-     * @Route("/centre/classes/autoimportClass", name="autoimport_class")
+     * @Route("/classes/autoimport", name="autoimport_class")
      * @Method("POST")
      */
     public function autoimportClassAction(Request $request)

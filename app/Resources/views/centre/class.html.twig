@@ -10,7 +10,9 @@
 {% block action_panel %}
     <button class="defaultButton" type="button" onclick="openEditClassDialog()">Editar</button>
     <button class="defaultButton" type="button" onclick="openAddStudentDialog()">Añadir alumnos</button>
-    <button class="warningButton actionPanelRightButton" type="button" onclick="deleteClass({{ class.getId() }})">Eliminar curso</button>
+    <button class="warningButton actionPanelRightButton" type="button" onclick="deleteClass({{ class.getId() }})">
+        Eliminar curso
+    </button>
     {#<button class="defaultButton actionPanelRightButton" type="button">Autoimportar desde .csv</button>#}
 {% endblock %}
 
@@ -32,10 +34,13 @@
             <tr id="{{ student.getId() }}">
                 <td>{{ student.getSurname() }}, {{ student.getName() }}</td>
                 <td class="tableButton">
-                    <button class="infoButton" onclick="window.location.href='{{ path('student') }}?id={{ student.getId() }}'">Ver</button>
+                    <button class="infoButton"
+                            onclick="window.location.href='{{ path('student', {'id': student.getId()}) }}'">Ver
+                    </button>
                 </td>
                 <td class="tableButton">
-                    <button class="warningButton" onclick="deleteStudentFromClass({{ student.getId() }},{{ class.getId() }})">Eliminar
+                    <button class="warningButton"
+                            onclick="deleteStudentFromClass({{ student.getId() }},{{ class.getId() }})">Eliminar
                     </button>
                 </td>
             </tr>

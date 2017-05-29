@@ -37,7 +37,7 @@ function autoimportClass(className, students) {
     console.log("autoimportando la clase: " + className + "\n");
     console.log(students + "\n");
 
-    postCall("/centre/classes/autoimportClass",
+    postCall("/classes/autoimport",
         {"className": className, "students": students.split("\n")},
         autoimportClassCallback
     );
@@ -53,7 +53,7 @@ function autoimportClassCallback(response) {
         "<tr>" +
         "<td>" + response.content.name + "</td>" +
         "<td>" + response.content.students + "</td>" +
-        "<td class='tableButton'><button class='infoButton'><a href='class?id=" + response.content.id + "'>Ver</a></button></td>" +
+        "<td class='tableButton'><button class='infoButton'><a href='classes/" + response.content.id + "'>Ver</a></button></td>" +
         "</tr>"
     );
 }
@@ -197,7 +197,7 @@ function addStudentsToClassAndShowItCallback(response) {
     $("#studentsTable").append(
         "<tr id='" + response.content.id + "'>" +
         "<td>" + response.content.surname + ", " + response.content.name + "</td>" +
-        "<td class='tableButton'><button class='infoButton' onclick='window.location.href=\"student?id=" + response.content.id + "\"'>Ver</button></td>" +
+        "<td class='tableButton'><button class='infoButton' onclick='window.location.href=\"../students/" + response.content.id + "\"'>Ver</button></td>" +
         "<td class='tableButton'><button class='warningButton' onclick='deleteStudentFromClass(" + response.content.id + ")'>Eliminar</button></td>" +
         "</tr>"
     );
