@@ -3,7 +3,6 @@ function openSendCircularDialog() {
     $("#circularSubjectInput").val("");
     $("#circularContentTextArea").val("");
     $("#attachFileInput").val(null);
-    $("#attachedFile").text("");
     resetTreeview("#sendCircularModal");
     $("#sendCircularModal").show();
 }
@@ -53,28 +52,25 @@ function sendCircular() {
             if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
-        var fileName;
         if (file !== undefined) {
-            fileName = document.getElementById('attachFileInput').files[0].name
             var reader = new FileReader();
             reader.onload = function (event) {
-                $("#attachedFile").text(event.target.result.replace(/^[^,]*,/, ''));
-                sendCircularPost(studentsIds, fileName);
+                sendCircularPost(studentsIds, file.name, event.target.result.replace(/^[^,]*,/, ''));
             };
             reader.readAsDataURL(file);
-        } else sendCircularPost(studentsIds, fileName);
+        } else sendCircularPost(studentsIds, file.name, "");
 
     }
 }
 
-function sendCircularPost(studentsIds, fileName) {
+function sendCircularPost(studentsIds, fileName, fileContent) {
     postCall("/circulars",
         {
             "subject": $("#circularSubjectInput").val(),
             "message": $("#circularContentTextArea").val(),
             "studentsIds": studentsIds,
             "fileName": fileName,
-            "fileContent": $("#attachedFile").text(),
+            "fileContent": fileContent,
         },
         sendCircularCallback
     );
@@ -102,7 +98,6 @@ function openSendAuthorizationDialog() {
     $("#authorizationDateInput").val("");
     $("#authorizationContentTextArea").val("");
     $("#attachFileInput").val(null);
-    $("#attachedFile").text("");
     resetTreeview("#sendAuthorizationModal");
     $("#sendAuthorizationModal").show();
 }
@@ -155,20 +150,17 @@ function sendAuthorization() {
             if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
-        var fileName;
         if (file !== undefined) {
-            fileName = document.getElementById('attachFileInput').files[0].name
             var reader = new FileReader();
             reader.onload = function (event) {
-                $("#attachedFile").text(event.target.result.replace(/^[^,]*,/, ''));
-                sendAuthorizationPost(studentsIds, fileName);
+                sendAuthorizationPost(studentsIds, file.name, event.target.result.replace(/^[^,]*,/, ''));
             };
             reader.readAsDataURL(file);
-        } else sendAuthorizationPost(studentsIds, fileName);
+        } else sendAuthorizationPost(studentsIds, file.name, "");
     }
 }
 
-function sendAuthorizationPost(studentsIds, fileName) {
+function sendAuthorizationPost(studentsIds, fileName, fileContent) {
     postCall("/authorizations",
         {
             "subject": $("#authorizationSubjectInput").val(),
@@ -176,7 +168,7 @@ function sendAuthorizationPost(studentsIds, fileName) {
             "message": $("#authorizationContentTextArea").val(),
             "studentsIds": studentsIds,
             "fileName": fileName,
-            "fileContent": $("#attachedFile").text(),
+            "fileContent": fileContent,
         },
         sendAuthorizationCallback
     );
@@ -223,7 +215,6 @@ function openSendPollDialog() {
     $("#multipleChoiceCheckbox").prop('checked', false);
     $("#addedPollOptionsList").empty();
     $("#attachFileInput").val(null);
-    $("#attachedFile").text("");
     resetTreeview("#sendPollModal");
     $("#sendPollModal").show();
 }
@@ -301,20 +292,17 @@ function sendPoll() {
             if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
-        var fileName;
         if (file !== undefined) {
-            fileName = document.getElementById('attachFileInput').files[0].name
             var reader = new FileReader();
             reader.onload = function (event) {
-                $("#attachedFile").text(event.target.result.replace(/^[^,]*,/, ''));
-                sendPollPost(studentsIds, fileName);
+                sendPollPost(studentsIds, file.name, event.target.result.replace(/^[^,]*,/, ''));
             };
             reader.readAsDataURL(file);
-        } else sendPollPost(studentsIds, fileName);
+        } else sendPollPost(studentsIds, file.name, "");
     }
 }
 
-function sendPollPost(studentsIds, fileName) {
+function sendPollPost(studentsIds, fileName, fileContent) {
     postCall("/polls",
         {
             "subject": $("#pollSubjectInput").val(),
@@ -323,7 +311,7 @@ function sendPollPost(studentsIds, fileName) {
             "multipleChoice": $("#multipleChoiceCheckbox").is(':checked'),
             "studentsIds": studentsIds,
             "fileName": fileName,
-            "fileContent": $("#attachedFile").text(),
+            "fileContent": fileContent,
             "options": $("#addedPollOptionsList li").map(function () {
                 return this.innerText.slice(0, -1)
             }).get()

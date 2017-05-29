@@ -6,8 +6,7 @@ function handleAutoimportFile(files) {
     var selectedFile = files[0];
     var reader = new FileReader();
     reader.onload = function (event) {
-        var data = event.target.result;
-        autoimportClasses(data);
+        autoimportClasses(event.target.result);
     };
     reader.readAsText(selectedFile);
     $("#files").val("");
@@ -239,8 +238,7 @@ function hideNotMatchingStudentsFromStudentsDropdown() {
         } else $(this).hide();
     });
 
-    if (numberOfVisibleOptions === 0)
-        $("#studentsDropdown").val('-1');
+    if (numberOfVisibleOptions === 0) $("#studentsDropdown").val('-1');
 }
 
 function deleteClass(classId) {
@@ -423,7 +421,6 @@ function editStudentCallback(response) {
 
 function deleteStudent(studentId) {
     if (!confirm("¿Está seguro de que desea eliminar al alumno?")) return;
-
     deleteCall("/students/" + studentId, {}, deleteStudentCallback);
 }
 
@@ -467,7 +464,6 @@ function addParentsCallback(response) {
 
 function deleteParent(studentId, parentId) {
     if (!confirm("¿Está seguro de que desea eliminar al padre?")) return;
-
     deleteCall("/students/" + studentId + "/parents/" + parentId, {}, deleteParentCallback);
 }
 
