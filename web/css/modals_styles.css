@@ -105,6 +105,10 @@
 }
 
 /*messaging*/
+.maxAttachmentSize{
+    font-size: small;
+}
+
 .messageTextArea {
     resize: none;
     font-size: large;

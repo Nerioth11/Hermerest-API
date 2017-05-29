@@ -42,15 +42,17 @@ function filterCirculars() {
 }
 
 function sendCircular() {
+    var file = document.getElementById('attachFileInput').files[0];
+
     if ($("#circularSubjectInput").val().trim() === "") alert("El asunto de la circular no debe estar vacío");
     else if ($("#sendCircularModal .recipientStudentLi input:checkbox:checked").length === 0) alert("Marque algún destinatario");
+    else if (file !== undefined && file.size > 10485760) alert("El archivo no debe superar los 10MB");
     else {
         var studentsIds = [];
         $(".treeview .recipientStudentLi").each(function () {
             if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
-        var file = document.getElementById('attachFileInput').files[0];
         var fileName;
         if (file !== undefined) {
             fileName = document.getElementById('attachFileInput').files[0].name
@@ -141,8 +143,11 @@ function openViewAuthorizationDialogCallback(response) {
 }
 
 function sendAuthorization() {
+    var file = document.getElementById('attachFileInput').files[0];
+
     if ($("#authorizationSubjectInput").val().trim() === "" || $("#authorizationDateInput").val().trim() === "") alert("El asunto y la fecha límite de la autorización no deben estar vacíos");
     else if (dateComparator(dateToString($("#authorizationDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
+    else if (file !== undefined && file.size > 10485760) alert("El archivo no debe superar los 10MB");
     else if ($("#sendAuthorizationModal .recipientStudentLi input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else {
         var studentsIds = [];
@@ -150,7 +155,6 @@ function sendAuthorization() {
             if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
-        var file = document.getElementById('attachFileInput').files[0];
         var fileName;
         if (file !== undefined) {
             fileName = document.getElementById('attachFileInput').files[0].name
@@ -284,8 +288,11 @@ function deletePollOption(button) {
 }
 
 function sendPoll() {
+    var file = document.getElementById('attachFileInput').files[0];
+
     if ($("#pollSubjectInput").val().trim() === "" || $("#pollDateInput").val().trim() === "") alert("El asunto y la fecha límite de la circular no deben estar vacíos");
     else if (dateComparator(dateToString($("#pollDateInput").val()), getTodaysDate()) === -1) alert("La fecha límite es anterior a la actual");
+    else if (file !== undefined && file.size > 10485760) alert("El archivo no debe superar los 10MB");
     else if ($("#sendPollModal .recipientStudentLi input:checkbox:checked").length === 0) alert("Marque algún destinatario");
     else if ($("#addedPollOptionsList").children().length < 2) alert("Indique, al menos, 2 opciones para la encuesta");
     else {
@@ -294,7 +301,6 @@ function sendPoll() {
             if ($(this).children().first().is(':checked')) studentsIds.push(this.id);
         });
 
-        var file = document.getElementById('attachFileInput').files[0];
         var fileName;
         if (file !== undefined) {
             fileName = document.getElementById('attachFileInput').files[0].name
