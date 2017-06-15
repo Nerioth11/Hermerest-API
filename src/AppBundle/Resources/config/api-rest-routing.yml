@@ -1,0 +1,9 @@
+api_users:
+    type: rest
+    resource: "@AppBundle/Controller/api/UsersController.php"
+    name_prefix:  api_users_
+
+api_progenitors:
+    type: rest
+    resource: "@AppBundle/Controller/api/ProgenitorsController.php"
+    name_prefix:  api_progenitors_
