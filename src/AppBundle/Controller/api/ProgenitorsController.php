@@ -39,4 +39,28 @@ class ProgenitorsController extends Controller
             'telephone' => $parent->getTelephone()
         ]);
     }
+
+    public function getParentMessagesAction($id, Request $request)
+    {
+        $type = $request->query->get("type");
+        $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->find($id);
+        $messages = $parent->getMessagesOfType($type);
+        return ResponseFactory::createWebServiceResponse(true, $this->getMessagesArray($messages, $type));
+    }
+
+    private function getMessagesArray($messages, $type): array
+    {
+        $messagesArray = [];
+        foreach ($messages as $message) {
+            $messageArray = [
+                'id' => $message->getId(),
+                'subject' => $message->getSubject(),
+                'sendingDate' => $message->getSendingDate(),
+                'attachment' => count($message->getAttachments()) > 0 ? true : false,
+            ];
+            if ($type == 'Authorization' || $type == 'Poll') array_push($messageArray, $message->getLimitDate());
+            array_push($messagesArray, $messageArray);
+        }
+        return $messagesArray;
+    }
 }
