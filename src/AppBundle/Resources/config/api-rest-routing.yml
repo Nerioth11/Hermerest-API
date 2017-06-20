@@ -12,3 +12,13 @@ api_circulars:
     type: rest
     resource: "@AppBundle/Controller/api/CircularsController.php"
     name_prefix:  api_circulars_
+
+api_polls:
+    type: rest
+    resource: "@AppBundle/Controller/api/PollsController.php"
+    name_prefix:  api_polls_
+
+api_authorizations:
+    type: rest
+    resource: "@AppBundle/Controller/api/AuthorizationsController.php"
+    name_prefix:  api_authorizations_
