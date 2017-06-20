@@ -7,3 +7,8 @@ api_progenitors:
     type: rest
     resource: "@AppBundle/Controller/api/ProgenitorsController.php"
     name_prefix:  api_progenitors_
+
+api_circulars:
+    type: rest
+    resource: "@AppBundle/Controller/api/CircularsController.php"
+    name_prefix:  api_circulars_

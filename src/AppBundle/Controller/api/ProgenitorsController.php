@@ -57,7 +57,7 @@ class ProgenitorsController extends Controller
                 'subject' => $message->getSubject(),
                 'sendingDate' => $message->getSendingDate(),
                 'attachment' => count($message->getAttachments()) > 0 ? true : false,
-                'limitDate' => ($type == 'Authorization' || $type == 'Poll') ? $message->getlimitDate() : null,
+                'limitDate' => ($type == 'Authorization' || $type == 'Poll') ? $message->getlimitDate() : null
             ]);
         }
         return $messagesArray;
