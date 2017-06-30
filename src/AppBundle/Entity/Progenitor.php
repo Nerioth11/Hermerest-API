@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use AppBundle\Entity\AuthorizationReply;
+use AppBundle\Entity\Centre;
 use AppBundle\Entity\PollReply;
 use AppBundle\Entity\Student;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -38,6 +39,12 @@ class Progenitor
     private $children;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Centre", mappedBy="parents")
+     * * @ORM\OrderBy({"name" = "ASC"})
+     */
+    private $centres;
+
+    /**
      * @ORM\OneToMany(targetEntity="AuthorizationReply", mappedBy="parent")
      */
     private $authorizationReplies;
@@ -50,6 +57,7 @@ class Progenitor
     public function __construct($name = null, $telephone = null)
     {
         $this->children = new ArrayCollection();
+        $this->centres = new ArrayCollection();
         $this->authorizationReplies = new ArrayCollection();
         $this->pollReplies = new ArrayCollection();
         $this->name = $name;
@@ -217,6 +225,55 @@ class Progenitor
     }
 
     /**
+     * Get pollReplies
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getAuthorizationReply(Student $student, Authorization $authorization)
+    {
+        foreach ($this->authorizationReplies as $authorizationReply)
+            if ($authorizationReply->getStudent()->getId() == $student->getId() &&
+                $authorizationReply->getAuthorization()->getId() == $authorization->getId())
+                    return $authorizationReply;
+        
+        return null;
+    }
+
+    /**
+     * Add centre
+     *
+     * @param Centre $centre
+     *
+     * @return Progenitor
+     */
+    public function addCentre(Centre $centre)
+    {
+        $this->centres[] = $centre;
+
+        return $this;
+    }
+
+    /**
+     * Remove centre
+     *
+     * @param Centre $centre
+     */
+    public function removeCentre(Centre $centre)
+    {
+        $this->centres->removeElement($centre);
+    }
+
+    /**
+     * Get centres
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCentres()
+    {
+        return $this->centres;
+    }
+
+    /**
      * Get messages by type
      *
      * @param $type
@@ -226,16 +283,19 @@ class Progenitor
     {
         $messages = new ArrayCollection();
         foreach ($this->children as $child)
-            $this->addChildMessagesToChildrenMessages($child->getMessagesOfType($type), $messages, $type);
+            $this->addChildMessagesToChildrenMessages($child->getMessagesOfType($type), $messages, $type, $child);
 
         return $messages;
     }
 
-    private function addChildMessagesToChildrenMessages($childMessages, $childrenMessages, $type)
+    private function addChildMessagesToChildrenMessages($childMessages, $childrenMessages, $type, $child)
     {
         foreach ($childMessages as $childMessage) {
             if ($type != "Authorization" && $childrenMessages->contains($childMessage)) continue;
-            $childrenMessages->add($childMessage);
+            $childrenMessages->add($type == "Authorization" ?
+                ['message' => $childMessage, 'child' => $child] :
+                $childMessage
+            );
         }
     }
 }

@@ -10,15 +10,18 @@ namespace AppBundle\Controller\api;
 
 
 use AppBundle\Facade\PollFacade;
+use AppBundle\Facade\ProgenitorFacade;
 use AppBundle\Utils\ResponseFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class PollsController extends Controller
 {
-    public function getPollsAction($id)
+    public function getPollsAction(Request $request, $id)
     {
         $poll = (new PollFacade($this->getDoctrine()->getManager()))->find($id);
         $pollAttachment = count($poll->getAttachments()) == 0 ? null : $poll->getAttachments()[0];
+        $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->find($request->query->get("parent"));
         return ResponseFactory::createWebServiceResponse(true, [
             'subject' => $poll->getSubject(),
             'message' => $poll->getMessage(),
@@ -26,7 +29,9 @@ class PollsController extends Controller
             'limitDate' => $poll->getLimitDate(),
             'options' => $this->getPollResults($poll),
             'attachmentId' => $pollAttachment == null ? null : $pollAttachment->getId(),
-            'attachmentName' => $pollAttachment == null ? null : $pollAttachment->getName()
+            'attachmentName' => $pollAttachment == null ? null : $pollAttachment->getName(),
+            'multiple' => $poll->getMultipleChoice(),
+            'replied' => $poll->isRepliedBy($parent)
         ]);
     }
 

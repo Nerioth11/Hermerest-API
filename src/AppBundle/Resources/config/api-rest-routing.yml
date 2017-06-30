@@ -1,8 +1,3 @@
-api_users:
-    type: rest
-    resource: "@AppBundle/Controller/api/UsersController.php"
-    name_prefix:  api_users_
-
 api_progenitors:
     type: rest
     resource: "@AppBundle/Controller/api/ProgenitorsController.php"
@@ -22,3 +17,18 @@ api_authorizations:
     type: rest
     resource: "@AppBundle/Controller/api/AuthorizationsController.php"
     name_prefix:  api_authorizations_
+
+api_authorizationreplies:
+    type: rest
+    resource: "@AppBundle/Controller/api/AuthorizationRepliesController.php"
+    name_prefix:  api_authorizationreplies_
+
+api_pollreplies:
+    type: rest
+    resource: "@AppBundle/Controller/api/PollRepliesController.php"
+    name_prefix:  api_pollreplies_
+
+api_centres:
+    type: rest
+    resource: "@AppBundle/Controller/api/CentresController.php"
+    name_prefix:  api_centres_

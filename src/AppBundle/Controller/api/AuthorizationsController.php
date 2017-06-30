@@ -10,14 +10,20 @@ namespace AppBundle\Controller\api;
 
 
 use AppBundle\Facade\AuthorizationFacade;
+use AppBundle\Facade\ProgenitorFacade;
+use AppBundle\Facade\StudentFacade;
 use AppBundle\Utils\ResponseFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 class AuthorizationsController extends Controller
 {
-    public function getAuthorizationsAction($id)
+    public function getParentAuthorizationAction($parentId, $authorizationId, Request $request)
     {
-        $authorization = (new AuthorizationFacade($this->getDoctrine()->getManager()))->find($id);
+        $studentId = $request->query->get("student");
+        $authorization = (new AuthorizationFacade($this->getDoctrine()->getManager()))->find($authorizationId);
+        $student = (new StudentFacade($this->getDoctrine()->getManager()))->find($studentId);
+        $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->find($parentId);
         $authorizationAttachment = count($authorization->getAttachments()) == 0 ? null : $authorization->getAttachments()[0];
         return ResponseFactory::createWebServiceResponse(true, [
             'subject' => $authorization->getSubject(),
@@ -25,7 +31,18 @@ class AuthorizationsController extends Controller
             'sendingDate' => $authorization->getSendingDate(),
             'limitDate' => $authorization->getLimitDate(),
             'attachmentId' => $authorizationAttachment == null ? null : $authorizationAttachment->getId(),
-            'attachmentName' => $authorizationAttachment == null ? null : $authorizationAttachment->getName()
+            'attachmentName' => $authorizationAttachment == null ? null : $authorizationAttachment->getName(),
+            'reply' => $this->getReply($parent, $student, $authorization),
+            'replyId' => is_null($parent->getAuthorizationReply($student, $authorization)) ? null : ($parent->getAuthorizationReply($student, $authorization)->getId()),
+            'studentName' => $student->getName() . ' ' . $student->getSurname(),
+            'authorized' => $student->isAuthorizedTo($authorization)
         ]);
+    }
+
+    public function getReply($parent, $student, $authorization)
+    {
+        $reply = $parent->getAuthorizationReply($student, $authorization);
+        return is_null($reply) ? null :
+            ($reply->getAuthorized() ? true : false);
     }
 }

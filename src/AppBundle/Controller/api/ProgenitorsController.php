@@ -52,13 +52,22 @@ class ProgenitorsController extends Controller
     {
         $messagesArray = [];
         foreach ($messages as $message) {
-            array_push($messagesArray,  [
-                'id' => $message->getId(),
-                'subject' => $message->getSubject(),
-                'sendingDate' => $message->getSendingDate(),
-                'attachment' => count($message->getAttachments()) > 0 ? true : false,
-                'limitDate' => ($type == 'Authorization' || $type == 'Poll') ? $message->getlimitDate() : null
-            ]);
+            array_push($messagesArray, $type == 'Authorization' ?
+                [
+                    'id' => $message['message']->getId(),
+                    'subject' => $message['message']->getSubject(),
+                    'sendingDate' => $message['message']->getSendingDate(),
+                    'attachment' => count($message['message']->getAttachments()) > 0 ? true : false,
+                    'limitDate' => $message['message']->getlimitDate(),
+                    'studentId' => $message['child']->getId()
+                ] :
+                [
+                    'id' => $message->getId(),
+                    'subject' => $message->getSubject(),
+                    'sendingDate' => $message->getSendingDate(),
+                    'attachment' => count($message->getAttachments()) > 0 ? true : false,
+                    'limitDate' => ($type == 'Poll') ? $message->getlimitDate() : null,
+                ]);
         }
         return $messagesArray;
     }
