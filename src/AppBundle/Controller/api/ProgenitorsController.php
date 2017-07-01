@@ -10,6 +10,7 @@ namespace AppBundle\Controller\api;
 
 use AppBundle\Entity\Progenitor;
 use AppBundle\Facade\ProgenitorFacade;
+use AppBundle\Facade\StudentFacade;
 use AppBundle\Utils\ResponseFactory;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,5 +71,48 @@ class ProgenitorsController extends Controller
                 ]);
         }
         return $messagesArray;
+    }
+
+    public function putParentsAction($id, Request $request)
+    {
+        $parentFacade = new ProgenitorFacade($this->getDoctrine()->getManager());
+        $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->find($id);
+        $parent->setName($request->request->get("newName"));
+        $parentFacade->edit();
+        return ResponseFactory::createWebServiceResponse(true, [
+            'name' => $parent->getName()
+        ]);
+    }
+
+    public function getParentChildrenAction($id)
+    {
+        $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->find($id);
+        $children = $parent->getChildren();
+        return ResponseFactory::createWebServiceResponse(true, $this->getChildrenArray($children));
+    }
+
+    private function getChildrenArray($children): array
+    {
+        $childrenArray = [];
+        foreach ($children as $child) {
+            array_push($childrenArray,
+                [
+                    'id' => $child->getId(),
+                    'name' => $child->getName(),
+                    'surname' => $child->getSurname(),
+                ]);
+        }
+        return $childrenArray;
+    }
+
+    public function deleteParentStudentAction($id, $childId)
+    {
+        $studentFacade = new StudentFacade($this->getDoctrine()->getManager());
+        $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->find($id);
+        $child = (new StudentFacade($this->getDoctrine()->getManager()))->find($childId);
+        $child->removeParent($parent);
+        $studentFacade->edit();
+        return ResponseFactory::createWebServiceResponse(true, [
+        ]);
     }
 }
