@@ -25,8 +25,8 @@ class PollsController extends Controller
         return ResponseFactory::createWebServiceResponse(true, [
             'subject' => $poll->getSubject(),
             'message' => $poll->getMessage(),
-            'sendingDate' => $poll->getSendingDate(),
-            'limitDate' => $poll->getLimitDate(),
+            'sendingDate' => $poll->getSendingDate()->format('Y-m-d H:i:s'),
+            'limitDate' => $poll->getLimitDate()->format('Y-m-d H:i:s'),
             'options' => $this->getPollResults($poll),
             'attachmentId' => $pollAttachment == null ? null : $pollAttachment->getId(),
             'attachmentName' => $pollAttachment == null ? null : $pollAttachment->getName(),

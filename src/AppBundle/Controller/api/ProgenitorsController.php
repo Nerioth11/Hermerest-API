@@ -58,17 +58,17 @@ class ProgenitorsController extends Controller
                 [
                     'id' => $message['message']->getId(),
                     'subject' => $message['message']->getSubject(),
-                    'sendingDate' => $message['message']->getSendingDate(),
+                    'sendingDate' => $message['message']->getSendingDate()->format('Y-m-d H:i:s'),
                     'attachment' => count($message['message']->getAttachments()) > 0 ? true : false,
-                    'limitDate' => $message['message']->getlimitDate(),
+                    'limitDate' => $message['message']->getlimitDate()->format('Y-m-d H:i:s'),
                     'studentId' => $message['child']->getId()
                 ] :
                 [
                     'id' => $message->getId(),
                     'subject' => $message->getSubject(),
-                    'sendingDate' => $message->getSendingDate(),
+                    'sendingDate' => $message->getSendingDate()->format('Y-m-d H:i:s'),
                     'attachment' => count($message->getAttachments()) > 0 ? true : false,
-                    'limitDate' => ($type == 'Poll') ? $message->getlimitDate() : null,
+                    'limitDate' => ($type == 'Poll') ? $message->getlimitDate()->format('Y-m-d H:i:s') : null,
                 ]);
         }
         return $messagesArray;

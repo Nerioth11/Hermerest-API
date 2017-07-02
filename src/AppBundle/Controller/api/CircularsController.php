@@ -22,7 +22,7 @@ class CircularsController extends Controller
         return ResponseFactory::createWebServiceResponse(true, [
             'subject' => $circular->getSubject(),
             'message' => $circular->getMessage(),
-            'sendingDate' => $circular->getSendingDate(),
+            'sendingDate' => $circular->getSendingDate()->format('Y-m-d H:i:s'),
             'attachmentId' => $circularAttachment == null ? null : $circularAttachment->getId(),
             'attachmentName' => $circularAttachment == null ? null : $circularAttachment->getName()
         ]);

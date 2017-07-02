@@ -28,8 +28,8 @@ class AuthorizationsController extends Controller
         return ResponseFactory::createWebServiceResponse(true, [
             'subject' => $authorization->getSubject(),
             'message' => $authorization->getMessage(),
-            'sendingDate' => $authorization->getSendingDate(),
-            'limitDate' => $authorization->getLimitDate(),
+            'sendingDate' => $authorization->getSendingDate()->format('Y-m-d H:i:s'),
+            'limitDate' => $authorization->getLimitDate()->format('Y-m-d H:i:s'),
             'attachmentId' => $authorizationAttachment == null ? null : $authorizationAttachment->getId(),
             'attachmentName' => $authorizationAttachment == null ? null : $authorizationAttachment->getName(),
             'reply' => $this->getReply($parent, $student, $authorization),
