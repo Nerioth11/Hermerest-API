@@ -17,30 +17,20 @@ use Symfony\Component\HttpFoundation\Request;
 
 class CentresController extends Controller
 {
-    public function getCentresAction()
+    public function getCentresAction($id)
     {
+        $parentCentres = (new ProgenitorFacade($this->getDoctrine()->getManager()))->find($id)->getCentres();
         $centres = (new CentreFacade($this->getDoctrine()->getManager()))->findAll();
         $centresContent = array();
         foreach ($centres as $centre)
         {
-            array_push($centresContent, ['id'=>$centre->getId(), 'name' => $centre->getName()]);
+            array_push($centresContent,
+                [
+                    'id'=>$centre->getId(),
+                    'name' => $centre->getName(),
+                    'isSet' => $parentCentres->contains($centre)
+                ]);
         }
         return ResponseFactory::createWebServiceResponse(true, $centresContent);
-    }
-
-    public function postCentresAction(Request $request)
-    {
-        $centreFacade = new CentreFacade($this->getDoctrine()->getManager());
-        $centre = (new CentreFacade($this->getDoctrine()->getManager()))->find($request->request->get("centreId"));
-        $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->find($request->request->get("parentId"));
-        $centre->addParent($parent);
-        $centreFacade->edit();
-
-
-        return ResponseFactory::createWebServiceResponse(true, [
-            'parent' => $parent->getName(),
-            'centre' => $centre->getName(),
-            'Centros totales' => $parent->getCentres()->count()
-        ]);
     }
 }

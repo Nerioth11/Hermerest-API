@@ -9,6 +9,7 @@
 namespace AppBundle\Controller\api;
 
 use AppBundle\Entity\Progenitor;
+use AppBundle\Facade\CentreFacade;
 use AppBundle\Facade\ProgenitorFacade;
 use AppBundle\Facade\StudentFacade;
 use AppBundle\Utils\ResponseFactory;
@@ -84,7 +85,7 @@ class ProgenitorsController extends Controller
         ]);
     }
 
-    public function getParentChildrenAction($id)
+    public function getParentStudentsAction($id)
     {
         $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->find($id);
         $children = $parent->getChildren();
@@ -113,6 +114,31 @@ class ProgenitorsController extends Controller
         $child->removeParent($parent);
         $studentFacade->edit();
         return ResponseFactory::createWebServiceResponse(true, [
+        ]);
+    }
+
+    public function deleteParentCentresAction($id){
+        $parentFacade = new ProgenitorFacade($this->getDoctrine()->getManager());
+        $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->find($id);
+        $parentFacade->clearCentresOf($parent);
+        return ResponseFactory::createWebServiceResponse(true, [
+            'Centros totales' => $parent->getCentres()->count()
+        ]);
+    }
+
+    public function postParentsCentresAction($id, $centreId)
+    {
+        $centreFacade = new CentreFacade($this->getDoctrine()->getManager());
+        $centre = (new CentreFacade($this->getDoctrine()->getManager()))->find($centreId);
+        $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->find($id);
+        $centre->addParent($parent);
+        $centreFacade->edit();
+
+
+        return ResponseFactory::createWebServiceResponse(true, [
+            'parent' => $parent->getName(),
+            'centre' => $centre->getName(),
+            'Centros totales' => $parent->getCentres()->count()
         ]);
     }
 }
