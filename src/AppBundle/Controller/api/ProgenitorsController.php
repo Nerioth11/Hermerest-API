@@ -22,10 +22,19 @@ class ProgenitorsController extends Controller
     {
         $telephone = $request->query->get("telephone");
         $parent = (new ProgenitorFacade($this->getDoctrine()->getManager()))->findByTelephone($telephone);
-        return ResponseFactory::createWebServiceResponse($parent !== null,
+        return ResponseFactory::createWebServiceResponse(true,
             $parent === null ?
-                'No se encontró el padre' :
-                ['id' => $parent->getId(), 'name' => $parent->getName(), 'telephone' => $parent->getTelephone()]
+                [
+                    'smsCode' => '123456',
+                    'found' => false
+                ]
+                :
+                ['id' => $parent->getId(),
+                    'name' => $parent->getName(),
+                    'telephone' => $parent->getTelephone(),
+                    'smsCode' => '123456',
+                    'found' => true
+                ]
         );
     }
 
